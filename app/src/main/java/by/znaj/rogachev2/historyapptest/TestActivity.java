@@ -182,36 +182,36 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 }else{
                     banswer1.setBackgroundColor(getResources().getColor(R.color.colorRed));
                 }*/
-                banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                /*banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                 banswer1.setHighlightColor(getResources().getColor(R.color.colorGreen));
-                banswer1.setTextColor(getResources().getColor(R.color.colorGreen));
+                banswer1.setTextColor(getResources().getColor(R.color.colorGreen));*/
                 Toast aboutMessage = Toast.makeText(this,"Pressed 1",Toast.LENGTH_SHORT);
                 aboutMessage.setGravity(Gravity.CENTER, 0, 0);
                 aboutMessage.show();
                 break;
             }
             case R.id.answer2: {
-                if (flag2 == 1){
+               /* if (flag2 == 1){
                     banswer2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                 }else{
                     banswer2.setBackgroundColor(getResources().getColor(R.color.colorRed));
-                }
+                }*/
                 break;
             }
             case R.id.answer3: {
-                if (flag3 == 1){
+                /*if (flag3 == 1){
                     banswer3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                 }else{
                     banswer3.setBackgroundColor(getResources().getColor(R.color.colorRed));
-                }
+                }*/
                 break;
             }
             case R.id.answer4: {
-                if (flag4 == 1){
+                /*if (flag4 == 1){
                     banswer4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                 }else{
                     banswer4.setBackgroundColor(getResources().getColor(R.color.colorRed));
-                }
+                }*/
                 break;
             }
         }
