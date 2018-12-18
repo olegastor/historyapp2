@@ -16,7 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TestActivity extends AppCompatActivity implements View.OnClickListener{
+import java.util.concurrent.TimeUnit;
+
+import static android.widget.Toast.LENGTH_SHORT;
+
+public class TestActivity extends AppCompatActivity /*implements View.OnClickListener*/{
 
     TextView nameBox;
     TextView textQuestion;
@@ -136,6 +140,98 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         ////////////////
         //showDialog();
         ////////////////
+        banswer1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (countQuestions < totalQuestions) {
+                    if (flag1 == 1) {
+                        banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                        /*try {
+                            TimeUnit.SECONDS.sleep(2);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }*/
+                        correctAnswers++;
+                        nextQuestion();
+                    } else {
+                        banswer1.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                        nextQuestion();
+                    }
+                } else{
+                    //TODO results
+                    nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                }
+            }
+        });
+        banswer2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (countQuestions < totalQuestions) {
+                    if (flag1 == 1) {
+                        banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                        /*try {
+                            TimeUnit.SECONDS.sleep(2);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }*/
+                        correctAnswers++;
+                        nextQuestion();
+                    } else {
+                        banswer1.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                        nextQuestion();
+                    }
+                } else{
+                    //TODO results
+                    nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                }
+            }
+        });
+        banswer3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (countQuestions < totalQuestions) {
+                    if (flag1 == 1) {
+                        banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                        /*try {
+                            TimeUnit.SECONDS.sleep(2);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }*/
+                        correctAnswers++;
+                        nextQuestion();
+                    } else {
+                        banswer1.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                        nextQuestion();
+                    }
+                } else{
+                    //TODO results
+                    nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                }
+            }
+        });
+        banswer4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (countQuestions < totalQuestions) {
+                    if (flag1 == 1) {
+                        banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                        /*try {
+                            TimeUnit.SECONDS.sleep(2);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }*/
+                        correctAnswers++;
+                        nextQuestion();
+                    } else {
+                        banswer1.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                        nextQuestion();
+                    }
+                } else{
+                    //TODO results
+                    nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                }
+            }
+        });
     }
 
     private void showDialog() {
@@ -169,51 +265,94 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         super.onDestroy();
         db.close();
         cursorQuestions.close();
+        cursorAnswers.close();
+        cursorTask.close();
     }
 
-    @Override
+    public void nextQuestion(){
+        cursorQuestions.moveToNext();
+
+        textQuestion.setText(cursorQuestions.getString(2));
+        questionId = cursorQuestions.getLong(0);
+        if (cursorQuestions.getBlob(3) != null) {
+            byte[] image = cursorQuestions.getBlob(3);
+            Bitmap bmp = BitmapFactory.decodeByteArray(image, 0 , image.length);
+            imageQ.setImageBitmap(bmp);
+        } else{
+            imageQ.setVisibility(View.GONE);
+        }
+
+        cursorAnswers = db.rawQuery("select * from " + DatabaseHelper.TABLE_ANSWERS + " where " + DatabaseHelper.COLUMN_ID_QUESTION + "=?", new String[]{String.valueOf(questionId)});
+        //cursorAnswers = db.rawQuery("select * from answers where id_question"+ "=?", new String[]{String.valueOf(questionId)});
+        //cursorAnswers.moveToFirst();
+        cursorAnswers.moveToPosition(0);
+        banswer1.setText(cursorAnswers.getString(2) + cursorAnswers.getString(3));
+        if (cursorAnswers.getInt(3) == 1){
+            flag1 = 1;
+        } else{
+            flag1 = 0;
+        }
+        cursorAnswers.moveToPosition(1);
+        banswer2.setText(cursorAnswers.getString(2)+ cursorAnswers.getString(3));
+        if (cursorAnswers.getInt(3) == 1){
+            flag1 = 1;
+        } else{
+            flag1 = 0;
+        }
+        cursorAnswers.moveToPosition(2);
+        banswer3.setText(cursorAnswers.getString(2)+ cursorAnswers.getString(3));
+        if (cursorAnswers.getInt(3) == 1){
+            flag1 = 1;
+        } else{
+            flag1 = 0;
+        }
+        cursorAnswers.moveToPosition(3);
+        banswer4.setText(cursorAnswers.getString(2)+ cursorAnswers.getString(3));
+        if (cursorAnswers.getInt(3) == 1){
+            flag1 = 1;
+        } else{
+            flag1 = 0;
+        }
+        countQuestions++;
+    }
+
+    /*@Override
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.answer1: {
-                /*if (flag1 == 1){
-                    //banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                    banswer1.setHighlightColor(getResources().getColor(R.color.colorGreen));
-                    banswer1.setTextColor(getResources().getColor(R.color.colorGreen));
+                if (flag1 == 1){
+                    banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    //banswer1.setHighlightColor(getResources().getColor(R.color.colorGreen));
+                    //banswer1.setTextColor(getResources().getColor(R.color.colorGreen));
                 }else{
                     banswer1.setBackgroundColor(getResources().getColor(R.color.colorRed));
-                }*/
-                /*banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                banswer1.setHighlightColor(getResources().getColor(R.color.colorGreen));
-                banswer1.setTextColor(getResources().getColor(R.color.colorGreen));*/
-                Toast aboutMessage = Toast.makeText(this,"Pressed 1",Toast.LENGTH_SHORT);
-                aboutMessage.setGravity(Gravity.CENTER, 0, 0);
-                aboutMessage.show();
+                }
                 break;
             }
             case R.id.answer2: {
-               /* if (flag2 == 1){
+                if (flag2 == 1){
                     banswer2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                 }else{
                     banswer2.setBackgroundColor(getResources().getColor(R.color.colorRed));
-                }*/
+                }
                 break;
             }
             case R.id.answer3: {
-                /*if (flag3 == 1){
+                if (flag3 == 1){
                     banswer3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                 }else{
                     banswer3.setBackgroundColor(getResources().getColor(R.color.colorRed));
-                }*/
+                }
                 break;
             }
             case R.id.answer4: {
-                /*if (flag4 == 1){
+                if (flag4 == 1){
                     banswer4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                 }else{
                     banswer4.setBackgroundColor(getResources().getColor(R.color.colorRed));
-                }*/
+                }
                 break;
             }
         }
-    }
+    }*/
 }
