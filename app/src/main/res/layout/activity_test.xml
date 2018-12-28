@@ -17,56 +17,202 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textStyle="italic"
             tools:text="Тема" />
 
-        <TextView
-            android:id="@+id/textQuestion"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textStyle="italic"
-            tools:text="Текст вопроса" />
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:id="@+id/header">
 
-        <ImageView
-            android:id="@+id/imageQ"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:contentDescription="QuestionImage"
-            app:srcCompat="@mipmap/ic_launcher" />
+                <TextView
+                    android:id="@+id/textQuestion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textStyle="italic"
+                    tools:text="Текст вопроса" />
 
-        <Button
-            android:id="@+id/answer1"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Button"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-        <Button
-            android:id="@+id/answer2"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-        <Button
-            android:id="@+id/answer3"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-        <Button
-            android:id="@+id/answer4"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                <ImageView
+                    android:id="@+id/imageQ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:contentDescription="QuestionImage"
+                    app:srcCompat="@mipmap/ic_launcher" />
 
-
+                <Button
+                    android:id="@+id/hint"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Подсказка"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        </LinearLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:id="@+id/type1">
+            <Button
+                android:id="@+id/answer1"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Button"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            <Button
+                android:id="@+id/answer2"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Button"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            <Button
+                android:id="@+id/answer3"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Button"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            <Button
+                android:id="@+id/answer4"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Button"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        </LinearLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:id="@+id/type2">
+            <TextView
+                android:id="@+id/textChoise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                tools:text="Выберите правильные ответы:" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/buttonCheck1"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:text="Button"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                <CheckBox
+                    android:id="@+id/checkBox1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/buttonCheck2"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:text="Button"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                <CheckBox
+                    android:id="@+id/checkBox2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/buttonCheck3"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:text="Button"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                <CheckBox
+                    android:id="@+id/checkBox3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/buttonCheck4"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:text="Button"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                <CheckBox
+                    android:id="@+id/checkBox4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <Button
+                android:id="@+id/buttonType2Go"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ответить"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        </LinearLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:id="@+id/type3">
+            <Button
+                android:id="@+id/byes"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Да"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            <Button
+                android:id="@+id/bno"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Нет"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        </LinearLayout>
     </LinearLayout>
+
 </ScrollView>

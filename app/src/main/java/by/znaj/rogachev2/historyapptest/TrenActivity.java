@@ -53,19 +53,27 @@ public class TrenActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.treningButton: {
-                Toast aboutMessage = Toast.makeText(this,"Тестовое приложение",Toast.LENGTH_SHORT);
                 Intent intent = new Intent(this, TestActivity.class);
                 intent.putExtra("id", taskId);
+                intent.putExtra("trenType", 1);
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_in,R.anim.left_out);
                 break;
             }
             case R.id.truefalseButton: {
-                // ...
+                Intent intent = new Intent(this, TestActivity.class);
+                intent.putExtra("id", taskId);
+                intent.putExtra("trenType", 2);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in,R.anim.left_out);
                 break;
             }
             case R.id.controlButton: {
-                // ...
+                Intent intent = new Intent(this, TestActivity.class);
+                intent.putExtra("id", taskId);
+                intent.putExtra("trenType", 3);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in,R.anim.left_out);
                 break;
             }
         }
