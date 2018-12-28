@@ -80,6 +80,13 @@ public class ThemeActivity extends AppCompatActivity implements View.OnClickList
                 // ...
                 break;
             }
+            case R.id.vocabularyButton: {
+                Intent intent = new Intent(this, VocabularyActivity.class);
+                intent.putExtra("id", taskId);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in,R.anim.left_out);
+                break;
+            }
         }
     }
 }

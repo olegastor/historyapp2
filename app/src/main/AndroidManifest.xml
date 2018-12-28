@@ -22,7 +22,9 @@
             android:name=".ThemeActivity"
             android:label="@string/title_activity_theme"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".TrenActivity"></activity>
+        <activity android:name=".TrenActivity" />
+        <activity android:name=".ResultsActivity" />
+        <activity android:name=".VocabularyActivity"></activity>
     </application>
 
 </manifest>

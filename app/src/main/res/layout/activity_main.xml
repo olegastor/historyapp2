@@ -33,7 +33,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/emptyButton"
+            android:id="@+id/controlButton"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="match_parent"

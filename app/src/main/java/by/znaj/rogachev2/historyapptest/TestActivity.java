@@ -1,6 +1,7 @@
 package by.znaj.rogachev2.historyapptest;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
@@ -19,9 +21,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 import static android.widget.Toast.LENGTH_SHORT;
+import static by.znaj.rogachev2.historyapptest.R.color.colorGrey;
 
 public class TestActivity extends AppCompatActivity /*implements View.OnClickListener*/{
 
@@ -75,6 +79,8 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
     String shint = "";
     String defaultHint = "Подсказки нет";
     Context context;
+    String task = "";
+    String stType = "";
 
 
     @Override
@@ -124,16 +130,20 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
             cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
             cursorTask.moveToFirst();
             nameBox.setText(cursorTask.getString(1));
+            task = cursorTask.getString(1);
             //cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? and type=3 ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
             if (trenType == 1) {
                 cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? and type IN (1,2)  ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
+                stType = "Тренинг";
             }
             if (trenType == 2) {
                 cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? and type=3 ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
+                stType = "Верю-Неверю";
             }
             if (trenType == 3) {
                 bhint.setVisibility(View.GONE);
                 cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
+                stType = "Контроль";
             }
             //textQuestion.setText(String.valueOf(userCursor.getCount()));
             if (cursorQuestions.getCount() != 0 && cursorQuestions.getCount() == 10){
@@ -161,42 +171,45 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 if (flag1 == 1) {
-                    //banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                        /*try {
-                            TimeUnit.SECONDS.sleep(2);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }*/
+                    banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     correctAnswers++;
                 } else {
-                    //banswer1.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    banswer1.setBackgroundColor(getResources().getColor(R.color.colorRed));
                 }
-                if (countQuestions < totalQuestions) {
-                    cursorQuestions.moveToNext();
-                    nextQuestion();
-                } else{
-                    //TODO results
-                    type1.setVisibility(View.GONE);
-                    type2.setVisibility(View.GONE);
-                    type3.setVisibility(View.GONE);
-                    header.setVisibility(View.GONE);
-                    nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
-                }
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (countQuestions < totalQuestions) {
+                            cursorQuestions.moveToNext();
+                            nextQuestion();
+                        } else{
+                            //TODO results
+                            type1.setVisibility(View.GONE);
+                            type2.setVisibility(View.GONE);
+                            type3.setVisibility(View.GONE);
+                            header.setVisibility(View.GONE);
+                            nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                            insertResults();
+                        }
+                    }
+                }, 2000);
+
             }
         });
         banswer2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (flag2 == 1) {
-                    //banswer2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                        /*try {
+                    banswer2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                        try {
                             TimeUnit.SECONDS.sleep(2);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
-                        }*/
+                        }
                     correctAnswers++;
                 } else {
-                    //banswer2.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    banswer2.setBackgroundColor(getResources().getColor(R.color.colorRed));
                 }
                 if (countQuestions < totalQuestions) {
                     cursorQuestions.moveToNext();
@@ -208,6 +221,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                     type3.setVisibility(View.GONE);
                     header.setVisibility(View.GONE);
                     nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                    insertResults();
                 }
             }
         });
@@ -215,15 +229,15 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 if (flag3 == 1) {
-                    //banswer3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                        /*try {
+                    banswer3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                        try {
                             TimeUnit.SECONDS.sleep(2);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
-                        }*/
+                        }
                     correctAnswers++;
                 } else {
-                    //banswer3.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    banswer3.setBackgroundColor(getResources().getColor(R.color.colorRed));
                 }
                 if (countQuestions < totalQuestions) {
                     cursorQuestions.moveToNext();
@@ -235,6 +249,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                     type3.setVisibility(View.GONE);
                     header.setVisibility(View.GONE);
                     nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                    insertResults();
                 }
             }
         });
@@ -242,15 +257,15 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 if (flag4 == 1) {
-                    //banswer4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                        /*try {
+                    banswer4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                        try {
                             TimeUnit.SECONDS.sleep(2);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
-                        }*/
+                        }
                     correctAnswers++;
                 } else {
-                    //banswer4.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    banswer4.setBackgroundColor(getResources().getColor(R.color.colorRed));
                 }
                 if (countQuestions < totalQuestions) {
                     cursorQuestions.moveToNext();
@@ -262,6 +277,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                     type3.setVisibility(View.GONE);
                     header.setVisibility(View.GONE);
                     nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                    insertResults();
                 }
             }
         });
@@ -297,6 +313,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                     type3.setVisibility(View.GONE);
                     header.setVisibility(View.GONE);
                     nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                    insertResults();
                 }
             }
         });
@@ -325,6 +342,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                     type3.setVisibility(View.GONE);
                     header.setVisibility(View.GONE);
                     nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                    insertResults();
                 }
             }
         });
@@ -352,6 +370,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                     type3.setVisibility(View.GONE);
                     header.setVisibility(View.GONE);
                     nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                    insertResults();
                 }
             }
         });
@@ -408,6 +427,22 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         cursorAnswers = db.rawQuery("select * from " + DatabaseHelper.TABLE_ANSWERS + " where " + DatabaseHelper.COLUMN_ID_QUESTION + "=?", new String[]{String.valueOf(questionId)});
         //cursorAnswers = db.rawQuery("select * from answers where id_question"+ "=?", new String[]{String.valueOf(questionId)});
         //cursorAnswers.moveToFirst();
+        checkBox1.setChecked(false);
+        checkBox2.setChecked(false);
+        checkBox3.setChecked(false);
+        checkBox4.setChecked(false);
+        banswer1.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+        banswer2.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+        banswer3.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+        banswer4.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+        bhint.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+        buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+        buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+        buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+        buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+        buttonType2Go.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+        byes.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+        bno.setBackgroundColor(getResources().getColor(R.color.colorGrey));
         switch (typeQuestion){
             case 1: {
                 type1.setVisibility(View.VISIBLE);
@@ -503,6 +538,13 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 break;
             }
         }
+    }
+    public void insertResults(){
+        String res = task + "\n" + stType + "\n" + "Результат: " +  String.valueOf(correctAnswers) + " из 10" + "\n" + String.valueOf(Calendar.getInstance().getTime());
+        //db.rawQuery("INSERT INTO results(result) values('?')",  new String[]{String.valueOf(res)});
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHelper.COLUMN_RESULT, res);
+        db.insert(DatabaseHelper.TABLE_RESULTS, null, values);
     }
 
     /*@Override

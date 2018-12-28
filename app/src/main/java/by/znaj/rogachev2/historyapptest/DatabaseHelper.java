@@ -20,6 +20,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_TASKS = "tasks";
     public static final String TABLE_QUESTIONS = "questions";
     public static final String TABLE_ANSWERS = "answers";
+    public static final String TABLE_RESULTS = "results";
+    public static final String TABLE_VOCABULARY = "vocabulary";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_NAME = "name";
 
@@ -28,6 +30,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_QUESTION = "question";
     public static final String COLUMN_IMAGE = "image";
     public static final String COLUMN_HINT = "hint";
+    public static final String COLUMN_RESULT = "result";
+    public static final String COLUMN_WORD = "word";
     private Context myContext;
 
 

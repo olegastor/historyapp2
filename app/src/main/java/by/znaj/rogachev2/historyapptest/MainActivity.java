@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.beginButton).setOnClickListener(this);
         findViewById(R.id.resultsButton).setOnClickListener(this);
-        findViewById(R.id.emptyButton).setOnLongClickListener(this);
+        findViewById(R.id.controlButton).setOnLongClickListener(this);
         findViewById(R.id.aboutButton).setOnClickListener(this);
 
         // TODO бла бла бла
@@ -33,10 +33,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             }
             case R.id.resultsButton: {
-                // ...
+                Intent intent = new Intent(this, ResultsActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in,R.anim.left_out);
                 break;
             }
-            case R.id.emptyButton: {
+            case R.id.controlButton: {
                 // ...
                 break;
             }
