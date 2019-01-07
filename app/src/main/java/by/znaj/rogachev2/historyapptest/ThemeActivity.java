@@ -68,12 +68,11 @@ public class ThemeActivity extends AppCompatActivity implements View.OnClickList
                 overridePendingTransition(R.anim.right_in,R.anim.left_out);
                 break;
             }
-            case R.id.truefalseButton: {
-                // ...
-                break;
-            }
             case R.id.memButton: {
-                // ...
+                Intent intent = new Intent(this, MemoActivity.class);
+                intent.putExtra("id", taskId);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in,R.anim.left_out);
                 break;
             }
             case R.id.videoButton: {

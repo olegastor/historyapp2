@@ -3,31 +3,38 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:gravity="center">
 
-    <LinearLayout
+
+    <Button
+        android:id="@+id/beginButton"
+        style="?android:attr/buttonBarButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:text="Начать" />
 
-        <Button
-            android:id="@+id/beginButton"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Начать" />
+    <Button
+        android:id="@+id/resultsButton"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Результаты" />
+    <Button
+        android:id="@+id/controlButton"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Пустая кнопка" />
 
-        <Button
-            android:id="@+id/resultsButton"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Результаты" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/aboutButton"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="О программе" />
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:orientation="horizontal">
@@ -47,6 +54,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="О программе" />
-    </LinearLayout>
+    </LinearLayout>-->
 
 </LinearLayout>

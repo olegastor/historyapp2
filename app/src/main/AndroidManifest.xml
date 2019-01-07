@@ -18,13 +18,11 @@
         </activity>
         <activity android:name=".TasksListActivity" />
         <activity android:name=".TestActivity" />
-        <activity
-            android:name=".ThemeActivity"
-            android:label="@string/title_activity_theme"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ThemeActivity" />
         <activity android:name=".TrenActivity" />
         <activity android:name=".ResultsActivity" />
-        <activity android:name=".VocabularyActivity"></activity>
+        <activity android:name=".VocabularyActivity" />
+        <activity android:name=".MemoActivity"></activity>
     </application>
 
 </manifest>

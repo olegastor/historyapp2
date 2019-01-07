@@ -161,14 +161,23 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         ////////////////
         //showDialog();
         ////////////////
-        bhint.setOnClickListener(new View.OnClickListener() {
+        bhint.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast aboutMessage = Toast.makeText(context,shint,Toast.LENGTH_LONG);
+                aboutMessage.setGravity(Gravity.BOTTOM, 0, 0);
+                aboutMessage.show();
+                return false;
+            }
+        });
+        /*bhint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast aboutMessage = Toast.makeText(context,shint,Toast.LENGTH_LONG);
                 aboutMessage.setGravity(Gravity.BOTTOM, 0, 0);
                 aboutMessage.show();
             }
-        });
+        });*/
 
         banswer1.setOnClickListener(new View.OnClickListener() {
             @Override

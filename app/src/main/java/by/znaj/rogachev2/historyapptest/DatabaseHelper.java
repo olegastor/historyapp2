@@ -22,6 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_ANSWERS = "answers";
     public static final String TABLE_RESULTS = "results";
     public static final String TABLE_VOCABULARY = "vocabulary";
+    public static final String TABLE_MEMO = "memo";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_NAME = "name";
 

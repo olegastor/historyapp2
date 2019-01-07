@@ -124,17 +124,16 @@ public class VocabularyActivity extends AppCompatActivity {
         userList.setAdapter(userAdapter);
     }
 
-    @Override
+    /*@Override
     public void onDestroy(){
         super.onDestroy();
         db.close();
         userCursor.close();
         cursorTask.close();
         defineCursor.close();
-    }
+    }*/
 
-    public void onBackPressed() {
-        finish();
+    /*public void onBackPressed() {
         overridePendingTransition(R.anim.left_in,R.anim.right_out);
-    }
+    }*/
 }
