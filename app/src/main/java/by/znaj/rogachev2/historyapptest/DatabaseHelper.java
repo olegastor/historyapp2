@@ -15,7 +15,7 @@ import java.io.OutputStream;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static String DB_PATH;
-    private static final String DATABASE_NAME = "history1.db";
+    private static final String DATABASE_NAME = "history3.db";
     private static final int SCHEMA = 1;
     public static final String TABLE_TASKS = "tasks";
     public static final String TABLE_QUESTIONS = "questions";
