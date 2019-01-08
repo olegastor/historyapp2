@@ -346,7 +346,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
             public void onClick(View view) {
                 if (check4 == 0){
                     check4 = 1;
-                    buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
+                    buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
                 } else
                 {
                     check4 = 0;
@@ -360,6 +360,53 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 disableButtons();
+                if (flag1==check1 && flag2==check2 && flag3==check3 && flag4==check4){
+                    correctAnswers++;
+                }
+
+                if (flag1 == 1 && check1 == 0){
+                    buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    buttonCheck1.setTextColor(getResources().getColor(R.color.colorRed));
+                }
+                if (flag1 == 1 && check1 == 1){
+                    buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                }
+                if (flag1 == 0 && check1 == 1){
+                    buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                }
+
+                if (flag2 == 1 && check2 == 0){
+                    buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    buttonCheck2.setTextColor(getResources().getColor(R.color.colorRed));
+                }
+                if (flag2 == 1 && check2 == 1){
+                    buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                }
+                if (flag2 == 0 && check2 == 1){
+                    buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                }
+
+                if (flag3 == 1 && check3 == 0){
+                    buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    buttonCheck3.setTextColor(getResources().getColor(R.color.colorRed));
+                }
+                if (flag3 == 1 && check3 == 1){
+                    buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                }
+                if (flag3 == 0 && check3 == 1){
+                    buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                }
+
+                if (flag4 == 1 && check4 == 0){
+                    buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    buttonCheck4.setTextColor(getResources().getColor(R.color.colorRed));
+                }
+                if (flag4 == 1 && check4 == 1){
+                    buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                }
+                if (flag4 == 0 && check4 == 1){
+                    buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                }
 
                 //TODO type2
                 handler.postDelayed(new Runnable() {
@@ -518,6 +565,10 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         buttonType2Go.setBackgroundColor(getResources().getColor(R.color.colorGrey));
         byes.setBackgroundColor(getResources().getColor(R.color.colorGrey));
         bno.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+        buttonCheck1.setTextColor(getResources().getColor(R.color.colorBlack));
+        buttonCheck2.setTextColor(getResources().getColor(R.color.colorBlack));
+        buttonCheck3.setTextColor(getResources().getColor(R.color.colorBlack));
+        buttonCheck4.setTextColor(getResources().getColor(R.color.colorBlack));
         switch (typeQuestion){
             case 1: {
                 type1.setVisibility(View.VISIBLE);
