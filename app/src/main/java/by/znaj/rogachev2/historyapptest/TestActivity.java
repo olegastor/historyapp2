@@ -49,6 +49,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
     LinearLayout type3;
     LinearLayout header;
     LinearLayout hintlayout;
+    LinearLayout reslayout;
 
 
     DatabaseHelper sqlHelper;
@@ -112,6 +113,9 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         type3 = (LinearLayout) findViewById(R.id.type3);
         header = (LinearLayout) findViewById(R.id.header);
         hintlayout = (LinearLayout) findViewById(R.id.hintlayout);
+
+        reslayout = (LinearLayout) findViewById(R.id.reslayout);
+        reslayout.setVisibility(View.GONE);
 
         handler = new Handler();
 
@@ -704,6 +708,15 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         bno.setClickable(true);
     }
 
+
+    public void showResults(){
+        type1.setVisibility(View.GONE);
+        type2.setVisibility(View.GONE);
+        type3.setVisibility(View.GONE);
+        header.setVisibility(View.GONE);
+        hintlayout.setVisibility(View.GONE);
+        nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+    }
     /*@Override
     public void onClick(View view) {
         switch(view.getId()) {

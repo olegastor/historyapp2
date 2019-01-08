@@ -213,6 +213,31 @@
                 android:text="Подсказка"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:id="@+id/reslayout">
+
+            <TextView
+                android:id="@+id/textres1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                tools:text="Текст" />
+            <TextView
+                android:id="@+id/textres2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                tools:text="Текст" />
+
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>
