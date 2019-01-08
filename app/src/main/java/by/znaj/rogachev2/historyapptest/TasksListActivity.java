@@ -29,7 +29,10 @@ public class TasksListActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasks_list);
-
+        getSupportActionBar().setTitle(R.string.app_name_short);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
         header = (TextView)findViewById(R.id.header);
         userList = (ListView)findViewById(R.id.list);
         userFilter = (EditText)findViewById(R.id.userFilter);

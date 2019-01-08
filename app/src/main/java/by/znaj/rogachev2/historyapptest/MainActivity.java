@@ -15,10 +15,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().setTitle(R.string.app_name_short);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
+
         findViewById(R.id.beginButton).setOnClickListener(this);
         findViewById(R.id.resultsButton).setOnClickListener(this);
         findViewById(R.id.controlButton).setOnLongClickListener(this);
         findViewById(R.id.aboutButton).setOnClickListener(this);
+
 
         // TODO бла бла бла
     }

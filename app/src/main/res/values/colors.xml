@@ -9,4 +9,5 @@
     <color name="colorBack">#fde7bc</color>
     <color name="colorBrown">#431c00</color>
     <color name="colorLightBrown">#bf5000</color>
+    <color name="colorTransparent">#00000000</color>
 </resources>
