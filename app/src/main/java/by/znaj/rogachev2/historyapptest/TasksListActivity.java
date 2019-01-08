@@ -3,10 +3,12 @@ package by.znaj.rogachev2.historyapptest;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -32,7 +34,10 @@ public class TasksListActivity extends AppCompatActivity implements View.OnClick
         getSupportActionBar().setTitle(R.string.app_name_short);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
+
+
         header = (TextView)findViewById(R.id.header);
         userList = (ListView)findViewById(R.id.list);
         userFilter = (EditText)findViewById(R.id.userFilter);
@@ -115,12 +120,24 @@ public class TasksListActivity extends AppCompatActivity implements View.OnClick
     }
 
     public void onBackPressed() {
-        finish();
+        super.onBackPressed();
         overridePendingTransition(R.anim.left_in,R.anim.right_out);
     }
 
     @Override
     public void onClick(View view) {
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                overridePendingTransition(R.anim.left_in,R.anim.right_out);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

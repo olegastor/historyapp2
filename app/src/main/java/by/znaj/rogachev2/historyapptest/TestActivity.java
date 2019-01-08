@@ -48,10 +48,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
     LinearLayout type2;
     LinearLayout type3;
     LinearLayout header;
-    CheckBox checkBox1;
-    CheckBox checkBox2;
-    CheckBox checkBox3;
-    CheckBox checkBox4;
+    LinearLayout hintlayout;
 
 
     DatabaseHelper sqlHelper;
@@ -75,6 +72,10 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
     int flag2 = 0;
     int flag3 = 0;
     int flag4 = 0;
+    int check1 = 0;
+    int check2 = 0;
+    int check3 = 0;
+    int check4 = 0;
 
     String shint = "";
     String defaultHint = "Подсказки нет";
@@ -110,10 +111,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         type2 = (LinearLayout) findViewById(R.id.type2);
         type3 = (LinearLayout) findViewById(R.id.type3);
         header = (LinearLayout) findViewById(R.id.header);
-        checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
-        checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
-        checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
-        checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
+        hintlayout = (LinearLayout) findViewById(R.id.hintlayout);
 
         handler = new Handler();
 
@@ -184,9 +182,11 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
             public void onClick(View v) {
                 if (flag1 == 1) {
                     banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    disableButtons();
                     correctAnswers++;
                 } else {
                     banswer1.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    disableButtons();
                 }
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -200,6 +200,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                             type2.setVisibility(View.GONE);
                             type3.setVisibility(View.GONE);
                             header.setVisibility(View.GONE);
+                            hintlayout.setVisibility(View.GONE);
                             nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
                             insertResults();
                         }
@@ -212,9 +213,11 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
             public void onClick(View v) {
                 if (flag2 == 1) {
                     banswer2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    disableButtons();
                     correctAnswers++;
                 } else {
                     banswer2.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    disableButtons();
                 }
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -228,6 +231,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                             type2.setVisibility(View.GONE);
                             type3.setVisibility(View.GONE);
                             header.setVisibility(View.GONE);
+                            hintlayout.setVisibility(View.GONE);
                             nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
                             insertResults();
                         }
@@ -240,9 +244,11 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
             public void onClick(View v) {
                 if (flag3 == 1) {
                     banswer3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    disableButtons();
                     correctAnswers++;
                 } else {
                     banswer3.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    disableButtons();
                 }
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -256,6 +262,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                             type2.setVisibility(View.GONE);
                             type3.setVisibility(View.GONE);
                             header.setVisibility(View.GONE);
+                            hintlayout.setVisibility(View.GONE);
                             nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
                             insertResults();
                         }
@@ -268,9 +275,11 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
             public void onClick(View v) {
                 if (flag4 == 1) {
                     banswer4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    disableButtons();
                     correctAnswers++;
                 } else {
                     banswer4.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    disableButtons();
                 }
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -284,6 +293,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                             type2.setVisibility(View.GONE);
                             type3.setVisibility(View.GONE);
                             header.setVisibility(View.GONE);
+                            hintlayout.setVisibility(View.GONE);
                             nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
                             insertResults();
                         }
@@ -291,40 +301,85 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 }, 2000);
             }
         });
+
+        buttonCheck1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (check1 == 0){
+                    check1 = 1;
+                    buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
+                } else
+                {
+                    check1 = 0;
+                    buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+                }
+            }
+        });
+        buttonCheck2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (check2 == 0){
+                    check2 = 1;
+                    buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
+                } else
+                {
+                    check2 = 0;
+                    buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+                }
+            }
+        });
+        buttonCheck3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (check3 == 0){
+                    check3 = 1;
+                    buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
+                } else
+                {
+                    check3 = 0;
+                    buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+                }
+            }
+        });
+        buttonCheck4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (check4 == 0){
+                    check4 = 1;
+                    buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
+                } else
+                {
+                    check4 = 0;
+                    buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+                }
+            }
+        });
+
+
         buttonType2Go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int check1 = 0;
-                int check2 = 0;
-                int check3 = 0;
-                int check4 = 0;
-                if (checkBox1.isChecked()){
-                    check1 = 1;
-                }
-                if (checkBox2.isChecked()){
-                    check2 = 1;
-                }
-                if (checkBox3.isChecked()){
-                    check3 = 1;
-                }
-                if (checkBox4.isChecked()){
-                    check4 = 1;
-                }
-                if (flag1==check1 && flag2==check2 && flag3==check3 && flag4==check4){
-                    correctAnswers++;
-                }
-                if (countQuestions < totalQuestions) {
-                    cursorQuestions.moveToNext();
-                    nextQuestion();
-                } else{
-                    //TODO results
-                    type1.setVisibility(View.GONE);
-                    type2.setVisibility(View.GONE);
-                    type3.setVisibility(View.GONE);
-                    header.setVisibility(View.GONE);
-                    nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
-                    insertResults();
-                }
+                disableButtons();
+
+                //TODO type2
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (countQuestions < totalQuestions) {
+                            cursorQuestions.moveToNext();
+                            nextQuestion();
+                        } else{
+                            //TODO results
+                            type1.setVisibility(View.GONE);
+                            type2.setVisibility(View.GONE);
+                            type3.setVisibility(View.GONE);
+                            header.setVisibility(View.GONE);
+                            hintlayout.setVisibility(View.GONE);
+                            nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                            insertResults();
+                        }
+                    }
+                }, 2000);
             }
         });
 
@@ -332,61 +387,67 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 if (flag1 == 1) {
-                    //banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                        /*try {
-                            TimeUnit.SECONDS.sleep(2);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }*/
+                    disableButtons();
+                    byes.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     correctAnswers++;
                 } else {
-                    //banswer1.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    disableButtons();
+                    byes.setBackgroundColor(getResources().getColor(R.color.colorRed));
                 }
-                if (countQuestions < totalQuestions) {
-                    cursorQuestions.moveToNext();
-                    nextQuestion();
-                } else{
-                    //TODO results
-                    type1.setVisibility(View.GONE);
-                    type2.setVisibility(View.GONE);
-                    type3.setVisibility(View.GONE);
-                    header.setVisibility(View.GONE);
-                    nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
-                    insertResults();
-                }
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (countQuestions < totalQuestions) {
+                            cursorQuestions.moveToNext();
+                            nextQuestion();
+                        } else{
+                            //TODO results
+                            type1.setVisibility(View.GONE);
+                            type2.setVisibility(View.GONE);
+                            type3.setVisibility(View.GONE);
+                            header.setVisibility(View.GONE);
+                            hintlayout.setVisibility(View.GONE);
+                            nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                            insertResults();
+                        }
+                    }
+                }, 2000);
             }
         });
         bno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (flag1 == 0) {
-                    //banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                        /*try {
-                            TimeUnit.SECONDS.sleep(2);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }*/
+                    disableButtons();
+                    bno.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     correctAnswers++;
                 } else {
-                    //banswer1.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    disableButtons();
+                    bno.setBackgroundColor(getResources().getColor(R.color.colorRed));
                 }
-                if (countQuestions < totalQuestions) {
-                    cursorQuestions.moveToNext();
-                    nextQuestion();
-                } else{
-                    //TODO results
-                    type1.setVisibility(View.GONE);
-                    type2.setVisibility(View.GONE);
-                    type3.setVisibility(View.GONE);
-                    header.setVisibility(View.GONE);
-                    nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
-                    insertResults();
-                }
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (countQuestions < totalQuestions) {
+                            cursorQuestions.moveToNext();
+                            nextQuestion();
+                        } else{
+                            //TODO results
+                            type1.setVisibility(View.GONE);
+                            type2.setVisibility(View.GONE);
+                            type3.setVisibility(View.GONE);
+                            header.setVisibility(View.GONE);
+                            hintlayout.setVisibility(View.GONE);
+                            nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                            insertResults();
+                        }
+                    }
+                }, 2000);
             }
         });
     }
 
-    private void showDialog() {
+    /*private void showDialog() {
         final String[] counts = {"10", "20", "30"};
         ad = new AlertDialog.Builder(this);
         ad.setTitle("Выберите количество вопросов");
@@ -399,7 +460,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         ad.setCancelable(false);
         ad.create();
         ad.show();
-    }
+    }*/
 
     private void goHome(){
         db.close();
@@ -422,6 +483,14 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
     }
 
     public void nextQuestion(){
+        flag1 = 0;
+        flag2 = 0;
+        flag3 = 0;
+        flag4 = 0;
+        check1 = 0;
+        check2 = 0;
+        check3 = 0;
+        check4 = 0;
         typeQuestion = cursorQuestions.getInt(5);
         textQuestion.setText(cursorQuestions.getString(2));
         shint = cursorQuestions.getString(4);
@@ -437,10 +506,6 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         cursorAnswers = db.rawQuery("select * from " + DatabaseHelper.TABLE_ANSWERS + " where " + DatabaseHelper.COLUMN_ID_QUESTION + "=?", new String[]{String.valueOf(questionId)});
         //cursorAnswers = db.rawQuery("select * from answers where id_question"+ "=?", new String[]{String.valueOf(questionId)});
         //cursorAnswers.moveToFirst();
-        checkBox1.setChecked(false);
-        checkBox2.setChecked(false);
-        checkBox3.setChecked(false);
-        checkBox4.setChecked(false);
         banswer1.setBackgroundColor(getResources().getColor(R.color.colorGrey));
         banswer2.setBackgroundColor(getResources().getColor(R.color.colorGrey));
         banswer3.setBackgroundColor(getResources().getColor(R.color.colorGrey));
@@ -548,6 +613,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 break;
             }
         }
+        enableButtons();
     }
     public void insertResults(){
         String res = task + "\n" + stType + "\n" + "Результат: " +  String.valueOf(correctAnswers) + " из 10" + "\n" + String.valueOf(Calendar.getInstance().getTime());
@@ -555,6 +621,36 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COLUMN_RESULT, res);
         db.insert(DatabaseHelper.TABLE_RESULTS, null, values);
+    }
+
+    public void disableButtons(){
+        banswer1.setClickable(false);
+        banswer2.setClickable(false);
+        banswer3.setClickable(false);
+        banswer4.setClickable(false);
+        bhint.setClickable(false);
+        buttonCheck1.setClickable(false);
+        buttonCheck2.setClickable(false);
+        buttonCheck3.setClickable(false);
+        buttonCheck4.setClickable(false);
+        buttonType2Go.setClickable(false);
+        byes.setClickable(false);
+        bno.setClickable(false);
+    }
+
+    public void enableButtons(){
+        banswer1.setClickable(true);
+        banswer2.setClickable(true);
+        banswer3.setClickable(true);
+        banswer4.setClickable(true);
+        bhint.setClickable(true);
+        buttonCheck1.setClickable(true);
+        buttonCheck2.setClickable(true);
+        buttonCheck3.setClickable(true);
+        buttonCheck4.setClickable(true);
+        buttonType2Go.setClickable(true);
+        byes.setClickable(true);
+        bno.setClickable(true);
     }
 
     /*@Override

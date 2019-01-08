@@ -16,12 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TasksListActivity" />
-        <activity android:name=".TestActivity" />
-        <activity android:name=".ThemeActivity" />
-        <activity android:name=".TrenActivity" />
-        <activity android:name=".ResultsActivity" />
-        <activity android:name=".VocabularyActivity" />
+        <activity android:name=".TasksListActivity">
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".TestActivity"/>
+        <activity android:name=".ThemeActivity"/>
+        <activity android:name=".TrenActivity"/>
+        <activity android:name=".ResultsActivity"/>
+        <activity android:name=".VocabularyActivity"/>
         <activity android:name=".MemoActivity"></activity>
     </application>
 
