@@ -15,17 +15,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
-import java.util.concurrent.TimeUnit;
-
-import static android.widget.Toast.LENGTH_SHORT;
-import static by.znaj.rogachev2.historyapptest.R.color.colorGrey;
 
 public class TestActivity extends AppCompatActivity /*implements View.OnClickListener*/{
 
@@ -153,6 +148,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 bhint.setVisibility(View.GONE);
                 cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? and type=3 ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
                 stType = "Верю-Неверю";
+                break;
             }
             case 3:{
                 cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
@@ -162,15 +158,19 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 bhint.setVisibility(View.GONE);
                 cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
                 stType = "Контроль";
+                break;
             }
             case 4:{
-                nameBox.setText("Итоговый контроль");
-                //task = cursorTask.getString(1);
+                nameBox.setText("Итоговый контроль по выбранным темам");
+                //TODO заполнить строку темами контроля
+                task = cursorTask.getString(1);
                 bhint.setVisibility(View.GONE);
-                cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
+                cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + " IN (" + tasks + ") ORDER BY RANDOM() LIMIT 10", null);
                 stType = "Итоговый контроль";
+                break;
             }
             case 5:{
+                break;
 
             }
         }

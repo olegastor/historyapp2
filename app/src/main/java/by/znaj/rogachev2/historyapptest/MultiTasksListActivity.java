@@ -75,6 +75,7 @@ public class MultiTasksListActivity extends AppCompatActivity {
                     }
                     Intent intent = new Intent(getApplicationContext(), TestActivity.class);
                     intent.putExtra("tasks", tasks);
+                    intent.putExtra("trenType", 4);
                     startActivity(intent);
 //                    Toast.makeText(getApplicationContext(), tasks, Toast.LENGTH_SHORT).show();
                 }

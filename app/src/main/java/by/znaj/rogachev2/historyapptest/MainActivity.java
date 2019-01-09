@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.resultsButton).setOnClickListener(this);
         findViewById(R.id.controlButton).setOnClickListener(this);
         findViewById(R.id.aboutButton).setOnClickListener(this);
+        findViewById(R.id.addqButton).setOnClickListener(this);
 
         Button controlButton = (Button) findViewById(R.id.controlButton);
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch(view.getId()) {
             case R.id.beginButton: {
                 Intent intent = new Intent(getApplicationContext(), TasksListActivity.class);
+                intent.putExtra("listFlag", 1);
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_in,R.anim.left_out);
                 break;
@@ -47,6 +49,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             case R.id.controlButton: {
                 Intent intent = new Intent(this, MultiTasksListActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in,R.anim.left_out);
+                break;
+            }
+            case R.id.addqButton: {
+                Intent intent = new Intent(getApplicationContext(), TasksListActivity.class);
+                intent.putExtra("listFlag", 2);
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_in,R.anim.left_out);
                 break;

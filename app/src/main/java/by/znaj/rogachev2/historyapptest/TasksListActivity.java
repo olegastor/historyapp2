@@ -27,6 +27,8 @@ public class TasksListActivity extends AppCompatActivity implements View.OnClick
     Cursor userCursor;
     SimpleCursorAdapter userAdapter;
 
+    int listFlag = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

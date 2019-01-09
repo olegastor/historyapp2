@@ -28,6 +28,13 @@
         android:text="Итоговый контроль" />
 
     <Button
+        android:id="@+id/addqButton"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Добавить вопрос" />
+
+    <Button
         android:id="@+id/aboutButton"
         style="?android:attr/buttonBarButtonStyle"
         android:layout_width="match_parent"
