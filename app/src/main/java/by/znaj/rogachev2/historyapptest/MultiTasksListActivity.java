@@ -1,5 +1,6 @@
 package by.znaj.rogachev2.historyapptest;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,7 @@ public class MultiTasksListActivity extends AppCompatActivity {
     SQLiteDatabase db;
     Cursor userCursor;
     SimpleCursorAdapter userAdapter;
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,16 +54,30 @@ public class MultiTasksListActivity extends AppCompatActivity {
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                count = 0;
                 SparseBooleanArray sp = userList.getCheckedItemPositions();
-
-                String str="";
+                ArrayList<String> selectedItems = new ArrayList<>();
                 for(int i=0; i < sp.size(); i++)
                 {
                     int position = sp.keyAt(i);
-                    if (sp.valueAt(i))
-                        str+=userAdapter.getItemId(position);
+                    if (sp.valueAt(i)){
+                        selectedItems.add(String.valueOf(userAdapter.getItemId(position)));
+                        count++;
+                    }
                 }
-                Toast.makeText(getApplicationContext(), ""+str, Toast.LENGTH_SHORT).show();
+                if (count < 1){
+                    Toast.makeText(getApplicationContext(), "Выберите хотя бы одну тему", Toast.LENGTH_SHORT).show();
+                } else{
+                    String tasks = "-1";
+                    for (int i = 0; i < selectedItems.size(); i++) {
+                        tasks += ", ";
+                        tasks += selectedItems.get(i);
+                    }
+                    Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+                    intent.putExtra("tasks", tasks);
+                    startActivity(intent);
+//                    Toast.makeText(getApplicationContext(), tasks, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -75,7 +91,7 @@ public class MultiTasksListActivity extends AppCompatActivity {
 
         String[] headers = new String[] {DatabaseHelper.COLUMN_NAME};
 
-        userAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_multiple_choice, userCursor, headers, new int[]{android.R.id.text1}, 0);
+        userAdapter = new SimpleCursorAdapter(this, R.layout.list_item_checkbox, userCursor, headers, new int[]{android.R.id.text1}, 0);
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------------
         // если в текстовом поле есть текст, выполняем фильтрацию

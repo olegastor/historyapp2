@@ -83,6 +83,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
     Context context;
     String task = "";
     String stType = "";
+    String tasks;
 
     Handler handler;
 
@@ -124,41 +125,62 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            taskId = extras.getLong("id");
             trenType = extras.getInt("trenType");
+            if (trenType != 4) {
+                taskId = extras.getLong("id");
+            } else{
+                tasks = extras.getString("tasks");
+            }
+
         }
 
 
-
-        if (taskId > 0) {
-            // получаем элемент по id из бд
-            cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
-            cursorTask.moveToFirst();
-            nameBox.setText(cursorTask.getString(1));
-            task = cursorTask.getString(1);
-            //cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? and type=3 ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
-            if (trenType == 1) {
+        switch (trenType){
+            case 1:{
+                cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
+                cursorTask.moveToFirst();
+                nameBox.setText(cursorTask.getString(1));
+                task = cursorTask.getString(1);
                 cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? and type IN (1,2)  ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
                 stType = "Тренинг";
+                break;
             }
-            if (trenType == 2) {
+            case 2:{
+                cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
+                cursorTask.moveToFirst();
+                nameBox.setText(cursorTask.getString(1));
+                task = cursorTask.getString(1);
+                bhint.setVisibility(View.GONE);
                 cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? and type=3 ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
                 stType = "Верю-Неверю";
             }
-            if (trenType == 3) {
+            case 3:{
+                cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
+                cursorTask.moveToFirst();
+                nameBox.setText(cursorTask.getString(1));
+                task = cursorTask.getString(1);
                 bhint.setVisibility(View.GONE);
                 cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
                 stType = "Контроль";
             }
-            //textQuestion.setText(String.valueOf(userCursor.getCount()));
-            if (cursorQuestions.getCount() != 0 && cursorQuestions.getCount() == 10){
-                cursorQuestions.moveToFirst();
-                nextQuestion();
+            case 4:{
+                nameBox.setText("Итоговый контроль");
+                //task = cursorTask.getString(1);
+                bhint.setVisibility(View.GONE);
+                cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
+                stType = "Итоговый контроль";
             }
-            else {
-                textQuestion.setText("Нет вопросов или их недостаточно");
+            case 5:{
+
             }
-            //cursorQuestions.close();
+        }
+
+        if (cursorQuestions.getCount() != 0 && cursorQuestions.getCount() == 10){
+            cursorQuestions.moveToFirst();
+            nextQuestion();
+        }
+        else {
+            textQuestion.setText("Нет вопросов или их недостаточно");
         }
         ////////////////
         //showDialog();
@@ -553,7 +575,6 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         } else{
             imageQ.setVisibility(View.GONE);
         }
-
         cursorAnswers = db.rawQuery("select * from " + DatabaseHelper.TABLE_ANSWERS + " where " + DatabaseHelper.COLUMN_ID_QUESTION + "=?", new String[]{String.valueOf(questionId)});
         //cursorAnswers = db.rawQuery("select * from answers where id_question"+ "=?", new String[]{String.valueOf(questionId)});
         //cursorAnswers.moveToFirst();
