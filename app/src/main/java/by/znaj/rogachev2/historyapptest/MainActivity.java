@@ -45,7 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             }
             case R.id.controlButton: {
-                // ...
+                Intent intent = new Intent(this, MultiTasksListActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in,R.anim.left_out);
                 break;
             }
             case R.id.aboutButton: {
