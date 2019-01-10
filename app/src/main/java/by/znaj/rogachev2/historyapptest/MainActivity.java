@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.controlButton).setOnClickListener(this);
         findViewById(R.id.aboutButton).setOnClickListener(this);
         findViewById(R.id.addqButton).setOnClickListener(this);
+        findViewById(R.id.settingsButton).setOnClickListener(this);
 
         Button controlButton = (Button) findViewById(R.id.controlButton);
 
@@ -62,6 +63,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast aboutMessage = Toast.makeText(getApplicationContext(), "Тестовое приложение", Toast.LENGTH_SHORT);
                 aboutMessage.setGravity(Gravity.CENTER, 0, 0);
                 aboutMessage.show();
+                break;
+            }
+            case R.id.settingsButton: {
+                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
             }
         }

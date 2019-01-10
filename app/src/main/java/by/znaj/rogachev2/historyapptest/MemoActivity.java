@@ -11,12 +11,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.github.chrisbanes.photoview.PhotoView;
 import com.squareup.picasso.Picasso;
 
 
 public class MemoActivity extends AppCompatActivity {
 
-    ImageView imageView;
+    //ImageView imageView;
+    PhotoView imageView;
     long taskId;
 
     /*DatabaseHelper sqlHelper;
@@ -33,7 +35,8 @@ public class MemoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
 
-        imageView = (ImageView) findViewById(R.id.imageView);
+        //imageView = (ImageView) findViewById(R.id.imageView);
+        imageView = (PhotoView) findViewById(R.id.imageView);
 
         /*sqlHelper = new DatabaseHelper(this);
         db = sqlHelper.open();*/

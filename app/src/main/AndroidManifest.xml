@@ -29,7 +29,8 @@
         <activity android:name=".MemoActivity" />
         <activity android:name=".MultiTasksListActivity" />
         <activity android:name=".AddQActivity" />
-        <activity android:name=".TasksListAddQActivity"></activity>
+        <activity android:name=".TasksListAddQActivity" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>
