@@ -1,70 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="50sp">
+        android:gravity="top"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+        <TextView
+            android:id="@+id/textTask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Тема"
+            android:textColor="@color/colorBlack" />
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20sp"
+            android:text="Введите вопрос:"
+            android:textColor="@color/colorBlack" />
+
+        <EditText
+            android:id="@+id/editTextQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack" />
+
+        <Spinner
+            android:id="@+id/types_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20sp"
+            android:textColor="@color/colorBlack" />
+
 
         <LinearLayout
+            android:id="@+id/addType1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="top"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-
-            <TextView
-                android:id="@+id/textTask"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
-                android:text="Тема" />
-
-            <TextView
-                android:id="@+id/text1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="20sp"
-                android:textColor="@color/colorBlack"
-                android:text="Введите вопрос:"
-                />
-
-            <EditText
-                android:id="@+id/editTextQuestion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"/>
-            <Spinner
-                android:id="@+id/types_spinner"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
-                android:paddingTop="20sp"/>
-
-
-
-            <LinearLayout
-                android:id="@+id/addType1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/addbutton"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="fill_parent"
-                android:layout_height="50sp"
-                android:background="@color/colorGrey"
-                android:textColor="@color/colorBlack"
-                android:text="Добавить" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
 
         </LinearLayout>
-    </ScrollView>
-</RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/addType2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/addType3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/addbutton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="50sp"
+            android:background="@color/colorGrey"
+            android:text="Добавить"
+            android:textColor="@color/colorBlack" />
+
+
+    </LinearLayout>
+</ScrollView>

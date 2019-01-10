@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8sp"
             android:textSize="14sp"
+            android:textColor="@color/colorBlack"
             android:text="Выберите темы:"/>
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -30,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 style="?android:attr/buttonBarButtonStyle"
+                android:textColor="@color/colorBlack"
                 android:text="Начать" />
             <ListView
                 android:id="@+id/list"
@@ -37,6 +39,7 @@
                 android:layout_height="fill_parent"
                 android:layout_above="@id/testbutton"
                 android:layout_alignParentTop="true"
+                android:textColor="@color/colorBlack"
                 />
         </RelativeLayout>
 

@@ -18,15 +18,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
+            android:textColor="@color/colorBlack"
             android:textSize="18dp"/>
         <EditText android:id="@+id/userFilter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
             android:hint="Поиск" />
         <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:textColor="@color/colorBlack"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

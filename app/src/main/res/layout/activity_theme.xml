@@ -16,6 +16,7 @@
             android:id="@+id/textTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
             android:text="Название темы" />
     </LinearLayout>
 
@@ -34,6 +35,7 @@
             android:height="60dp"
             android:padding="6dp"
             android:gravity="center"
+            android:textColor="@color/colorBlack"
             android:drawableLeft="@mipmap/ic_tren"
             android:text="Тренажер" />
 
@@ -54,6 +56,7 @@
             android:height="60dp"
             android:padding="6dp"
             android:gravity="center"
+            android:textColor="@color/colorBlack"
             android:drawableLeft="@mipmap/ic_vocabulary"
             android:text="Словарь" />
 
@@ -73,6 +76,7 @@
             android:height="60dp"
             android:padding="6dp"
             android:gravity="center"
+            android:textColor="@color/colorBlack"
             android:drawableLeft="@mipmap/ic_memo"
             android:text="Памятки" />
 
@@ -92,6 +96,7 @@
             android:height="60dp"
             android:padding="6dp"
             android:gravity="center"
+            android:textColor="@color/colorBlack"
             android:drawableLeft="@mipmap/ic_video"
             android:text="Видеоуроки" />
 

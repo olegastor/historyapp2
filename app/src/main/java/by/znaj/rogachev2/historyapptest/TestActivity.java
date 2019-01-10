@@ -26,6 +26,8 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
 
     TextView nameBox;
     TextView textQuestion;
+    TextView textres1;
+    TextView textres2;
     ImageView imageQ;
     Button banswer1;
     Button banswer2;
@@ -90,6 +92,8 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
 
         nameBox = (TextView) findViewById(R.id.name);
         textQuestion = (TextView) findViewById(R.id.textQuestion);
+        textres1 = (TextView) findViewById(R.id.textres1);
+        textres2 = (TextView) findViewById(R.id.textres2);
         imageQ = (ImageView) findViewById(R.id.imageQ);
         banswer1 = (Button) findViewById(R.id.answer1);
         banswer2 = (Button) findViewById(R.id.answer2);
@@ -547,14 +551,6 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         goHome();
     }
 
-    public void onDestroy(){
-        super.onDestroy();
-        db.close();
-        cursorQuestions.close();
-        cursorAnswers.close();
-        cursorTask.close();
-    }
-
     public void nextQuestion(){
         flag1 = 0;
         flag2 = 0;
@@ -731,12 +727,22 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
 
 
     public void showResults(){
+        reslayout.setVisibility(View.VISIBLE);
         type1.setVisibility(View.GONE);
         type2.setVisibility(View.GONE);
         type3.setVisibility(View.GONE);
         header.setVisibility(View.GONE);
         hintlayout.setVisibility(View.GONE);
-        nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+        textres1.setText("Результат: " +  Integer.toString(correctAnswers) + " из 10");
+
+    }
+
+    public void onDestroy(){
+        super.onDestroy();
+        db.close();
+        cursorQuestions.close();
+        cursorAnswers.close();
+        cursorTask.close();
     }
     /*@Override
     public void onClick(View view) {
