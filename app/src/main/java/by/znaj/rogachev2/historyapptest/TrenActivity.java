@@ -23,6 +23,11 @@ public class TrenActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tren);
 
+        getSupportActionBar().setTitle(R.string.app_name_short);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
+
         findViewById(R.id.treningButton).setOnClickListener(this);
         findViewById(R.id.truefalseButton).setOnClickListener(this);
         findViewById(R.id.controlButton).setOnClickListener(this);

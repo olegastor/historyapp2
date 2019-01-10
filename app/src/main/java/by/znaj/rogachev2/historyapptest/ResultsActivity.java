@@ -24,6 +24,11 @@ public class ResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
+        getSupportActionBar().setTitle(R.string.app_name_short);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
+
         userList = (ListView) findViewById(R.id.list);
 
         databaseHelper = new DatabaseHelper(getApplicationContext());

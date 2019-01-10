@@ -245,6 +245,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/colorBlack"
+                android:textAlignment="center"
                 tools:text="Текст" />
             <TextView
                 android:id="@+id/textres2"
@@ -252,7 +253,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/colorBlack"
+                android:textAlignment="center"
                 tools:text="Текст" />
+
+            <Button
+                android:id="@+id/closeTest"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/colorBlack"
+                android:text="Завершить"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         </LinearLayout>
     </LinearLayout>

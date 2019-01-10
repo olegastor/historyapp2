@@ -37,7 +37,7 @@ public class MultiTasksListActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.app_name_short);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
 
         header = (TextView)findViewById(R.id.header);

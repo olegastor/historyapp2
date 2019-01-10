@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TasksListActivity"
-    android:padding="16dp">
+    android:padding="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlack"
+            android:layout_marginLeft="8dp"
             android:hint="Поиск" />
         <ListView
             android:id="@+id/list"

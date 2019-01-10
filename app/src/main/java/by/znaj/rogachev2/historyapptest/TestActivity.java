@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-public class TestActivity extends AppCompatActivity /*implements View.OnClickListener*/{
+public class TestActivity extends AppCompatActivity /*implements View.OnClickListener*/ {
 
     TextView nameBox;
     TextView textQuestion;
@@ -41,6 +41,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
     Button buttonType2Go;
     Button byes;
     Button bno;
+    Button closeTest;
     LinearLayout type1;
     LinearLayout type2;
     LinearLayout type3;
@@ -54,7 +55,8 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
     Cursor cursorTask;
     Cursor cursorQuestions;
     Cursor cursorAnswers;
-    
+    Cursor cursorCong;
+
     long taskId = 0;
     long questionId = 0;
     int trenType = 0;
@@ -90,6 +92,11 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
+        getSupportActionBar().setTitle(R.string.app_name_short);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
+
         nameBox = (TextView) findViewById(R.id.name);
         textQuestion = (TextView) findViewById(R.id.textQuestion);
         textres1 = (TextView) findViewById(R.id.textres1);
@@ -107,6 +114,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         buttonType2Go = (Button) findViewById(R.id.buttonType2Go);
         byes = (Button) findViewById(R.id.byes);
         bno = (Button) findViewById(R.id.bno);
+        closeTest = (Button) findViewById(R.id.closeTest);
         context = getApplication().getBaseContext();
         type1 = (LinearLayout) findViewById(R.id.type1);
         type2 = (LinearLayout) findViewById(R.id.type2);
@@ -127,15 +135,14 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
             trenType = extras.getInt("trenType");
             if (trenType != 4) {
                 taskId = extras.getLong("id");
-            } else{
+            } else {
                 tasks = extras.getString("tasks");
             }
 
         }
 
-
-        switch (trenType){
-            case 1:{
+        switch (trenType) {
+            case 1: {
                 cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
                 cursorTask.moveToFirst();
                 nameBox.setText(cursorTask.getString(1));
@@ -144,7 +151,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 stType = "Тренинг";
                 break;
             }
-            case 2:{
+            case 2: {
                 cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
                 cursorTask.moveToFirst();
                 nameBox.setText(cursorTask.getString(1));
@@ -154,7 +161,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 stType = "Верю-Неверю";
                 break;
             }
-            case 3:{
+            case 3: {
                 cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
                 cursorTask.moveToFirst();
                 nameBox.setText(cursorTask.getString(1));
@@ -164,26 +171,25 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 stType = "Контроль";
                 break;
             }
-            case 4:{
+            case 4: {
                 nameBox.setText("Итоговый контроль по выбранным темам");
                 //TODO заполнить строку темами контроля
-                task = cursorTask.getString(1);
+                //task = cursorTask.getString(1);
                 bhint.setVisibility(View.GONE);
                 cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + " IN (" + tasks + ") ORDER BY RANDOM() LIMIT 10", null);
                 stType = "Итоговый контроль";
                 break;
             }
-            case 5:{
+            case 5: {
                 break;
 
             }
         }
 
-        if (cursorQuestions.getCount() != 0 && cursorQuestions.getCount() == 10){
+        if (cursorQuestions.getCount() != 0 && cursorQuestions.getCount() == 10) {
             cursorQuestions.moveToFirst();
             nextQuestion();
-        }
-        else {
+        } else {
             textQuestion.setText("Нет вопросов или их недостаточно");
         }
         ////////////////
@@ -192,7 +198,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         bhint.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Toast aboutMessage = Toast.makeText(context,shint,Toast.LENGTH_LONG);
+                Toast aboutMessage = Toast.makeText(context, shint, Toast.LENGTH_LONG);
                 aboutMessage.setGravity(Gravity.BOTTOM, 0, 0);
                 aboutMessage.show();
                 return false;
@@ -224,14 +230,8 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                         if (countQuestions < totalQuestions) {
                             cursorQuestions.moveToNext();
                             nextQuestion();
-                        } else{
-                            //TODO results
-                            type1.setVisibility(View.GONE);
-                            type2.setVisibility(View.GONE);
-                            type3.setVisibility(View.GONE);
-                            header.setVisibility(View.GONE);
-                            hintlayout.setVisibility(View.GONE);
-                            nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                        } else {
+                            showResults();
                             insertResults();
                         }
                     }
@@ -255,14 +255,8 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                         if (countQuestions < totalQuestions) {
                             cursorQuestions.moveToNext();
                             nextQuestion();
-                        } else{
-                            //TODO results
-                            type1.setVisibility(View.GONE);
-                            type2.setVisibility(View.GONE);
-                            type3.setVisibility(View.GONE);
-                            header.setVisibility(View.GONE);
-                            hintlayout.setVisibility(View.GONE);
-                            nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                        } else {
+                            showResults();
                             insertResults();
                         }
                     }
@@ -286,14 +280,8 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                         if (countQuestions < totalQuestions) {
                             cursorQuestions.moveToNext();
                             nextQuestion();
-                        } else{
-                            //TODO results
-                            type1.setVisibility(View.GONE);
-                            type2.setVisibility(View.GONE);
-                            type3.setVisibility(View.GONE);
-                            header.setVisibility(View.GONE);
-                            hintlayout.setVisibility(View.GONE);
-                            nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                        } else {
+                            showResults();
                             insertResults();
                         }
                     }
@@ -317,14 +305,8 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                         if (countQuestions < totalQuestions) {
                             cursorQuestions.moveToNext();
                             nextQuestion();
-                        } else{
-                            //TODO results
-                            type1.setVisibility(View.GONE);
-                            type2.setVisibility(View.GONE);
-                            type3.setVisibility(View.GONE);
-                            header.setVisibility(View.GONE);
-                            hintlayout.setVisibility(View.GONE);
-                            nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                        } else {
+                            showResults();
                             insertResults();
                         }
                     }
@@ -335,11 +317,10 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         buttonCheck1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (check1 == 0){
+                if (check1 == 0) {
                     check1 = 1;
                     buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
-                } else
-                {
+                } else {
                     check1 = 0;
                     buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorGrey));
                 }
@@ -348,11 +329,10 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         buttonCheck2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (check2 == 0){
+                if (check2 == 0) {
                     check2 = 1;
                     buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
-                } else
-                {
+                } else {
                     check2 = 0;
                     buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorGrey));
                 }
@@ -361,11 +341,10 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         buttonCheck3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (check3 == 0){
+                if (check3 == 0) {
                     check3 = 1;
                     buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
-                } else
-                {
+                } else {
                     check3 = 0;
                     buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorGrey));
                 }
@@ -374,11 +353,10 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         buttonCheck4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (check4 == 0){
+                if (check4 == 0) {
                     check4 = 1;
                     buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
-                } else
-                {
+                } else {
                     check4 = 0;
                     buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorGrey));
                 }
@@ -390,69 +368,62 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 disableButtons();
-                if (flag1==check1 && flag2==check2 && flag3==check3 && flag4==check4){
+                if (flag1 == check1 && flag2 == check2 && flag3 == check3 && flag4 == check4) {
                     correctAnswers++;
                 }
 
-                if (flag1 == 1 && check1 == 0){
+                if (flag1 == 1 && check1 == 0) {
                     buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     buttonCheck1.setTextColor(getResources().getColor(R.color.colorRed));
                 }
-                if (flag1 == 1 && check1 == 1){
+                if (flag1 == 1 && check1 == 1) {
                     buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                 }
-                if (flag1 == 0 && check1 == 1){
+                if (flag1 == 0 && check1 == 1) {
                     buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorRed));
                 }
 
-                if (flag2 == 1 && check2 == 0){
+                if (flag2 == 1 && check2 == 0) {
                     buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     buttonCheck2.setTextColor(getResources().getColor(R.color.colorRed));
                 }
-                if (flag2 == 1 && check2 == 1){
+                if (flag2 == 1 && check2 == 1) {
                     buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                 }
-                if (flag2 == 0 && check2 == 1){
+                if (flag2 == 0 && check2 == 1) {
                     buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorRed));
                 }
 
-                if (flag3 == 1 && check3 == 0){
+                if (flag3 == 1 && check3 == 0) {
                     buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     buttonCheck3.setTextColor(getResources().getColor(R.color.colorRed));
                 }
-                if (flag3 == 1 && check3 == 1){
+                if (flag3 == 1 && check3 == 1) {
                     buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                 }
-                if (flag3 == 0 && check3 == 1){
+                if (flag3 == 0 && check3 == 1) {
                     buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorRed));
                 }
 
-                if (flag4 == 1 && check4 == 0){
+                if (flag4 == 1 && check4 == 0) {
                     buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     buttonCheck4.setTextColor(getResources().getColor(R.color.colorRed));
                 }
-                if (flag4 == 1 && check4 == 1){
+                if (flag4 == 1 && check4 == 1) {
                     buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                 }
-                if (flag4 == 0 && check4 == 1){
+                if (flag4 == 0 && check4 == 1) {
                     buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorRed));
                 }
 
-                //TODO type2
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         if (countQuestions < totalQuestions) {
                             cursorQuestions.moveToNext();
                             nextQuestion();
-                        } else{
-                            //TODO results
-                            type1.setVisibility(View.GONE);
-                            type2.setVisibility(View.GONE);
-                            type3.setVisibility(View.GONE);
-                            header.setVisibility(View.GONE);
-                            hintlayout.setVisibility(View.GONE);
-                            nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                        } else {
+                            showResults();
                             insertResults();
                         }
                     }
@@ -477,14 +448,8 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                         if (countQuestions < totalQuestions) {
                             cursorQuestions.moveToNext();
                             nextQuestion();
-                        } else{
-                            //TODO results
-                            type1.setVisibility(View.GONE);
-                            type2.setVisibility(View.GONE);
-                            type3.setVisibility(View.GONE);
-                            header.setVisibility(View.GONE);
-                            hintlayout.setVisibility(View.GONE);
-                            nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                        } else {
+                            showResults();
                             insertResults();
                         }
                     }
@@ -508,18 +473,19 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                         if (countQuestions < totalQuestions) {
                             cursorQuestions.moveToNext();
                             nextQuestion();
-                        } else{
-                            //TODO results
-                            type1.setVisibility(View.GONE);
-                            type2.setVisibility(View.GONE);
-                            type3.setVisibility(View.GONE);
-                            header.setVisibility(View.GONE);
-                            hintlayout.setVisibility(View.GONE);
-                            nameBox.setText("Pravilnix: " +  Integer.toString(correctAnswers));
+                        } else {
+                            showResults();
                             insertResults();
                         }
                     }
                 }, 2000);
+            }
+        });
+
+        closeTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goHome();
             }
         });
     }
@@ -539,19 +505,20 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         ad.show();
     }*/
 
-    private void goHome(){
+    private void goHome() {
         db.close();
-        Intent intent = new Intent(this, TasksListActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        Intent intent = new Intent(getApplicationContext(), ThemeActivity.class);
+        intent.putExtra("id", taskId);
         startActivity(intent);
         overridePendingTransition(R.anim.left_in,R.anim.right_out);
     }
 
     public void onBackPressed() {
+        super.onBackPressed();
         goHome();
     }
 
-    public void nextQuestion(){
+    public void nextQuestion() {
         flag1 = 0;
         flag2 = 0;
         flag3 = 0;
@@ -566,9 +533,9 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         questionId = cursorQuestions.getLong(0);
         if (cursorQuestions.getBlob(3) != null) {
             byte[] image = cursorQuestions.getBlob(3);
-            Bitmap bmp = BitmapFactory.decodeByteArray(image, 0 , image.length);
+            Bitmap bmp = BitmapFactory.decodeByteArray(image, 0, image.length);
             imageQ.setImageBitmap(bmp);
-        } else{
+        } else {
             imageQ.setVisibility(View.GONE);
         }
         cursorAnswers = db.rawQuery("select * from " + DatabaseHelper.TABLE_ANSWERS + " where " + DatabaseHelper.COLUMN_ID_QUESTION + "=?", new String[]{String.valueOf(questionId)});
@@ -590,96 +557,92 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         buttonCheck2.setTextColor(getResources().getColor(R.color.colorBlack));
         buttonCheck3.setTextColor(getResources().getColor(R.color.colorBlack));
         buttonCheck4.setTextColor(getResources().getColor(R.color.colorBlack));
-        switch (typeQuestion){
+        switch (typeQuestion) {
             case 1: {
                 type1.setVisibility(View.VISIBLE);
                 type2.setVisibility(View.GONE);
                 type3.setVisibility(View.GONE);
                 cursorAnswers.moveToPosition(0);
-                if (cursorAnswers.getInt(3) == 1){
+                if (cursorAnswers.getInt(3) == 1) {
                     flag1 = 1;
-                } else{
+                } else {
                     flag1 = 0;
                 }
-                banswer1.setText(cursorAnswers.getString(2) + " " + cursorAnswers.getString(3) + " " + String.valueOf(flag1));
+                banswer1.setText(cursorAnswers.getString(2));
 
                 cursorAnswers.moveToPosition(1);
-                if (cursorAnswers.getInt(3) == 1){
+                if (cursorAnswers.getInt(3) == 1) {
                     flag2 = 1;
-                } else{
+                } else {
                     flag2 = 0;
                 }
-                banswer2.setText(cursorAnswers.getString(2) + " " + cursorAnswers.getString(3) + " " + String.valueOf(flag2));
+                banswer2.setText(cursorAnswers.getString(2));
 
                 cursorAnswers.moveToPosition(2);
-                if (cursorAnswers.getInt(3) == 1){
+                if (cursorAnswers.getInt(3) == 1) {
                     flag3 = 1;
-                } else{
+                } else {
                     flag3 = 0;
                 }
-                banswer3.setText(cursorAnswers.getString(2) + " " + cursorAnswers.getString(3) + " " + String.valueOf(flag3));
+                banswer3.setText(cursorAnswers.getString(2));
 
                 cursorAnswers.moveToPosition(3);
-                if (cursorAnswers.getInt(3) == 1){
+                if (cursorAnswers.getInt(3) == 1) {
                     flag4 = 1;
-                } else{
+                } else {
                     flag4 = 0;
                 }
-                banswer4.setText(cursorAnswers.getString(2) + " " + cursorAnswers.getString(3) + " " + String.valueOf(flag4));
+                banswer4.setText(cursorAnswers.getString(2));
                 countQuestions++;
                 break;
             }
-            case 2:{
+            case 2: {
                 type2.setVisibility(View.VISIBLE);
                 type1.setVisibility(View.GONE);
                 type3.setVisibility(View.GONE);
                 cursorAnswers.moveToPosition(0);
-                if (cursorAnswers.getInt(3) == 1){
+                if (cursorAnswers.getInt(3) == 1) {
                     flag1 = 1;
-                } else{
+                } else {
                     flag1 = 0;
                 }
-                buttonCheck1.setText(cursorAnswers.getString(2) + " " + cursorAnswers.getString(3) + " " + String.valueOf(flag1));
+                buttonCheck1.setText(cursorAnswers.getString(2));
 
                 cursorAnswers.moveToPosition(1);
-                if (cursorAnswers.getInt(3) == 1){
+                if (cursorAnswers.getInt(3) == 1) {
                     flag2 = 1;
-                } else{
+                } else {
                     flag2 = 0;
                 }
-                buttonCheck2.setText(cursorAnswers.getString(2) + " " + cursorAnswers.getString(3) + " " + String.valueOf(flag2));
+                buttonCheck2.setText(cursorAnswers.getString(2));
 
                 cursorAnswers.moveToPosition(2);
-                if (cursorAnswers.getInt(3) == 1){
+                if (cursorAnswers.getInt(3) == 1) {
                     flag3 = 1;
-                } else{
+                } else {
                     flag3 = 0;
                 }
-                buttonCheck3.setText(cursorAnswers.getString(2) + " " + cursorAnswers.getString(3) + " " + String.valueOf(flag3));
+                buttonCheck3.setText(cursorAnswers.getString(2));
 
                 cursorAnswers.moveToPosition(3);
-                if (cursorAnswers.getInt(3) == 1){
+                if (cursorAnswers.getInt(3) == 1) {
                     flag4 = 1;
-                } else{
+                } else {
                     flag4 = 0;
                 }
-                buttonCheck4.setText(cursorAnswers.getString(2) + " " + cursorAnswers.getString(3) + " " + String.valueOf(flag4));
+                buttonCheck4.setText(cursorAnswers.getString(2));
                 countQuestions++;
                 break;
             }
-            case 3:{
+            case 3: {
                 type3.setVisibility(View.VISIBLE);
                 type1.setVisibility(View.GONE);
                 type2.setVisibility(View.GONE);
                 cursorAnswers.moveToPosition(0);
-                if (cursorAnswers.getInt(3) == 1){
+                if (cursorAnswers.getInt(3) == 1) {
                     flag1 = 1;
-                    byes.setText("Да +");
-                    bno.setText("Нет");
-                } else{
+                } else {
                     flag1 = 0;
-                    byes.setText("Да");
-                    bno.setText("Нет +");
                 }
                 countQuestions++;
                 break;
@@ -687,15 +650,16 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         }
         enableButtons();
     }
-    public void insertResults(){
-        String res = task + "\n" + stType + "\n" + "Результат: " +  String.valueOf(correctAnswers) + " из 10" + "\n" + String.valueOf(Calendar.getInstance().getTime());
+
+    public void insertResults() {
+        String res = task + "\n" + stType + "\n" + "Результат: " + String.valueOf(correctAnswers) + " из 10" + "\n" + String.valueOf(Calendar.getInstance().getTime());
         //db.rawQuery("INSERT INTO results(result) values('?')",  new String[]{String.valueOf(res)});
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COLUMN_RESULT, res);
         db.insert(DatabaseHelper.TABLE_RESULTS, null, values);
     }
 
-    public void disableButtons(){
+    public void disableButtons() {
         banswer1.setClickable(false);
         banswer2.setClickable(false);
         banswer3.setClickable(false);
@@ -710,7 +674,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         bno.setClickable(false);
     }
 
-    public void enableButtons(){
+    public void enableButtons() {
         banswer1.setClickable(true);
         banswer2.setClickable(true);
         banswer3.setClickable(true);
@@ -726,61 +690,34 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
     }
 
 
-    public void showResults(){
+    public void showResults() {
         reslayout.setVisibility(View.VISIBLE);
         type1.setVisibility(View.GONE);
         type2.setVisibility(View.GONE);
         type3.setVisibility(View.GONE);
         header.setVisibility(View.GONE);
         hintlayout.setVisibility(View.GONE);
-        textres1.setText("Результат: " +  Integer.toString(correctAnswers) + " из 10");
-
-    }
-
-    public void onDestroy(){
-        super.onDestroy();
-        db.close();
-        cursorQuestions.close();
-        cursorAnswers.close();
-        cursorTask.close();
-    }
-    /*@Override
-    public void onClick(View view) {
-        switch(view.getId()) {
-            case R.id.answer1: {
-                if (flag1 == 1){
-                    banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                    //banswer1.setHighlightColor(getResources().getColor(R.color.colorGreen));
-                    //banswer1.setTextColor(getResources().getColor(R.color.colorGreen));
-                }else{
-                    banswer1.setBackgroundColor(getResources().getColor(R.color.colorRed));
-                }
-                break;
-            }
-            case R.id.answer2: {
-                if (flag2 == 1){
-                    banswer2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                }else{
-                    banswer2.setBackgroundColor(getResources().getColor(R.color.colorRed));
-                }
-                break;
-            }
-            case R.id.answer3: {
-                if (flag3 == 1){
-                    banswer3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                }else{
-                    banswer3.setBackgroundColor(getResources().getColor(R.color.colorRed));
-                }
-                break;
-            }
-            case R.id.answer4: {
-                if (flag4 == 1){
-                    banswer4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                }else{
-                    banswer4.setBackgroundColor(getResources().getColor(R.color.colorRed));
-                }
-                break;
-            }
+        textres1.setText("Результат: " + Integer.toString(correctAnswers) + " из 10");
+        cursorCong = db.rawQuery("select * from " + DatabaseHelper.TABLE_CONGTATS + " where " + DatabaseHelper.COLUMN_MARK + "=?", new String[]{String.valueOf(correctAnswers)});
+        //cursorCong = db.rawQuery("select * from congrats where mark=? order by random()", new String[]{String.valueOf(correctAnswers)});
+        if (cursorCong.getCount() > 0){
+            cursorCong.moveToFirst();
+            textres2.setText(cursorCong.getString(1));
+        } else{
+            textres2.setText("Поздравляю!");
         }
-    }*/
+    }
+
+    public void onDestroy() {
+        super.onDestroy();
+        try {
+            db.close();
+            cursorQuestions.close();
+            cursorAnswers.close();
+            cursorTask.close();
+            cursorCong.close();
+        } catch (Exception ex) {
+
+        }
+    }
 }
