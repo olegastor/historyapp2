@@ -57,7 +57,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         OutputStream myOutput = null;
         try {
             File file = new File(DB_PATH);
-            if (!file.exists()){
+            if (!file.exists()) {
                 this.getReadableDatabase();
                 myInput = myContext.getAssets().open(DATABASE_NAME);
                 String outFileName = DB_PATH;

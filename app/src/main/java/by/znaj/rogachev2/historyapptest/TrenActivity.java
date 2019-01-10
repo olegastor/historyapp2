@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TrenActivity extends AppCompatActivity implements View.OnClickListener{
+public class TrenActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView textTask;
     DatabaseHelper sqlHelper;
@@ -43,7 +43,7 @@ public class TrenActivity extends AppCompatActivity implements View.OnClickListe
                 userCursor.moveToFirst();
                 textTask.setText(userCursor.getString(1));
                 userCursor.close();
-            } catch (Exception e){
+            } catch (Exception e) {
                 textTask.setText("Ошибка!");
             }
         }
@@ -51,13 +51,13 @@ public class TrenActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.treningButton: {
                 Intent intent = new Intent(this, TestActivity.class);
                 intent.putExtra("id", taskId);
                 intent.putExtra("trenType", 1);
                 startActivity(intent);
-                overridePendingTransition(R.anim.right_in,R.anim.left_out);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
             }
             case R.id.truefalseButton: {
@@ -65,7 +65,7 @@ public class TrenActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("id", taskId);
                 intent.putExtra("trenType", 2);
                 startActivity(intent);
-                overridePendingTransition(R.anim.right_in,R.anim.left_out);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
             }
             case R.id.controlButton: {
@@ -73,7 +73,7 @@ public class TrenActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("id", taskId);
                 intent.putExtra("trenType", 3);
                 startActivity(intent);
-                overridePendingTransition(R.anim.right_in,R.anim.left_out);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
             }
         }

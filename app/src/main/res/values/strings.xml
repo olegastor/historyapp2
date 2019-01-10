@@ -1,9 +1,14 @@
 <resources>
     <string name="app_name">Тренажер-справочник по Истории Беларуси</string>
     <string name="app_name_short">Тренажер-справочник</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_theme">ThemeActivity</string>
     <string name="message">Pressed 1</string>
     <string name="hint">Подсказки нет!</string>
+    <string-array name="types_array">
+        <item>Вопрос с одним ответом</item>
+        <item>Вопрос с несколькими ответами</item>
+        <item>Верю-неверю</item>
+    </string-array>
+
 </resources>

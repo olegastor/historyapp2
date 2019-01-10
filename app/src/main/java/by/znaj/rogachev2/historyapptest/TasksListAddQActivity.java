@@ -17,7 +17,7 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-public class TasksListActivity extends AppCompatActivity implements View.OnClickListener{
+public class TasksListAddQActivity extends AppCompatActivity {
 
     ListView userList;
     TextView header;
@@ -56,7 +56,7 @@ public class TasksListActivity extends AppCompatActivity implements View.OnClick
         userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), ThemeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AddQActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_in,R.anim.left_out);
@@ -125,10 +125,6 @@ public class TasksListActivity extends AppCompatActivity implements View.OnClick
         overridePendingTransition(R.anim.left_in,R.anim.right_out);
     }
 
-    @Override
-    public void onClick(View view) {
-
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

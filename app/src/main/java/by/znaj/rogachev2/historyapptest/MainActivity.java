@@ -33,35 +33,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.beginButton: {
                 Intent intent = new Intent(getApplicationContext(), TasksListActivity.class);
-                intent.putExtra("listFlag", 1);
                 startActivity(intent);
-                overridePendingTransition(R.anim.right_in,R.anim.left_out);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
             }
             case R.id.resultsButton: {
                 Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
                 startActivity(intent);
-                overridePendingTransition(R.anim.right_in,R.anim.left_out);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
             }
             case R.id.controlButton: {
                 Intent intent = new Intent(this, MultiTasksListActivity.class);
                 startActivity(intent);
-                overridePendingTransition(R.anim.right_in,R.anim.left_out);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
             }
             case R.id.addqButton: {
-                Intent intent = new Intent(getApplicationContext(), TasksListActivity.class);
-                intent.putExtra("listFlag", 2);
+                Intent intent = new Intent(getApplicationContext(), TasksListAddQActivity.class);
                 startActivity(intent);
-                overridePendingTransition(R.anim.right_in,R.anim.left_out);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
             }
             case R.id.aboutButton: {
-                Toast aboutMessage = Toast.makeText(getApplicationContext(),"Тестовое приложение",Toast.LENGTH_SHORT);
+                Toast aboutMessage = Toast.makeText(getApplicationContext(), "Тестовое приложение", Toast.LENGTH_SHORT);
                 aboutMessage.setGravity(Gravity.CENTER, 0, 0);
                 aboutMessage.show();
                 break;
@@ -71,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onLongClick(View view) {
-        Toast aboutMessage = Toast.makeText(this,"Долгое нажатие",Toast.LENGTH_SHORT);
+        Toast aboutMessage = Toast.makeText(this, "Долгое нажатие", Toast.LENGTH_SHORT);
         aboutMessage.show();
         return false;
     }

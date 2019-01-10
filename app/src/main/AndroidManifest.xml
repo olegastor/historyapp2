@@ -28,7 +28,8 @@
         <activity android:name=".VocabularyActivity" />
         <activity android:name=".MemoActivity" />
         <activity android:name=".MultiTasksListActivity" />
-        <activity android:name=".AddQActivity"></activity>
+        <activity android:name=".AddQActivity" />
+        <activity android:name=".TasksListAddQActivity"></activity>
     </application>
 
 </manifest>
