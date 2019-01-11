@@ -1,5 +1,6 @@
 package by.znaj.rogachev2.historyapptest;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -25,8 +26,18 @@ public class SettingsActivity extends AppCompatActivity {
 
         SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
 
+        Resources res = getResources();
+        SharedPreferences settings = getSharedPreferences("MyAppSett", MODE_PRIVATE);
+        try {
+            //считываем коэффициент размера шрифта
+            size_coef = settings.getInt("size_coef", 2);
+        }
+        catch (Exception e) {
+            size_coef = 2; //коэффициент по умолчанию
+        }
+
         if (seekBar != null) {
-            seekBar.setProgress(1);
+            seekBar.setProgress(size_coef);
             seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -54,5 +65,13 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.right_in, R.anim.left_out);
     }
 }

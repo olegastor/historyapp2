@@ -1,12 +1,12 @@
 package by.znaj.rogachev2.historyapptest;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,6 +26,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.aboutButton).setOnClickListener(this);
         findViewById(R.id.addqButton).setOnClickListener(this);
         findViewById(R.id.settingsButton).setOnClickListener(this);
+
+        int size_coef;
+        final float start_value = 0.7f; //начальное значение размера шрифта
+        final float step = 0.15f; //шаг увеличения коэффициента
+        Resources res = getResources();
+        SharedPreferences settings = getSharedPreferences("MyAppSett", MODE_PRIVATE);
+        try {
+            //считываем коэффициент размера шрифта
+            size_coef = settings.getInt("size_coef", 2);
+        }
+        catch (Exception e) {
+            size_coef = 2; //коэффициент по умолчанию
+        }
+
+        //новый коэффициент увеличения шрифта
+        float new_value = start_value + size_coef * step;
+        //устанавливаем размер шрифта в приложении
+        Configuration configuration = new Configuration(res.getConfiguration());
+        configuration.fontScale = new_value;
+        res.updateConfiguration(configuration, res.getDisplayMetrics());
+
+        /*Intent intent = getIntent();
+        finish();
+        startActivity(intent);*/
 
     }
 
@@ -60,6 +84,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 /*Toast aboutMessage = Toast.makeText(getApplicationContext(), "Тестовое приложение", Toast.LENGTH_SHORT);
                 aboutMessage.setGravity(Gravity.CENTER, 0, 0);
                 aboutMessage.show();*/
+                Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
             }
             case R.id.settingsButton: {
