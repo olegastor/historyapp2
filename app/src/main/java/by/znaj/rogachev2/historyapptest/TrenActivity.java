@@ -83,4 +83,17 @@ public class TrenActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
+
+    private void goHome() {
+        db.close();
+        Intent intent = new Intent(getApplicationContext(), ThemeActivity.class);
+        intent.putExtra("id", taskId);
+        startActivity(intent);
+        overridePendingTransition(R.anim.left_in, R.anim.right_out);
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        goHome();
+    }
 }

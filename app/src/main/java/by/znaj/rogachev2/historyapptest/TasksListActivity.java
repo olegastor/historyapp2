@@ -121,9 +121,16 @@ public class TasksListActivity extends AppCompatActivity implements View.OnClick
         userCursor.close();
     }
 
+    private void goHome() {
+        db.close();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.left_in, R.anim.right_out);
+    }
+
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.left_in,R.anim.right_out);
+        goHome();
     }
 
     @Override

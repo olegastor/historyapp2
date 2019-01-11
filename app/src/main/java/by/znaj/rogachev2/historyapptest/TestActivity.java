@@ -204,6 +204,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 return false;
             }
         });
+
         /*bhint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -213,15 +214,23 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
             }
         });*/
 
+
         banswer1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (trenType == 3 || trenType == 4){
+                    banswer1.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
+                }
                 if (flag1 == 1) {
-                    banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    if (trenType != 3 && trenType != 4)
+                        banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     disableButtons();
                     correctAnswers++;
                 } else {
-                    banswer1.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    if (trenType != 3 && trenType != 4) {
+                        banswer1.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                        colorButtonGreen();
+                    }
                     disableButtons();
                 }
                 handler.postDelayed(new Runnable() {
@@ -241,12 +250,19 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         banswer2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (trenType == 3 || trenType == 4){
+                    banswer2.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
+                }
                 if (flag2 == 1) {
-                    banswer2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    if (trenType != 3 && trenType != 4)
+                        banswer2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     disableButtons();
                     correctAnswers++;
                 } else {
-                    banswer2.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    if (trenType != 3 && trenType != 4) {
+                        banswer2.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                        colorButtonGreen();
+                    }
                     disableButtons();
                 }
                 handler.postDelayed(new Runnable() {
@@ -266,12 +282,19 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         banswer3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (trenType == 3 || trenType == 4){
+                    banswer3.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
+                }
                 if (flag3 == 1) {
-                    banswer3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    if (trenType != 3 && trenType != 4)
+                        banswer3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     disableButtons();
                     correctAnswers++;
                 } else {
-                    banswer3.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    if (trenType != 3 && trenType != 4) {
+                        banswer3.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                        colorButtonGreen();
+                    }
                     disableButtons();
                 }
                 handler.postDelayed(new Runnable() {
@@ -291,12 +314,19 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         banswer4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (trenType == 3 || trenType == 4){
+                    banswer4.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
+                }
                 if (flag4 == 1) {
-                    banswer4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    if (trenType != 3 && trenType != 4)
+                        banswer4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     disableButtons();
                     correctAnswers++;
                 } else {
-                    banswer4.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    if (trenType != 3 && trenType != 4) {
+                        banswer4.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                        colorButtonGreen();
+                    }
                     disableButtons();
                 }
                 handler.postDelayed(new Runnable() {
@@ -372,50 +402,51 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                     correctAnswers++;
                 }
 
-                if (flag1 == 1 && check1 == 0) {
-                    buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                    buttonCheck1.setTextColor(getResources().getColor(R.color.colorRed));
-                }
-                if (flag1 == 1 && check1 == 1) {
-                    buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                }
-                if (flag1 == 0 && check1 == 1) {
-                    buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorRed));
-                }
+                if (trenType != 3 && trenType != 4) {
+                    if (flag1 == 1 && check1 == 0) {
+                        buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                        buttonCheck1.setTextColor(getResources().getColor(R.color.colorRed));
+                    }
+                    if (flag1 == 1 && check1 == 1) {
+                        buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    }
+                    if (flag1 == 0 && check1 == 1) {
+                        buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    }
 
-                if (flag2 == 1 && check2 == 0) {
-                    buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                    buttonCheck2.setTextColor(getResources().getColor(R.color.colorRed));
-                }
-                if (flag2 == 1 && check2 == 1) {
-                    buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                }
-                if (flag2 == 0 && check2 == 1) {
-                    buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorRed));
-                }
+                    if (flag2 == 1 && check2 == 0) {
+                        buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                        buttonCheck2.setTextColor(getResources().getColor(R.color.colorRed));
+                    }
+                    if (flag2 == 1 && check2 == 1) {
+                        buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    }
+                    if (flag2 == 0 && check2 == 1) {
+                        buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    }
 
-                if (flag3 == 1 && check3 == 0) {
-                    buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                    buttonCheck3.setTextColor(getResources().getColor(R.color.colorRed));
-                }
-                if (flag3 == 1 && check3 == 1) {
-                    buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                }
-                if (flag3 == 0 && check3 == 1) {
-                    buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorRed));
-                }
+                    if (flag3 == 1 && check3 == 0) {
+                        buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                        buttonCheck3.setTextColor(getResources().getColor(R.color.colorRed));
+                    }
+                    if (flag3 == 1 && check3 == 1) {
+                        buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    }
+                    if (flag3 == 0 && check3 == 1) {
+                        buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    }
 
-                if (flag4 == 1 && check4 == 0) {
-                    buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                    buttonCheck4.setTextColor(getResources().getColor(R.color.colorRed));
+                    if (flag4 == 1 && check4 == 0) {
+                        buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                        buttonCheck4.setTextColor(getResources().getColor(R.color.colorRed));
+                    }
+                    if (flag4 == 1 && check4 == 1) {
+                        buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    }
+                    if (flag4 == 0 && check4 == 1) {
+                        buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    }
                 }
-                if (flag4 == 1 && check4 == 1) {
-                    buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                }
-                if (flag4 == 0 && check4 == 1) {
-                    buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorRed));
-                }
-
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -434,13 +465,18 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         byes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (trenType == 3 || trenType == 4){
+                    byes.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
+                }
                 if (flag1 == 1) {
                     disableButtons();
-                    byes.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    if (trenType != 3 && trenType != 4)
+                        byes.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     correctAnswers++;
                 } else {
                     disableButtons();
-                    byes.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    if (trenType != 3 && trenType != 4)
+                        byes.setBackgroundColor(getResources().getColor(R.color.colorRed));
                 }
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -459,13 +495,18 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         bno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (trenType == 3 || trenType == 4){
+                    bno.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
+                }
                 if (flag1 == 0) {
                     disableButtons();
-                    bno.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    if (trenType != 3 && trenType != 4)
+                        bno.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     correctAnswers++;
                 } else {
                     disableButtons();
-                    bno.setBackgroundColor(getResources().getColor(R.color.colorRed));
+                    if (trenType != 3 && trenType != 4)
+                        bno.setBackgroundColor(getResources().getColor(R.color.colorRed));
                 }
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -505,12 +546,27 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         ad.show();
     }*/
 
+    public void colorButtonGreen() {
+        if (flag1 == 1) {
+            banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+        }
+        if (flag2 == 1) {
+            banswer2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+        }
+        if (flag3 == 1) {
+            banswer3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+        }
+        if (flag4 == 1) {
+            banswer4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+        }
+    }
+
     private void goHome() {
         db.close();
         Intent intent = new Intent(getApplicationContext(), ThemeActivity.class);
         intent.putExtra("id", taskId);
         startActivity(intent);
-        overridePendingTransition(R.anim.left_in,R.anim.right_out);
+        overridePendingTransition(R.anim.left_in, R.anim.right_out);
     }
 
     public void onBackPressed() {
@@ -700,10 +756,10 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         textres1.setText("Результат: " + Integer.toString(correctAnswers) + " из 10");
         cursorCong = db.rawQuery("select * from " + DatabaseHelper.TABLE_CONGTATS + " where " + DatabaseHelper.COLUMN_MARK + "=?", new String[]{String.valueOf(correctAnswers)});
         //cursorCong = db.rawQuery("select * from congrats where mark=? order by random()", new String[]{String.valueOf(correctAnswers)});
-        if (cursorCong.getCount() > 0){
+        if (cursorCong.getCount() > 0) {
             cursorCong.moveToFirst();
             textres2.setText(cursorCong.getString(1));
-        } else{
+        } else {
             textres2.setText("Поздравляю!");
         }
     }
