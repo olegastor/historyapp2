@@ -83,7 +83,11 @@ public class ThemeActivity extends AppCompatActivity implements View.OnClickList
                 break;
             }
             case R.id.videoButton: {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=bSMZknDI6bg")));
+                //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=bSMZknDI6bg")));
+                Intent intent = new Intent(this, VideoActivity.class);
+                intent.putExtra("id", taskId);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in,R.anim.left_out);
                 break;
             }
             case R.id.vocabularyButton: {

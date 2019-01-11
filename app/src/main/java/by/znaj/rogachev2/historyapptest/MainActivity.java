@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +27,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.addqButton).setOnClickListener(this);
         findViewById(R.id.settingsButton).setOnClickListener(this);
 
-        Button controlButton = (Button) findViewById(R.id.controlButton);
-
-        // TODO бла бла бла
     }
 
     @Override
@@ -60,9 +57,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             }
             case R.id.aboutButton: {
-                Toast aboutMessage = Toast.makeText(getApplicationContext(), "Тестовое приложение", Toast.LENGTH_SHORT);
+                /*Toast aboutMessage = Toast.makeText(getApplicationContext(), "Тестовое приложение", Toast.LENGTH_SHORT);
                 aboutMessage.setGravity(Gravity.CENTER, 0, 0);
-                aboutMessage.show();
+                aboutMessage.show();*/
                 break;
             }
             case R.id.settingsButton: {
@@ -74,10 +71,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @Override
-    public boolean onLongClick(View view) {
-        Toast aboutMessage = Toast.makeText(this, "Долгое нажатие", Toast.LENGTH_SHORT);
-        aboutMessage.show();
-        return false;
+    public void onBackPressed() {
+        return;
     }
+
 }

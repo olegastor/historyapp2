@@ -1,5 +1,6 @@
 package by.znaj.rogachev2.historyapptest;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -7,30 +8,52 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AddQActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
 
     LinearLayout addType1;
     LinearLayout addType2;
     LinearLayout addType3;
 
     EditText editTextQuestion;
+    EditText editType1A1;
+    EditText editType1A2;
+    EditText editType1A3;
+    EditText editType1A4;
+    EditText editType2A1;
+    EditText editType2A2;
+    EditText editType2A3;
+    EditText editType2A4;
     TextView textTask;
+
     DatabaseHelper sqlHelper;
     SQLiteDatabase db;
     Cursor userCursor;
+
     Spinner typesSpinner;
     RadioButton radioType1_1;
     RadioButton radioType1_2;
     RadioButton radioType1_3;
     RadioButton radioType1_4;
+    RadioButton radioYes;
+    CheckBox checkType2A1;
+    CheckBox checkType2A2;
+    CheckBox checkType2A3;
+    CheckBox checkType2A4;
+
+    Button addbutton;
 
     long taskId = 0;
+    int type = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +69,28 @@ public class AddQActivity extends AppCompatActivity implements AdapterView.OnIte
         editTextQuestion = (EditText) findViewById(R.id.editTextQuestion);
         typesSpinner = (Spinner) findViewById(R.id.types_spinner);
 
+        editType1A1 = (EditText) findViewById(R.id.editType1A1);
+        editType1A2 = (EditText) findViewById(R.id.editType1A2);
+        editType1A3 = (EditText) findViewById(R.id.editType1A3);
+        editType1A4 = (EditText) findViewById(R.id.editType1A4);
+        editType2A1 = (EditText) findViewById(R.id.editType2A1);
+        editType2A2 = (EditText) findViewById(R.id.editType2A2);
+        editType2A3 = (EditText) findViewById(R.id.editType2A3);
+        editType2A4 = (EditText) findViewById(R.id.editType2A4);
+        radioType1_1 = (RadioButton) findViewById(R.id.radioType1_1);
+        radioType1_2 = (RadioButton) findViewById(R.id.radioType1_2);
+        radioType1_3 = (RadioButton) findViewById(R.id.radioType1_3);
+        radioType1_4 = (RadioButton) findViewById(R.id.radioType1_4);
+        checkType2A1 = (CheckBox) findViewById(R.id.checkType2A1);
+        checkType2A2 = (CheckBox) findViewById(R.id.checkType2A2);
+        checkType2A3 = (CheckBox) findViewById(R.id.checkType2A3);
+        checkType2A4 = (CheckBox) findViewById(R.id.checkType2A4);
+        radioYes = (RadioButton) findViewById(R.id.radio_yes);
+
         addType1 = (LinearLayout) findViewById(R.id.addType1);
         addType2 = (LinearLayout) findViewById(R.id.addType2);
         addType3 = (LinearLayout) findViewById(R.id.addType3);
+        addbutton = (Button) findViewById(R.id.addbutton);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.types_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -69,20 +111,16 @@ public class AddQActivity extends AppCompatActivity implements AdapterView.OnIte
                 userCursor.moveToFirst();
                 textTask.setText(userCursor.getString(1));
                 userCursor.close();
-            } catch (Exception e){
+            } catch (Exception e) {
                 textTask.setText("Ошибка!");
             }
         }
 
         typesSpinner.setSelection(0);
+        type = 1;
         addType1.setVisibility(View.VISIBLE);
         addType2.setVisibility(View.GONE);
         addType3.setVisibility(View.GONE);
-
-        radioType1_1 = (RadioButton) findViewById(R.id.radioType1_1);
-        radioType1_2 = (RadioButton) findViewById(R.id.radioType1_2);
-        radioType1_3 = (RadioButton) findViewById(R.id.radioType1_3);
-        radioType1_4 = (RadioButton) findViewById(R.id.radioType1_4);
 
         radioType1_1.setChecked(true);
         radioType1_2.setChecked(false);
@@ -125,30 +163,235 @@ public class AddQActivity extends AppCompatActivity implements AdapterView.OnIte
                 radioType1_4.setChecked(true);
             }
         });
+
+        addbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int flag1 = 0;
+                int flag2 = 0;
+                int flag3 = 0;
+                int flag4 = 0;
+                long idQ = -1;
+                int count = 0;
+
+                if (type == 1) {
+                    if (editTextQuestion.getText().toString().matches("")) {
+                        Toast.makeText(getApplicationContext(), "Заполните вопрос!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (editType1A1.getText().toString().matches("") || editType1A2.getText().toString().matches("") || editType1A3.getText().toString().matches("") || editType1A4.getText().toString().matches("")) {
+                        Toast.makeText(getApplicationContext(), "Заполните ответы!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (radioType1_1.isChecked()) {
+                        flag1 = 1;
+                    }
+                    if (radioType1_2.isChecked()) {
+                        flag2 = 1;
+                    }
+                    if (radioType1_3.isChecked()) {
+                        flag3 = 1;
+                    }
+                    if (radioType1_4.isChecked()) {
+                        flag4 = 1;
+                    }
+                    ContentValues question = new ContentValues();
+                    ContentValues answer1 = new ContentValues();
+                    ContentValues answer2 = new ContentValues();
+                    ContentValues answer3 = new ContentValues();
+                    ContentValues answer4 = new ContentValues();
+                    question.put("id_task", taskId);
+                    question.put("question", editTextQuestion.getText().toString());
+                    question.put("hint", "");
+                    question.put("type", 1);
+                    idQ = db.insert(DatabaseHelper.TABLE_QUESTIONS, null, question);
+                    if (idQ != -1) {
+                        answer1.put("id_question",idQ);
+                        answer1.put("answer",editType1A1.getText().toString());
+                        answer1.put("isCorrect",flag1);
+                        answer2.put("id_question",idQ);
+                        answer2.put("answer",editType1A2.getText().toString());
+                        answer2.put("isCorrect",flag2);
+                        answer3.put("id_question",idQ);
+                        answer3.put("answer",editType1A3.getText().toString());
+                        answer3.put("isCorrect",flag3);
+                        answer4.put("id_question",idQ);
+                        answer4.put("answer",editType1A4.getText().toString());
+                        answer4.put("isCorrect",flag4);
+                        if (db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer1) != -1 && db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer2) != -1 && db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer1) != -1 && db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer1) != -1){
+                            Toast.makeText(getApplicationContext(), "Вопрос добавлен", Toast.LENGTH_SHORT).show();
+                            clearAll();
+                            return;
+                        } else{
+                            Toast.makeText(getApplicationContext(), "Ошибка, попробуйте позже", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Ошибка, попробуйте позже", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+                if (type == 2) {
+                    if (editTextQuestion.getText().toString().matches("")) {
+                        Toast.makeText(getApplicationContext(), "Заполните вопрос!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (editType2A1.getText().toString().matches("") || editType2A2.getText().toString().matches("") || editType2A3.getText().toString().matches("") || editType2A4.getText().toString().matches("")) {
+                        Toast.makeText(getApplicationContext(), "Заполните ответы!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (checkType2A1.isChecked()) {
+                        flag1 = 1;
+                        count++;
+                    }
+                    if (checkType2A2.isChecked()) {
+                        flag2 = 1;
+                        count++;
+                    }
+                    if (checkType2A3.isChecked()) {
+                        flag3 = 1;
+                        count++;
+                    }
+                    if (checkType2A4.isChecked()) {
+                        flag4 = 1;
+                        count++;
+                    }
+                    if (count < 2){
+                        Toast.makeText(getApplicationContext(), "Отметьте хотя бы 2 правильных ответа", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    ContentValues question = new ContentValues();
+                    ContentValues answer1 = new ContentValues();
+                    ContentValues answer2 = new ContentValues();
+                    ContentValues answer3 = new ContentValues();
+                    ContentValues answer4 = new ContentValues();
+                    question.put("id_task", taskId);
+                    question.put("question", editTextQuestion.getText().toString());
+                    question.put("hint", "");
+                    question.put("type", 2);
+                    idQ = db.insert(DatabaseHelper.TABLE_QUESTIONS, null, question);
+                    if (idQ != -1) {
+                        answer1.put("id_question",idQ);
+                        answer1.put("answer",editType2A1.getText().toString());
+                        answer1.put("isCorrect",flag1);
+                        answer2.put("id_question",idQ);
+                        answer2.put("answer",editType2A2.getText().toString());
+                        answer2.put("isCorrect",flag2);
+                        answer3.put("id_question",idQ);
+                        answer3.put("answer",editType2A3.getText().toString());
+                        answer3.put("isCorrect",flag3);
+                        answer4.put("id_question",idQ);
+                        answer4.put("answer",editType2A4.getText().toString());
+                        answer4.put("isCorrect",flag4);
+                        if (db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer1) != -1 && db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer2) != -1 && db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer1) != -1 && db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer1) != -1){
+                            Toast.makeText(getApplicationContext(), "Вопрос добавлен", Toast.LENGTH_SHORT).show();
+                            clearAll();
+                            return;
+                        } else{
+                            Toast.makeText(getApplicationContext(), "Ошибка, попробуйте позже", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Ошибка, попробуйте позже", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+                if (type == 3) {
+                    if (editTextQuestion.getText().toString().matches("")) {
+                        Toast.makeText(getApplicationContext(), "Заполните вопрос!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (radioYes.isChecked()){
+                        flag1 = 1;
+                    }
+                    ContentValues question = new ContentValues();
+                    ContentValues answer1 = new ContentValues();
+                    question.put("id_task", taskId);
+                    question.put("question", editTextQuestion.getText().toString());
+                    question.put("hint", "");
+                    question.put("type", 3);
+                    idQ = db.insert(DatabaseHelper.TABLE_QUESTIONS, null, question);
+                    if (idQ != -1) {
+                        answer1.put("id_question",idQ);
+                        answer1.put("answer"," ");
+                        answer1.put("isCorrect",flag1);
+                        if (db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer1) != -1){
+                            Toast.makeText(getApplicationContext(), "Вопрос добавлен", Toast.LENGTH_SHORT).show();
+                            clearAll();
+                            return;
+                        } else{
+                            Toast.makeText(getApplicationContext(), "Ошибка, попробуйте позже, a", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Ошибка, попробуйте позже, q", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+            }
+        });
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         //typesSpinner.getSelectedItemPosition();
-        if (position == 0){
+        if (position == 0) {
+            type = 1;
             addType1.setVisibility(View.VISIBLE);
             addType2.setVisibility(View.GONE);
             addType3.setVisibility(View.GONE);
+            clearAll();
         }
-        if (position == 1){
+        if (position == 1) {
+            type = 2;
             addType1.setVisibility(View.GONE);
             addType2.setVisibility(View.VISIBLE);
             addType3.setVisibility(View.GONE);
+            clearAll();
         }
-        if (position == 2){
+        if (position == 2) {
+            type = 3;
             addType1.setVisibility(View.GONE);
             addType2.setVisibility(View.GONE);
             addType3.setVisibility(View.VISIBLE);
+            clearAll();
         }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    public void clearAll() {
+        editTextQuestion.setText("");
+        editType1A1.setText("");
+        editType1A2.setText("");
+        editType1A3.setText("");
+        editType1A4.setText("");
+        editType2A1.setText("");
+        editType2A2.setText("");
+        editType2A3.setText("");
+        editType2A4.setText("");
+        radioType1_1.setChecked(true);
+        radioType1_2.setChecked(false);
+        radioType1_3.setChecked(false);
+        radioType1_4.setChecked(false);
+        checkType2A1.setChecked(false);
+        checkType2A2.setChecked(false);
+        checkType2A3.setChecked(false);
+        checkType2A4.setChecked(false);
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        db.close();
+        return;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        db.close();
     }
 }
