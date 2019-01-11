@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -82,7 +83,7 @@ public class ThemeActivity extends AppCompatActivity implements View.OnClickList
                 break;
             }
             case R.id.videoButton: {
-                // ...
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=bSMZknDI6bg")));
                 break;
             }
             case R.id.vocabularyButton: {

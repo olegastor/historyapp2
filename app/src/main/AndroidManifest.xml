@@ -30,7 +30,8 @@
         <activity android:name=".MultiTasksListActivity" />
         <activity android:name=".AddQActivity" />
         <activity android:name=".TasksListAddQActivity" />
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".VideoActivity"></activity>
     </application>
 
 </manifest>
