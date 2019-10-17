@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().setTitle(R.string.app_name_short);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setIcon(R.drawable.main);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
 
         findViewById(R.id.beginButton).setOnClickListener(this);
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.aboutButton).setOnClickListener(this);
         findViewById(R.id.addqButton).setOnClickListener(this);
         findViewById(R.id.settingsButton).setOnClickListener(this);
+        findViewById(R.id.intButton).setOnClickListener(this);
 
         int size_coef;
         final float start_value = 0.7f; //начальное значение размера шрифта
@@ -91,6 +93,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             case R.id.settingsButton: {
                 Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            }
+            case R.id.intButton: {
+                Intent intent = new Intent(getApplicationContext(), IntActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;

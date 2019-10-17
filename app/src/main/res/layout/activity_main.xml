@@ -33,6 +33,14 @@
         android:textColor="@color/colorBlack" />
 
     <Button
+        android:id="@+id/intButton"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Интерактив"
+        android:textColor="@color/colorBlack" />
+
+    <Button
         android:id="@+id/addqButton"
         style="?android:attr/buttonBarButtonStyle"
         android:layout_width="match_parent"

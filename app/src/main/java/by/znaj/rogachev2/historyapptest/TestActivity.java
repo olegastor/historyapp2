@@ -25,6 +25,7 @@ import java.util.Calendar;
 public class TestActivity extends AppCompatActivity /*implements View.OnClickListener*/ {
 
     TextView nameBox;
+    TextView maptext;
     TextView textQuestion;
     TextView textres1;
     TextView textres2;
@@ -101,6 +102,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         textQuestion = (TextView) findViewById(R.id.textQuestion);
         textres1 = (TextView) findViewById(R.id.textres1);
         textres2 = (TextView) findViewById(R.id.textres2);
+        maptext = (TextView) findViewById(R.id.maptext);
         imageQ = (ImageView) findViewById(R.id.imageQ);
         banswer1 = (Button) findViewById(R.id.answer1);
         banswer2 = (Button) findViewById(R.id.answer2);
@@ -124,6 +126,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
 
         reslayout = (LinearLayout) findViewById(R.id.reslayout);
         reslayout.setVisibility(View.GONE);
+        maptext.setVisibility(View.GONE);
 
         handler = new Handler();
 
@@ -184,6 +187,17 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 break;
 
             }
+            case 7: {
+                nameBox.setText("Интерактив с картой");
+                //TODO карта
+                //task = cursorTask.getString(1);
+                bhint.setVisibility(View.GONE);
+                cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where type=7 ORDER BY RANDOM() LIMIT 10", null);
+                stType = "Карта";
+                //trenType = 1;
+                break;
+
+            }
         }
 
         if (cursorQuestions.getCount() != 0 && cursorQuestions.getCount() == 10) {
@@ -224,6 +238,10 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 if (flag1 == 1) {
                     if (trenType != 3 && trenType != 4)
                         banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    if (trenType == 7){
+                        maptext.setVisibility(View.VISIBLE);
+                        maptext.setText("Правильно: " + shint);
+                    }
                     disableButtons();
                     correctAnswers++;
                 } else {
@@ -256,6 +274,10 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 if (flag2 == 1) {
                     if (trenType != 3 && trenType != 4)
                         banswer2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    if (trenType == 7){
+                        maptext.setVisibility(View.VISIBLE);
+                        maptext.setText("Правильно: " + shint);
+                    }
                     disableButtons();
                     correctAnswers++;
                 } else {
@@ -288,6 +310,10 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 if (flag3 == 1) {
                     if (trenType != 3 && trenType != 4)
                         banswer3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    if (trenType == 7){
+                        maptext.setVisibility(View.VISIBLE);
+                        maptext.setText("Правильно: " + shint);
+                    }
                     disableButtons();
                     correctAnswers++;
                 } else {
@@ -320,6 +346,10 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 if (flag4 == 1) {
                     if (trenType != 3 && trenType != 4)
                         banswer4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+                    if (trenType == 7){
+                        maptext.setVisibility(View.VISIBLE);
+                        maptext.setText("Правильно: " + shint);
+                    }
                     disableButtons();
                     correctAnswers++;
                 } else {
@@ -597,6 +627,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         cursorAnswers = db.rawQuery("select * from " + DatabaseHelper.TABLE_ANSWERS + " where " + DatabaseHelper.COLUMN_ID_QUESTION + "=?", new String[]{String.valueOf(questionId)});
         //cursorAnswers = db.rawQuery("select * from answers where id_question"+ "=?", new String[]{String.valueOf(questionId)});
         //cursorAnswers.moveToFirst();
+        maptext.setVisibility(View.GONE);
         banswer1.setBackgroundColor(getResources().getColor(R.color.colorGrey));
         banswer2.setBackgroundColor(getResources().getColor(R.color.colorGrey));
         banswer3.setBackgroundColor(getResources().getColor(R.color.colorGrey));
@@ -703,6 +734,43 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 countQuestions++;
                 break;
             }
+            case 7:
+                type1.setVisibility(View.VISIBLE);
+                type2.setVisibility(View.GONE);
+                type3.setVisibility(View.GONE);
+                cursorAnswers.moveToPosition(0);
+                if (cursorAnswers.getInt(3) == 1) {
+                    flag1 = 1;
+                } else {
+                    flag1 = 0;
+                }
+                banswer1.setText(cursorAnswers.getString(2));
+
+                cursorAnswers.moveToPosition(1);
+                if (cursorAnswers.getInt(3) == 1) {
+                    flag2 = 1;
+                } else {
+                    flag2 = 0;
+                }
+                banswer2.setText(cursorAnswers.getString(2));
+
+                cursorAnswers.moveToPosition(2);
+                if (cursorAnswers.getInt(3) == 1) {
+                    flag3 = 1;
+                } else {
+                    flag3 = 0;
+                }
+                banswer3.setText(cursorAnswers.getString(2));
+
+                cursorAnswers.moveToPosition(3);
+                if (cursorAnswers.getInt(3) == 1) {
+                    flag4 = 1;
+                } else {
+                    flag4 = 0;
+                }
+                banswer4.setText(cursorAnswers.getString(2));
+                countQuestions++;
+                break;
         }
         enableButtons();
     }

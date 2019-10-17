@@ -14,4 +14,6 @@
     <color name="colorLightBrown">#bf5000</color>
     <color name="colorHighlight">#fdc14b</color>
     <color name="colorTransparent">#00000000</color>
+    <color name="colorLetter">#797676</color>
+    <color name="colorLG">#BEBEBE</color>
 </resources>
