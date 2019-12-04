@@ -37,7 +37,7 @@
         style="?android:attr/buttonBarButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Интерактив"
+        android:text="Головоломки"
         android:textColor="@color/colorBlack" />
 
     <Button

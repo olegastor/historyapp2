@@ -96,7 +96,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         getSupportActionBar().setTitle(R.string.app_name_short);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
+        getSupportActionBar().setIcon(R.drawable.ic_actbar);
 
         nameBox = (TextView) findViewById(R.id.name);
         textQuestion = (TextView) findViewById(R.id.textQuestion);
@@ -131,6 +131,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         handler = new Handler();
 
         sqlHelper = new DatabaseHelper(this);
+        sqlHelper.createDatabase();
         db = sqlHelper.open();
 
         Bundle extras = getIntent().getExtras();
@@ -191,7 +192,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 nameBox.setText("Интерактив с картой");
                 //TODO карта
                 //task = cursorTask.getString(1);
-                bhint.setVisibility(View.GONE);
+                bhint.setVisibility(View.VISIBLE);
                 cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where type=7 ORDER BY RANDOM() LIMIT 10", null);
                 stType = "Карта";
                 //trenType = 1;
@@ -594,6 +595,9 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
     private void goHome() {
         db.close();
         Intent intent = new Intent(getApplicationContext(), ThemeActivity.class);
+        if (trenType == 7){
+            intent = new Intent(getApplicationContext(), IntActivity.class);
+        }
         intent.putExtra("id", taskId);
         startActivity(intent);
         overridePendingTransition(R.anim.left_in, R.anim.right_out);

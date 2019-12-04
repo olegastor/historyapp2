@@ -18,7 +18,7 @@ public class SettingsActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.app_name_short);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
+        getSupportActionBar().setIcon(R.drawable.ic_actbar);
 
         final float start_value = 0.7f; //начальное значение размера шрифта
         final float step = 0.15f; //шаг увеличения коэффициента

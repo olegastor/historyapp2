@@ -32,7 +32,7 @@ public class ThemeActivity extends AppCompatActivity implements View.OnClickList
         getSupportActionBar().setTitle(R.string.app_name_short);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
+        getSupportActionBar().setIcon(R.drawable.ic_actbar);
 
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/

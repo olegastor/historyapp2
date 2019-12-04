@@ -27,24 +27,24 @@
                 android:textStyle="italic"
                 android:textColor="@color/colorBlack"
                 android:textSize="15sp"
-                tools:text="Полоцкий мастер-ювелир. По заказу Е.Полоцкой для Спасской церкви Евфросиниевского монастыря сделал шестиконечный крест. Утрачен в годы ВОВ" />
+                tools:text="" />
 
             <ImageView
                 android:id="@+id/imageQ"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="230dp"
                 android:layout_marginTop="10dp"
-                android:contentDescription="QuestionImage"
-                app:srcCompat="@drawable/j2" />
+                android:contentDescription="QuestionImage" />
 
             <TextView
                 android:id="@+id/textDrop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="40sp"
-
                 android:layout_marginTop="50dp"
-                android:background="@drawable/rounded"></TextView>
+
+                android:background="@drawable/rounded"
+                android:lines="1"
+                android:textSize="35sp"></TextView>
 
         </LinearLayout>
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -54,8 +54,7 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="8dp"
-            android:id="@+id/type1">
+            android:id="@+id/block1">
             <Button
                 android:id="@+id/but1"
                 style="?android:attr/buttonBarButtonStyle"
@@ -117,6 +116,17 @@
                 android:layout_weight="1"
                 android:background="@color/colorLG"
                 android:layout_marginLeft="3dp"/>
+
+
+        </LinearLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/block2">
             <Button
                 android:id="@+id/but6"
                 style="?android:attr/buttonBarButtonStyle"
@@ -124,11 +134,134 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:textColor="@color/colorBlack"
-                android:text="Ш"
+                android:text="Б"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:layout_weight="1"
                 android:background="@color/colorLG"
                 android:layout_marginLeft="3dp"/>
+
+            <Button
+                android:id="@+id/but7"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="А"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/colorBlack"
+                android:layout_weight="1"
+                android:background="@color/colorLG"
+                android:layout_marginLeft="3dp"/>
+            <Button
+                android:id="@+id/but8"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/colorBlack"
+                android:text="К"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_weight="1"
+                android:background="@color/colorLG"
+                android:layout_marginLeft="3dp"/>
+            <Button
+                android:id="@+id/but9"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/colorBlack"
+                android:text="Г"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_weight="1"
+                android:background="@color/colorLG"
+                android:layout_marginLeft="3dp"/>
+            <Button
+                android:id="@+id/but10"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/colorBlack"
+                android:text="О"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_weight="1"
+                android:background="@color/colorLG"
+                android:layout_marginLeft="3dp"/>
+
+
+        </LinearLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/block3">
+            <Button
+                android:id="@+id/but11"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/colorBlack"
+                android:text="Б"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_weight="1"
+                android:background="@color/colorLG"
+                android:layout_marginLeft="3dp"/>
+
+            <Button
+                android:id="@+id/but12"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="А"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/colorBlack"
+                android:layout_weight="1"
+                android:background="@color/colorLG"
+                android:layout_marginLeft="3dp"/>
+            <Button
+                android:id="@+id/but13"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/colorBlack"
+                android:text="К"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_weight="1"
+                android:background="@color/colorLG"
+                android:layout_marginLeft="3dp"/>
+            <Button
+                android:id="@+id/but14"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/colorBlack"
+                android:text="Г"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_weight="1"
+                android:background="@color/colorLG"
+                android:layout_marginLeft="3dp"/>
+            <Button
+                android:id="@+id/but15"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/colorBlack"
+                android:text="О"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_weight="1"
+                android:background="@color/colorLG"
+                android:layout_marginLeft="3dp"/>
+
+
         </LinearLayout>
 
 

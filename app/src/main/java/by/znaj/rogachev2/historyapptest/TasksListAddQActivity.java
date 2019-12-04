@@ -37,7 +37,7 @@ public class TasksListAddQActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
+        getSupportActionBar().setIcon(R.drawable.ic_actbar);
 
 
         header = (TextView)findViewById(R.id.header);

@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         //getSupportActionBar().setIcon(R.drawable.main);
-        getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
+        getSupportActionBar().setIcon(R.drawable.ic_actbar);
 
         findViewById(R.id.beginButton).setOnClickListener(this);
         findViewById(R.id.resultsButton).setOnClickListener(this);

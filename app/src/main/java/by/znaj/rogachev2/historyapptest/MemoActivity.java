@@ -33,7 +33,7 @@ public class MemoActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.app_name_short);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
+        getSupportActionBar().setIcon(R.drawable.ic_actbar);
 
         //imageView = (ImageView) findViewById(R.id.imageView);
         imageView = (PhotoView) findViewById(R.id.imageView);

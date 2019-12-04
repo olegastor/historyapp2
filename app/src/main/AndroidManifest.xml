@@ -9,12 +9,13 @@
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:icon="@mipmap/ic_launcher_new"
+        android:icon="@drawable/main"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_new_round"
+        android:roundIcon="@drawable/main"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Fill2Activity"></activity>
+        <activity android:name=".FillWordActivity"></activity>
+        <activity android:name=".Fill2Activity" />
         <activity android:name=".FillActivity" />
         <activity android:name=".IntActivity" />
         <activity android:name=".MainActivity" />

@@ -18,11 +18,12 @@ public class IntActivity extends AppCompatActivity implements View.OnClickListen
         getSupportActionBar().setTitle(R.string.app_name_short);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
+        getSupportActionBar().setIcon(R.drawable.ic_actbar);
 
         findViewById(R.id.mapButton).setOnClickListener(this);
         //findViewById(R.id.imgButton).setOnClickListener(this);
         findViewById(R.id.fillButton).setOnClickListener(this);
+        findViewById(R.id.fillwordButton).setOnClickListener(this);
 
     }
 
@@ -48,6 +49,14 @@ public class IntActivity extends AppCompatActivity implements View.OnClickListen
             }*/
             case R.id.fillButton: {
                 Intent intent = new Intent(this, Fill2Activity.class);
+                intent.putExtra("id", taskId);
+                intent.putExtra("trenType", 9);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            }
+            case R.id.fillwordButton: {
+                Intent intent = new Intent(this, FillWordActivity.class);
                 intent.putExtra("id", taskId);
                 intent.putExtra("trenType", 9);
                 startActivity(intent);

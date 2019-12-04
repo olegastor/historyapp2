@@ -63,7 +63,7 @@ public class AddQActivity extends AppCompatActivity implements AdapterView.OnIte
         getSupportActionBar().setTitle(R.string.app_name_short);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.ic_launcher_new);
+        getSupportActionBar().setIcon(R.drawable.ic_actbar);
 
         textTask = (TextView) findViewById(R.id.textTask);
         editTextQuestion = (EditText) findViewById(R.id.editTextQuestion);
