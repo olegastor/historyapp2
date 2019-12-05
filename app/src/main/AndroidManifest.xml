@@ -15,8 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".FillWordActivity"></activity>
-        <activity android:name=".Fill2Activity" />
-        <activity android:name=".FillActivity" />
+        <activity android:name=".MakeWordActivity" />
         <activity android:name=".IntActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".TasksListActivity">
