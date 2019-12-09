@@ -70,7 +70,7 @@ public class IntActivity extends AppCompatActivity implements View.OnClickListen
                 break;
             }
             case R.id.fillwordButton: {
-                Intent intent = new Intent(this, FillWordActivity.class);
+                Intent intent = new Intent(this, FillWordListActivity.class);
                 intent.putExtra("id", taskId);
                 intent.putExtra("trenType", 9);
                 startActivity(intent);

@@ -151,7 +151,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 cursorTask.moveToFirst();
                 nameBox.setText(cursorTask.getString(1));
                 task = cursorTask.getString(1);
-                cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? and type IN (1,2)  ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
+                cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? and type IN (1,2,7)  ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
                 stType = "Тренинг";
                 break;
             }
@@ -625,6 +625,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
             byte[] image = cursorQuestions.getBlob(3);
             Bitmap bmp = BitmapFactory.decodeByteArray(image, 0, image.length);
             imageQ.setImageBitmap(bmp);
+            imageQ.setVisibility(View.VISIBLE);
         } else {
             imageQ.setVisibility(View.GONE);
         }
