@@ -12,6 +12,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ public class ThemeActivity extends AppCompatActivity implements View.OnClickList
     SQLiteDatabase db;
     Cursor userCursor;
     long taskId = 0;
+    long task11 = 11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class ThemeActivity extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.vocabularyButton).setOnClickListener(this);
         findViewById(R.id.memButton).setOnClickListener(this);
         findViewById(R.id.videoButton).setOnClickListener(this);
+        findViewById(R.id.video2Button).setOnClickListener(this);
 
         textTask = (TextView) findViewById(R.id.textTask);
 
@@ -49,6 +52,13 @@ public class ThemeActivity extends AppCompatActivity implements View.OnClickList
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             taskId = extras.getLong("id");
+        }
+
+        if (taskId == 1){
+            Button videobut = findViewById(R.id.videoButton);
+            Button videobut2 = findViewById(R.id.video2Button);
+            videobut.setText("Видеоурок 1");
+            videobut2.setVisibility(View.VISIBLE);
         }
 
         if (taskId > 0) {
@@ -93,6 +103,14 @@ public class ThemeActivity extends AppCompatActivity implements View.OnClickList
             case R.id.vocabularyButton: {
                 Intent intent = new Intent(this, VocabularyActivity.class);
                 intent.putExtra("id", taskId);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in,R.anim.left_out);
+                break;
+            }
+            case R.id.video2Button: {
+                //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=bSMZknDI6bg")));
+                Intent intent = new Intent(this, VideoActivity.class);
+                intent.putExtra("id", task11);
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_in,R.anim.left_out);
                 break;

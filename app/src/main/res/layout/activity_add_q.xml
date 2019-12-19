@@ -282,6 +282,26 @@
             android:text="Добавить"
             android:textColor="@color/colorBlack" />
 
+        <Button
+            android:id="@+id/exportbutton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="50sp"
+            android:layout_marginTop="20sp"
+            android:background="@color/colorGrey"
+            android:text="Экспорт вопросов"
+            android:textColor="@color/colorBlack" />
+
+        <Button
+            android:id="@+id/importbutton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="50sp"
+            android:layout_marginTop="20sp"
+            android:background="@color/colorGrey"
+            android:text="Импорт вопросов"
+            android:textColor="@color/colorBlack" />
+
 
     </LinearLayout>
 </ScrollView>

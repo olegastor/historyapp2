@@ -56,7 +56,7 @@
             android:gravity="center"
             android:textColor="@color/colorBlack"
             android:drawableLeft="@mipmap/ic_truefalse"
-            android:text="Верю-неверю" />
+            android:text="Верю - не верю" />
 
     </LinearLayout>
     <LinearLayout

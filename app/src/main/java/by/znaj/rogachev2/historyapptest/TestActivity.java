@@ -20,7 +20,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class TestActivity extends AppCompatActivity /*implements View.OnClickListener*/ {
 
@@ -145,60 +147,64 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
 
         }
 
-        switch (trenType) {
-            case 1: {
-                cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
-                cursorTask.moveToFirst();
-                nameBox.setText(cursorTask.getString(1));
-                task = cursorTask.getString(1);
-                cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? and type IN (1,2,7)  ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
-                stType = "Тренинг";
-                break;
-            }
-            case 2: {
-                cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
-                cursorTask.moveToFirst();
-                nameBox.setText(cursorTask.getString(1));
-                task = cursorTask.getString(1);
-                bhint.setVisibility(View.GONE);
-                cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? and type=3 ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
-                stType = "Верю-Неверю";
-                break;
-            }
-            case 3: {
-                cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
-                cursorTask.moveToFirst();
-                nameBox.setText(cursorTask.getString(1));
-                task = cursorTask.getString(1);
-                bhint.setVisibility(View.GONE);
-                cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
-                stType = "Контроль";
-                break;
-            }
-            case 4: {
-                nameBox.setText("Итоговый контроль по выбранным темам");
-                //TODO заполнить строку темами контроля
-                //task = cursorTask.getString(1);
-                bhint.setVisibility(View.GONE);
-                cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + " IN (" + tasks + ") ORDER BY RANDOM() LIMIT 10", null);
-                stType = "Итоговый контроль";
-                break;
-            }
-            case 5: {
-                break;
+        try {
+            switch (trenType) {
+                case 1: {
+                    cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
+                    cursorTask.moveToFirst();
+                    nameBox.setText(cursorTask.getString(1));
+                    task = cursorTask.getString(1);
+                    cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? and type IN (1,2,7)  ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
+                    stType = "Тренинг";
+                    break;
+                }
+                case 2: {
+                    cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
+                    cursorTask.moveToFirst();
+                    nameBox.setText(cursorTask.getString(1));
+                    task = cursorTask.getString(1);
+                    bhint.setVisibility(View.GONE);
+                    cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? and type=3 ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
+                    stType = "Верю-Неверю";
+                    break;
+                }
+                case 3: {
+                    cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
+                    cursorTask.moveToFirst();
+                    nameBox.setText(cursorTask.getString(1));
+                    task = cursorTask.getString(1);
+                    bhint.setVisibility(View.GONE);
+                    cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
+                    stType = "Контроль";
+                    break;
+                }
+                case 4: {
+                    nameBox.setText("Итоговый контроль по выбранным темам");
+                    //TODO заполнить строку темами контроля
+                    //task = cursorTask.getString(1);
+                    bhint.setVisibility(View.GONE);
+                    cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + " IN (" + tasks + ") ORDER BY RANDOM() LIMIT 10", null);
+                    stType = "Итоговый контроль";
+                    break;
+                }
+                case 5: {
+                    break;
 
-            }
-            case 7: {
-                nameBox.setText("Интерактив с картой");
-                //TODO карта
-                //task = cursorTask.getString(1);
-                bhint.setVisibility(View.VISIBLE);
-                cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where type=7 ORDER BY RANDOM() LIMIT 10", null);
-                stType = "Карта";
-                //trenType = 1;
-                break;
+                }
+                case 7: {
+                    nameBox.setText("Интерактив с картой");
+                    //TODO карта
+                    //task = cursorTask.getString(1);
+                    bhint.setVisibility(View.VISIBLE);
+                    cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where type=7 ORDER BY RANDOM() LIMIT 10", null);
+                    stType = "Карта";
+                    //trenType = 1;
+                    break;
 
+                }
             }
+        }catch (Exception e){
+            e.printStackTrace();
         }
 
         if (cursorQuestions.getCount() != 0 && cursorQuestions.getCount() == 10) {
@@ -239,7 +245,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 if (flag1 == 1) {
                     if (trenType != 3 && trenType != 4)
                         banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                    if (trenType == 7){
+                    if (typeQuestion == 7){
                         maptext.setVisibility(View.VISIBLE);
                         maptext.setText("Правильно: " + shint);
                     }
@@ -249,6 +255,10 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                     if (trenType != 3 && trenType != 4) {
                         banswer1.setBackgroundColor(getResources().getColor(R.color.colorRed));
                         colorButtonGreen();
+                        if (typeQuestion == 7){
+                            maptext.setVisibility(View.VISIBLE);
+                            maptext.setText(shint);
+                        }
                     }
                     disableButtons();
                 }
@@ -275,7 +285,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 if (flag2 == 1) {
                     if (trenType != 3 && trenType != 4)
                         banswer2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                    if (trenType == 7){
+                    if (typeQuestion == 7){
                         maptext.setVisibility(View.VISIBLE);
                         maptext.setText("Правильно: " + shint);
                     }
@@ -285,6 +295,10 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                     if (trenType != 3 && trenType != 4) {
                         banswer2.setBackgroundColor(getResources().getColor(R.color.colorRed));
                         colorButtonGreen();
+                        if (typeQuestion == 7){
+                            maptext.setVisibility(View.VISIBLE);
+                            maptext.setText(shint);
+                        }
                     }
                     disableButtons();
                 }
@@ -311,7 +325,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 if (flag3 == 1) {
                     if (trenType != 3 && trenType != 4)
                         banswer3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                    if (trenType == 7){
+                    if (typeQuestion == 7){
                         maptext.setVisibility(View.VISIBLE);
                         maptext.setText("Правильно: " + shint);
                     }
@@ -321,6 +335,10 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                     if (trenType != 3 && trenType != 4) {
                         banswer3.setBackgroundColor(getResources().getColor(R.color.colorRed));
                         colorButtonGreen();
+                        if (typeQuestion == 7){
+                            maptext.setVisibility(View.VISIBLE);
+                            maptext.setText(shint);
+                        }
                     }
                     disableButtons();
                 }
@@ -347,7 +365,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                 if (flag4 == 1) {
                     if (trenType != 3 && trenType != 4)
                         banswer4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-                    if (trenType == 7){
+                    if (typeQuestion == 7){
                         maptext.setVisibility(View.VISIBLE);
                         maptext.setText("Правильно: " + shint);
                     }
@@ -357,6 +375,10 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                     if (trenType != 3 && trenType != 4) {
                         banswer4.setBackgroundColor(getResources().getColor(R.color.colorRed));
                         colorButtonGreen();
+                        if (typeQuestion == 7){
+                            maptext.setVisibility(View.VISIBLE);
+                            maptext.setText(shint);
+                        }
                     }
                     disableButtons();
                 }
@@ -593,14 +615,25 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
     }
 
     private void goHome() {
-        db.close();
-        Intent intent = new Intent(getApplicationContext(), ThemeActivity.class);
-        if (trenType == 7){
-            intent = new Intent(getApplicationContext(), IntActivity.class);
+        try {
+            db.close();
+            /*cursorQuestions.close();
+            cursorAnswers.close();
+            cursorTask.close();
+            cursorCong.close();*/
+            Intent intent = new Intent(getApplicationContext(), ThemeActivity.class);
+            if (trenType == 7) {
+                intent = new Intent(getApplicationContext(), IntActivity.class);
+            }
+            if (trenType == 4) {
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+            }
+            intent.putExtra("id", taskId);
+            startActivity(intent);
+            overridePendingTransition(R.anim.left_in, R.anim.right_out);
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        intent.putExtra("id", taskId);
-        startActivity(intent);
-        overridePendingTransition(R.anim.left_in, R.anim.right_out);
     }
 
     public void onBackPressed() {
@@ -609,183 +642,199 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
     }
 
     public void nextQuestion() {
-        flag1 = 0;
-        flag2 = 0;
-        flag3 = 0;
-        flag4 = 0;
-        check1 = 0;
-        check2 = 0;
-        check3 = 0;
-        check4 = 0;
-        typeQuestion = cursorQuestions.getInt(5);
-        textQuestion.setText(cursorQuestions.getString(2));
-        shint = cursorQuestions.getString(4);
-        questionId = cursorQuestions.getLong(0);
-        if (cursorQuestions.getBlob(3) != null) {
-            byte[] image = cursorQuestions.getBlob(3);
-            Bitmap bmp = BitmapFactory.decodeByteArray(image, 0, image.length);
-            imageQ.setImageBitmap(bmp);
-            imageQ.setVisibility(View.VISIBLE);
-        } else {
-            imageQ.setVisibility(View.GONE);
+        try {
+            flag1 = 0;
+            flag2 = 0;
+            flag3 = 0;
+            flag4 = 0;
+            check1 = 0;
+            check2 = 0;
+            check3 = 0;
+            check4 = 0;
+            typeQuestion = cursorQuestions.getInt(5);
+            textQuestion.setText(cursorQuestions.getString(2));
+            shint = cursorQuestions.getString(4);
+            questionId = cursorQuestions.getLong(0);
+            if (cursorQuestions.getBlob(3) != null) {
+                byte[] image = cursorQuestions.getBlob(3);
+                Bitmap bmp = BitmapFactory.decodeByteArray(image, 0, image.length);
+                imageQ.setImageBitmap(bmp);
+                imageQ.setVisibility(View.VISIBLE);
+            } else {
+                imageQ.setVisibility(View.GONE);
+            }
+            cursorAnswers = db.rawQuery("select * from " + DatabaseHelper.TABLE_ANSWERS + " where " + DatabaseHelper.COLUMN_ID_QUESTION + "=?", new String[]{String.valueOf(questionId)});
+            //cursorAnswers = db.rawQuery("select * from answers where id_question"+ "=?", new String[]{String.valueOf(questionId)});
+            //cursorAnswers.moveToFirst();
+            maptext.setVisibility(View.GONE);
+            banswer1.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+            banswer2.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+            banswer3.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+            banswer4.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+            bhint.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+            buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+            buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+            buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+            buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+            buttonType2Go.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+            byes.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+            bno.setBackgroundColor(getResources().getColor(R.color.colorGrey));
+            buttonCheck1.setTextColor(getResources().getColor(R.color.colorBlack));
+            buttonCheck2.setTextColor(getResources().getColor(R.color.colorBlack));
+            buttonCheck3.setTextColor(getResources().getColor(R.color.colorBlack));
+            buttonCheck4.setTextColor(getResources().getColor(R.color.colorBlack));
+            switch (typeQuestion) {
+                case 1: {
+                    type1.setVisibility(View.VISIBLE);
+                    type2.setVisibility(View.GONE);
+                    type3.setVisibility(View.GONE);
+                    cursorAnswers.moveToPosition(0);
+                    if (cursorAnswers.getInt(3) == 1) {
+                        flag1 = 1;
+                    } else {
+                        flag1 = 0;
+                    }
+                    banswer1.setText(cursorAnswers.getString(2));
+
+                    cursorAnswers.moveToPosition(1);
+                    if (cursorAnswers.getInt(3) == 1) {
+                        flag2 = 1;
+                    } else {
+                        flag2 = 0;
+                    }
+                    banswer2.setText(cursorAnswers.getString(2));
+
+                    cursorAnswers.moveToPosition(2);
+                    if (cursorAnswers.getInt(3) == 1) {
+                        flag3 = 1;
+                    } else {
+                        flag3 = 0;
+                    }
+                    banswer3.setText(cursorAnswers.getString(2));
+
+                    cursorAnswers.moveToPosition(3);
+                    if (cursorAnswers.getInt(3) == 1) {
+                        flag4 = 1;
+                    } else {
+                        flag4 = 0;
+                    }
+                    banswer4.setText(cursorAnswers.getString(2));
+                    countQuestions++;
+                    break;
+                }
+                case 2: {
+                    type2.setVisibility(View.VISIBLE);
+                    type1.setVisibility(View.GONE);
+                    type3.setVisibility(View.GONE);
+                    cursorAnswers.moveToPosition(0);
+                    if (cursorAnswers.getInt(3) == 1) {
+                        flag1 = 1;
+                    } else {
+                        flag1 = 0;
+                    }
+                    buttonCheck1.setText(cursorAnswers.getString(2));
+
+                    cursorAnswers.moveToPosition(1);
+                    if (cursorAnswers.getInt(3) == 1) {
+                        flag2 = 1;
+                    } else {
+                        flag2 = 0;
+                    }
+                    buttonCheck2.setText(cursorAnswers.getString(2));
+
+                    cursorAnswers.moveToPosition(2);
+                    if (cursorAnswers.getInt(3) == 1) {
+                        flag3 = 1;
+                    } else {
+                        flag3 = 0;
+                    }
+                    buttonCheck3.setText(cursorAnswers.getString(2));
+
+                    cursorAnswers.moveToPosition(3);
+                    if (cursorAnswers.getInt(3) == 1) {
+                        flag4 = 1;
+                    } else {
+                        flag4 = 0;
+                    }
+                    buttonCheck4.setText(cursorAnswers.getString(2));
+                    countQuestions++;
+                    break;
+                }
+                case 3: {
+                    type3.setVisibility(View.VISIBLE);
+                    type1.setVisibility(View.GONE);
+                    type2.setVisibility(View.GONE);
+                    cursorAnswers.moveToPosition(0);
+                    if (cursorAnswers.getInt(3) == 1) {
+                        flag1 = 1;
+                    } else {
+                        flag1 = 0;
+                    }
+                    countQuestions++;
+                    break;
+                }
+                case 7:
+                    type1.setVisibility(View.VISIBLE);
+                    type2.setVisibility(View.GONE);
+                    type3.setVisibility(View.GONE);
+                    cursorAnswers.moveToPosition(0);
+                    if (cursorAnswers.getInt(3) == 1) {
+                        flag1 = 1;
+                    } else {
+                        flag1 = 0;
+                    }
+                    banswer1.setText(cursorAnswers.getString(2));
+
+                    cursorAnswers.moveToPosition(1);
+                    if (cursorAnswers.getInt(3) == 1) {
+                        flag2 = 1;
+                    } else {
+                        flag2 = 0;
+                    }
+                    banswer2.setText(cursorAnswers.getString(2));
+
+                    cursorAnswers.moveToPosition(2);
+                    if (cursorAnswers.getInt(3) == 1) {
+                        flag3 = 1;
+                    } else {
+                        flag3 = 0;
+                    }
+                    banswer3.setText(cursorAnswers.getString(2));
+
+                    cursorAnswers.moveToPosition(3);
+                    if (cursorAnswers.getInt(3) == 1) {
+                        flag4 = 1;
+                    } else {
+                        flag4 = 0;
+                    }
+                    banswer4.setText(cursorAnswers.getString(2));
+                    countQuestions++;
+                    break;
+            }
+            enableButtons();
+        } catch (Exception e){
+            e.printStackTrace();
         }
-        cursorAnswers = db.rawQuery("select * from " + DatabaseHelper.TABLE_ANSWERS + " where " + DatabaseHelper.COLUMN_ID_QUESTION + "=?", new String[]{String.valueOf(questionId)});
-        //cursorAnswers = db.rawQuery("select * from answers where id_question"+ "=?", new String[]{String.valueOf(questionId)});
-        //cursorAnswers.moveToFirst();
-        maptext.setVisibility(View.GONE);
-        banswer1.setBackgroundColor(getResources().getColor(R.color.colorGrey));
-        banswer2.setBackgroundColor(getResources().getColor(R.color.colorGrey));
-        banswer3.setBackgroundColor(getResources().getColor(R.color.colorGrey));
-        banswer4.setBackgroundColor(getResources().getColor(R.color.colorGrey));
-        bhint.setBackgroundColor(getResources().getColor(R.color.colorGrey));
-        buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorGrey));
-        buttonCheck2.setBackgroundColor(getResources().getColor(R.color.colorGrey));
-        buttonCheck3.setBackgroundColor(getResources().getColor(R.color.colorGrey));
-        buttonCheck4.setBackgroundColor(getResources().getColor(R.color.colorGrey));
-        buttonType2Go.setBackgroundColor(getResources().getColor(R.color.colorGrey));
-        byes.setBackgroundColor(getResources().getColor(R.color.colorGrey));
-        bno.setBackgroundColor(getResources().getColor(R.color.colorGrey));
-        buttonCheck1.setTextColor(getResources().getColor(R.color.colorBlack));
-        buttonCheck2.setTextColor(getResources().getColor(R.color.colorBlack));
-        buttonCheck3.setTextColor(getResources().getColor(R.color.colorBlack));
-        buttonCheck4.setTextColor(getResources().getColor(R.color.colorBlack));
-        switch (typeQuestion) {
-            case 1: {
-                type1.setVisibility(View.VISIBLE);
-                type2.setVisibility(View.GONE);
-                type3.setVisibility(View.GONE);
-                cursorAnswers.moveToPosition(0);
-                if (cursorAnswers.getInt(3) == 1) {
-                    flag1 = 1;
-                } else {
-                    flag1 = 0;
-                }
-                banswer1.setText(cursorAnswers.getString(2));
-
-                cursorAnswers.moveToPosition(1);
-                if (cursorAnswers.getInt(3) == 1) {
-                    flag2 = 1;
-                } else {
-                    flag2 = 0;
-                }
-                banswer2.setText(cursorAnswers.getString(2));
-
-                cursorAnswers.moveToPosition(2);
-                if (cursorAnswers.getInt(3) == 1) {
-                    flag3 = 1;
-                } else {
-                    flag3 = 0;
-                }
-                banswer3.setText(cursorAnswers.getString(2));
-
-                cursorAnswers.moveToPosition(3);
-                if (cursorAnswers.getInt(3) == 1) {
-                    flag4 = 1;
-                } else {
-                    flag4 = 0;
-                }
-                banswer4.setText(cursorAnswers.getString(2));
-                countQuestions++;
-                break;
-            }
-            case 2: {
-                type2.setVisibility(View.VISIBLE);
-                type1.setVisibility(View.GONE);
-                type3.setVisibility(View.GONE);
-                cursorAnswers.moveToPosition(0);
-                if (cursorAnswers.getInt(3) == 1) {
-                    flag1 = 1;
-                } else {
-                    flag1 = 0;
-                }
-                buttonCheck1.setText(cursorAnswers.getString(2));
-
-                cursorAnswers.moveToPosition(1);
-                if (cursorAnswers.getInt(3) == 1) {
-                    flag2 = 1;
-                } else {
-                    flag2 = 0;
-                }
-                buttonCheck2.setText(cursorAnswers.getString(2));
-
-                cursorAnswers.moveToPosition(2);
-                if (cursorAnswers.getInt(3) == 1) {
-                    flag3 = 1;
-                } else {
-                    flag3 = 0;
-                }
-                buttonCheck3.setText(cursorAnswers.getString(2));
-
-                cursorAnswers.moveToPosition(3);
-                if (cursorAnswers.getInt(3) == 1) {
-                    flag4 = 1;
-                } else {
-                    flag4 = 0;
-                }
-                buttonCheck4.setText(cursorAnswers.getString(2));
-                countQuestions++;
-                break;
-            }
-            case 3: {
-                type3.setVisibility(View.VISIBLE);
-                type1.setVisibility(View.GONE);
-                type2.setVisibility(View.GONE);
-                cursorAnswers.moveToPosition(0);
-                if (cursorAnswers.getInt(3) == 1) {
-                    flag1 = 1;
-                } else {
-                    flag1 = 0;
-                }
-                countQuestions++;
-                break;
-            }
-            case 7:
-                type1.setVisibility(View.VISIBLE);
-                type2.setVisibility(View.GONE);
-                type3.setVisibility(View.GONE);
-                cursorAnswers.moveToPosition(0);
-                if (cursorAnswers.getInt(3) == 1) {
-                    flag1 = 1;
-                } else {
-                    flag1 = 0;
-                }
-                banswer1.setText(cursorAnswers.getString(2));
-
-                cursorAnswers.moveToPosition(1);
-                if (cursorAnswers.getInt(3) == 1) {
-                    flag2 = 1;
-                } else {
-                    flag2 = 0;
-                }
-                banswer2.setText(cursorAnswers.getString(2));
-
-                cursorAnswers.moveToPosition(2);
-                if (cursorAnswers.getInt(3) == 1) {
-                    flag3 = 1;
-                } else {
-                    flag3 = 0;
-                }
-                banswer3.setText(cursorAnswers.getString(2));
-
-                cursorAnswers.moveToPosition(3);
-                if (cursorAnswers.getInt(3) == 1) {
-                    flag4 = 1;
-                } else {
-                    flag4 = 0;
-                }
-                banswer4.setText(cursorAnswers.getString(2));
-                countQuestions++;
-                break;
-        }
-        enableButtons();
     }
 
     public void insertResults() {
-        String res = task + "\n" + stType + "\n" + "Результат: " + String.valueOf(correctAnswers) + " из 10" + "\n" + String.valueOf(Calendar.getInstance().getTime());
-        //db.rawQuery("INSERT INTO results(result) values('?')",  new String[]{String.valueOf(res)});
-        ContentValues values = new ContentValues();
-        values.put(DatabaseHelper.COLUMN_RESULT, res);
-        db.insert(DatabaseHelper.TABLE_RESULTS, null, values);
+        try {
+            String datetime = "";
+
+            Date c = Calendar.getInstance().getTime();
+            //System.out.println("Current time => " + c);
+
+            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            datetime = df.format(c);
+
+            String res = task + "\n" + stType + "\n" + "Результат: " + String.valueOf(correctAnswers) + " из 10" + "\n" + datetime;
+            //db.rawQuery("INSERT INTO results(result) values('?')",  new String[]{String.valueOf(res)});
+            ContentValues values = new ContentValues();
+            values.put(DatabaseHelper.COLUMN_RESULT, res);
+            db.insert(DatabaseHelper.TABLE_RESULTS, null, values);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void disableButtons() {
@@ -820,20 +869,24 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
 
 
     public void showResults() {
-        reslayout.setVisibility(View.VISIBLE);
-        type1.setVisibility(View.GONE);
-        type2.setVisibility(View.GONE);
-        type3.setVisibility(View.GONE);
-        header.setVisibility(View.GONE);
-        hintlayout.setVisibility(View.GONE);
-        textres1.setText("Результат: " + Integer.toString(correctAnswers) + " из 10");
-        cursorCong = db.rawQuery("select * from " + DatabaseHelper.TABLE_CONGTATS + " where " + DatabaseHelper.COLUMN_MARK + "=?", new String[]{String.valueOf(correctAnswers)});
-        //cursorCong = db.rawQuery("select * from congrats where mark=? order by random()", new String[]{String.valueOf(correctAnswers)});
-        if (cursorCong.getCount() > 0) {
-            cursorCong.moveToFirst();
-            textres2.setText(cursorCong.getString(1));
-        } else {
-            textres2.setText("Поздравляю!");
+        try {
+            reslayout.setVisibility(View.VISIBLE);
+            type1.setVisibility(View.GONE);
+            type2.setVisibility(View.GONE);
+            type3.setVisibility(View.GONE);
+            header.setVisibility(View.GONE);
+            hintlayout.setVisibility(View.GONE);
+            textres1.setText("Результат: " + Integer.toString(correctAnswers) + " из 10");
+            cursorCong = db.rawQuery("select * from " + DatabaseHelper.TABLE_CONGTATS + " where " + DatabaseHelper.COLUMN_MARK + "=?", new String[]{String.valueOf(correctAnswers)});
+            //cursorCong = db.rawQuery("select * from congrats where mark=? order by random()", new String[]{String.valueOf(correctAnswers)});
+            if (cursorCong.getCount() > 0) {
+                cursorCong.moveToFirst();
+                textres2.setText(cursorCong.getString(1));
+            } else {
+                textres2.setText("Поздравляю!");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -841,12 +894,12 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         super.onDestroy();
         try {
             db.close();
-            cursorQuestions.close();
+            /*cursorQuestions.close();
             cursorAnswers.close();
             cursorTask.close();
-            cursorCong.close();
+            cursorCong.close();*/
         } catch (Exception ex) {
-
+            ex.printStackTrace();
         }
     }
 }

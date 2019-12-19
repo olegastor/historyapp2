@@ -1,10 +1,17 @@
 package by.znaj.rogachev2.historyapptest;
 
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,12 +24,19 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class AddQActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
     LinearLayout addType1;
     LinearLayout addType2;
     LinearLayout addType3;
+
 
     EditText editTextQuestion;
     EditText editType1A1;
@@ -38,6 +52,8 @@ public class AddQActivity extends AppCompatActivity implements AdapterView.OnIte
     DatabaseHelper sqlHelper;
     SQLiteDatabase db;
     Cursor userCursor;
+    Cursor cursorQuestions;
+    Cursor cursorAnswers;
 
     Spinner typesSpinner;
     RadioButton radioType1_1;
@@ -51,14 +67,23 @@ public class AddQActivity extends AppCompatActivity implements AdapterView.OnIte
     CheckBox checkType2A4;
 
     Button addbutton;
+    Button exportbutton;
+    Button importbutton;
 
     long taskId = 0;
     int type = 0;
+
+    private static final int PERMISSION_REQUEST_CODE = 100;
+
+    File dir;
+    File file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_q);
+
+        final Context context = this;
 
         getSupportActionBar().setTitle(R.string.app_name_short);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -91,6 +116,8 @@ public class AddQActivity extends AppCompatActivity implements AdapterView.OnIte
         addType2 = (LinearLayout) findViewById(R.id.addType2);
         addType3 = (LinearLayout) findViewById(R.id.addType3);
         addbutton = (Button) findViewById(R.id.addbutton);
+        exportbutton = (Button) findViewById(R.id.exportbutton);
+        importbutton = findViewById(R.id.importbutton);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.types_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -204,6 +231,7 @@ public class AddQActivity extends AppCompatActivity implements AdapterView.OnIte
                     question.put("question", editTextQuestion.getText().toString());
                     question.put("hint", "");
                     question.put("type", 1);
+                    question.put("own", 1);
                     idQ = db.insert(DatabaseHelper.TABLE_QUESTIONS, null, question);
                     if (idQ != -1) {
                         answer1.put("id_question",idQ);
@@ -218,7 +246,7 @@ public class AddQActivity extends AppCompatActivity implements AdapterView.OnIte
                         answer4.put("id_question",idQ);
                         answer4.put("answer",editType1A4.getText().toString());
                         answer4.put("isCorrect",flag4);
-                        if (db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer1) != -1 && db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer2) != -1 && db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer1) != -1 && db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer1) != -1){
+                        if (db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer1) != -1 && db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer2) != -1 && db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer3) != -1 && db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer4) != -1){
                             Toast.makeText(getApplicationContext(), "Вопрос добавлен", Toast.LENGTH_SHORT).show();
                             clearAll();
                             return;
@@ -269,6 +297,7 @@ public class AddQActivity extends AppCompatActivity implements AdapterView.OnIte
                     question.put("question", editTextQuestion.getText().toString());
                     question.put("hint", "");
                     question.put("type", 2);
+                    question.put("own", 1);
                     idQ = db.insert(DatabaseHelper.TABLE_QUESTIONS, null, question);
                     if (idQ != -1) {
                         answer1.put("id_question",idQ);
@@ -283,7 +312,7 @@ public class AddQActivity extends AppCompatActivity implements AdapterView.OnIte
                         answer4.put("id_question",idQ);
                         answer4.put("answer",editType2A4.getText().toString());
                         answer4.put("isCorrect",flag4);
-                        if (db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer1) != -1 && db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer2) != -1 && db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer1) != -1 && db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer1) != -1){
+                        if (db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer1) != -1 && db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer2) != -1 && db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer3) != -1 && db.insert(DatabaseHelper.TABLE_ANSWERS, null, answer4) != -1){
                             Toast.makeText(getApplicationContext(), "Вопрос добавлен", Toast.LENGTH_SHORT).show();
                             clearAll();
                             return;
@@ -310,6 +339,7 @@ public class AddQActivity extends AppCompatActivity implements AdapterView.OnIte
                     question.put("question", editTextQuestion.getText().toString());
                     question.put("hint", "");
                     question.put("type", 3);
+                    question.put("own", 1);
                     idQ = db.insert(DatabaseHelper.TABLE_QUESTIONS, null, question);
                     if (idQ != -1) {
                         answer1.put("id_question",idQ);
@@ -330,7 +360,165 @@ public class AddQActivity extends AppCompatActivity implements AdapterView.OnIte
                 }
             }
         });
+
+        importbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String state = Environment.getExternalStorageState();
+                if (Environment.MEDIA_MOUNTED.equals(state)) {
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        if (checkPermission()) {
+                            OpenFileDialog fileDialog = new OpenFileDialog(context)
+                                    .setFilter(".*\\.txt")
+                                    .setOpenDialogListener(new OpenFileDialog.OpenDialogListener() {
+                                        @Override
+                                        public void OnSelectedFile(String fileName) {
+                                            //TODO import
+                                            //Toast.makeText(getApplicationContext(), fileName, Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getApplicationContext(), "Готово", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                            fileDialog.show();
+                        } else {
+                            requestPermission(); // Code for permission
+                        }
+                    } else {
+                        OpenFileDialog fileDialog = new OpenFileDialog(context)
+                                .setFilter(".*\\.txt")
+                                .setOpenDialogListener(new OpenFileDialog.OpenDialogListener() {
+                                    @Override
+                                    public void OnSelectedFile(String fileName) {
+                                        //TODO import
+                                        //Toast.makeText(getApplicationContext(), fileName, Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Готово", Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                        fileDialog.show();
+                    }
+                }
+
+
+            }
+        });
+
+        exportbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String filepath = "";
+                String datetime = "";
+
+                Date c = Calendar.getInstance().getTime();
+                //System.out.println("Current time => " + c);
+
+                SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmss");
+                datetime = df.format(c);
+                String filename = "history" + datetime + ".txt";
+
+                String state = Environment.getExternalStorageState();
+                if (Environment.MEDIA_MOUNTED.equals(state)) {
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        if (checkPermission()) {
+                            File sdcard = Environment.getExternalStorageDirectory();
+                            File dir = new File(sdcard.getAbsolutePath() + "/history/");
+                            dir.mkdir();
+                            file = new File(dir, filename);
+                            filepath = sdcard.getAbsolutePath() + "/history/" + filename;
+                        } else {
+                            requestPermission(); // Code for permission
+                        }
+                    } else {
+                        File sdcard = Environment.getExternalStorageDirectory();
+                        File dir = new File(sdcard.getAbsolutePath() + "/history/");
+                        dir.mkdir();
+                        file = new File(dir, filename);
+                        filepath = sdcard.getAbsolutePath() + "/history/" + filename;
+                    }
+                }
+
+                cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where own IN (1,2)", null);
+                cursorQuestions.moveToFirst();
+
+                int curscount = cursorQuestions.getCount();
+
+                try
+                {
+                    file.createNewFile();
+                    CSVWriter csvWrite = new CSVWriter(new FileWriter(file));
+
+                    for (int i = 0; i < curscount; i++) {
+                        int questionId = cursorQuestions.getInt(0);
+                        //int idtask = cursorQuestions.getInt(1);
+                        //String textQuestion = cursorQuestions.getString(2);
+                        //String shint = cursorQuestions.getString(4);
+                        //int typeQuestion = cursorQuestions.getInt(5);
+                        String arrStr[] ={cursorQuestions.getString(1), cursorQuestions.getString(2), cursorQuestions.getString(3), cursorQuestions.getString(4), cursorQuestions.getString(5)};
+                        csvWrite.writeNext(arrStr);
+                        cursorAnswers = db.rawQuery("select * from " + DatabaseHelper.TABLE_ANSWERS + " where " + DatabaseHelper.COLUMN_ID_QUESTION + "=?", new String[]{String.valueOf(questionId)});
+                        cursorAnswers.moveToFirst();
+                        for (int j = 0; j < cursorAnswers.getCount(); j++){
+                            String arrStr2[] = {cursorAnswers.getString(2), cursorAnswers.getString(3)};
+                            //Toast.makeText(context, cursorAnswers.getString(2) + " " + cursorAnswers.getString(3),Toast.LENGTH_SHORT).show();
+                            csvWrite.writeNext(arrStr2);
+                            cursorAnswers.moveToNext();
+                        }
+                        Log.i("exportq", cursorQuestions.toString());
+                        cursorQuestions.moveToNext();
+                    }
+                    csvWrite.close();
+                    Toast.makeText(context,"Вопросы экспортированы в файл: \n" + filepath,Toast.LENGTH_SHORT).show();
+                }
+                catch(Exception sqlEx)
+                {
+                    Log.e("MainActivity1", sqlEx.getMessage(), sqlEx);
+                }
+                /**--------------------------------------------*/
+
+            }
+        });
+
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            if (Build.VERSION.SDK_INT >= 23) {
+                if (!checkPermission()) {
+                    requestPermission(); // Code for permission
+                }
+            }
+        }
+
+
     }
+
+    private boolean checkPermission() {
+        int result = ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (result == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void requestPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            Toast.makeText(this, "Разрешение на запись внешнего хранилища позволяет нам создавать файлы. Пожалуйста, подтвердите это разрешение в настройках приложения.", Toast.LENGTH_LONG).show();
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.e("value", "Permission Granted, Now you can use local drive .");
+            } else {
+                Log.e("value", "Permission Denied, You cannot use local drive .");
+            }
+            break;
+        }
+    }
+
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -385,13 +573,22 @@ public class AddQActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void onBackPressed() {
         super.onBackPressed();
-        db.close();
+        try {
+            db.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
         return;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        db.close();
+        try {
+            db.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
+
 }

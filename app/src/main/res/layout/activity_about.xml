@@ -28,7 +28,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="center"
-        android:text="Copyright©2018-2019\nО.В.Кравченко, О.Н.Бычков"
+        android:text="Copyright©2019\nО.В.Кравченко, О.Н.Бычков"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,5 +61,20 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         android:gravity="center"
         android:textColor="@color/colorBlack"/>
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:text="Весь материал помогает тематическому повторению и закреплению знаний учащихся по 10 темам в соответствии с программой по Истории Беларуси 6 класса 2017 года\n\nВ разделе «Выбрать тему» вся информация разбита на подразделы, которые соответствуют учебному пособию: «История Беларуси с древнейших времен до конца XV в.: учебное пособие для 6-го кл. учреждений общ.сред. образования с рус.яз. обучения: в 2 ч./ Ю.Н.Бохан, С.Н.Темушев; под ред. Ю.Н.Бохана. – Минск: Изд.центр БГУ, 2016.»\n\n\n\nДля работы с программой ознакомьтесь\n с методическими рекомендациями"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
 
 </android.support.constraint.ConstraintLayout>
