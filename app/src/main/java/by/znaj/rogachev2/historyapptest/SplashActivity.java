@@ -38,7 +38,7 @@ public class SplashActivity extends AppCompatActivity {
         Configuration configuration = new Configuration(res.getConfiguration());
         configuration.fontScale = new_value;
         res.updateConfiguration(configuration, res.getDisplayMetrics());
-        mSpinner = (ProgressBar) findViewById(R.id.Splash_ProgressBar);
+        mSpinner = findViewById(R.id.Splash_ProgressBar);
         mSpinner.setIndeterminate(true);
         thread = new Thread(runable);
         thread.start();
