@@ -211,7 +211,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
             cursorQuestions.moveToFirst();
             nextQuestion();
         } else {
-            textQuestion.setText("Нет вопросов или их недостаточно");
+            textQuestion.setText("Error");
         }
         ////////////////
         //showDialog();

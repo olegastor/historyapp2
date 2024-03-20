@@ -7,6 +7,7 @@ import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -21,13 +22,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //getSupportActionBar().setIcon(R.drawable.main);
         getSupportActionBar().setIcon(R.drawable.ic_actbar);
 
-        findViewById(R.id.beginButton).setOnClickListener(this);
-        findViewById(R.id.resultsButton).setOnClickListener(this);
-        findViewById(R.id.controlButton).setOnClickListener(this);
-        findViewById(R.id.aboutButton).setOnClickListener(this);
-        findViewById(R.id.addqButton).setOnClickListener(this);
-        findViewById(R.id.settingsButton).setOnClickListener(this);
-        findViewById(R.id.intButton).setOnClickListener(this);
+        findViewById(R.id.cl4Button).setOnClickListener(this);
+        findViewById(R.id.cl4MRButton).setOnClickListener(this);
+
+        findViewById(R.id.cl6Button).setOnClickListener(this);
+        findViewById(R.id.cl6ISTBELButton).setOnClickListener(this);
+
+        findViewById(R.id.cl7Button).setOnClickListener(this);
+        findViewById(R.id.cl8Button).setOnClickListener(this);
+        findViewById(R.id.cl9Button).setOnClickListener(this);
+
+
 
         int size_coef;
         final float start_value = 0.7f; //начальное значение размера шрифта
@@ -57,36 +62,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        LinearLayout lr4 = findViewById(R.id.lr4);
+        LinearLayout lr6 = findViewById(R.id.lr6);
+
         switch (view.getId()) {
-            case R.id.beginButton: {
-                Intent intent = new Intent(getApplicationContext(), TasksListActivity.class);
+            case R.id.cl4Button: {
+                if (lr4.getVisibility() == View.GONE) {
+                    lr4.setVisibility(View.VISIBLE);
+                } else {
+                    lr4.setVisibility(View.GONE);
+                }
+                /*Intent intent = new Intent(getApplicationContext(), HistActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);*/
+                break;
+            }
+            case R.id.cl6Button: {
+                if (lr6.getVisibility() == View.GONE) {
+                    lr6.setVisibility(View.VISIBLE);
+                } else {
+                    lr6.setVisibility(View.GONE);
+                }
+                /*Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);*/
+                break;
+            }
+            case R.id.cl6ISTBELButton: {
+                Intent intent = new Intent(this, TasksListActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
             }
-            case R.id.resultsButton: {
-                Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.right_in, R.anim.left_out);
-                break;
-            }
-            case R.id.controlButton: {
-                Intent intent = new Intent(this, MultiTasksListActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.right_in, R.anim.left_out);
-                break;
-            }
-            case R.id.addqButton: {
+            /*case R.id.addqButton: {
                 Intent intent = new Intent(getApplicationContext(), TasksListAddQActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
             }
             case R.id.aboutButton: {
-                /*Toast aboutMessage = Toast.makeText(getApplicationContext(), "Тестовое приложение", Toast.LENGTH_SHORT);
+                /**Toast aboutMessage = Toast.makeText(getApplicationContext(), "Тестовое приложение", Toast.LENGTH_SHORT);
                 aboutMessage.setGravity(Gravity.CENTER, 0, 0);
                 aboutMessage.show();*/
-                Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
+                /*Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
@@ -102,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
-            }
+            }*/
         }
     }
 

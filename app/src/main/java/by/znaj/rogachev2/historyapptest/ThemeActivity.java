@@ -39,10 +39,10 @@ public class ThemeActivity extends AppCompatActivity implements View.OnClickList
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
         findViewById(R.id.beginButton).setOnClickListener(this);
-        findViewById(R.id.vocabularyButton).setOnClickListener(this);
-        findViewById(R.id.memButton).setOnClickListener(this);
-        findViewById(R.id.videoButton).setOnClickListener(this);
-        findViewById(R.id.video2Button).setOnClickListener(this);
+        //findViewById(R.id.vocabularyButton).setOnClickListener(this);
+        //findViewById(R.id.memButton).setOnClickListener(this);
+        //findViewById(R.id.videoButton).setOnClickListener(this);
+        //findViewById(R.id.video2Button).setOnClickListener(this);
 
         textTask = (TextView) findViewById(R.id.textTask);
 
@@ -54,12 +54,6 @@ public class ThemeActivity extends AppCompatActivity implements View.OnClickList
             taskId = extras.getLong("id");
         }
 
-        if (taskId == 1){
-            Button videobut = findViewById(R.id.videoButton);
-            Button videobut2 = findViewById(R.id.video2Button);
-            videobut.setText("Видеоурок 1");
-            videobut2.setVisibility(View.VISIBLE);
-        }
 
         if (taskId > 0) {
             // получаем элемент по id из бд
@@ -85,36 +79,7 @@ public class ThemeActivity extends AppCompatActivity implements View.OnClickList
                 overridePendingTransition(R.anim.right_in,R.anim.left_out);
                 break;
             }
-            case R.id.memButton: {
-                Intent intent = new Intent(this, MemoActivity.class);
-                intent.putExtra("id", taskId);
-                startActivity(intent);
-                overridePendingTransition(R.anim.right_in,R.anim.left_out);
-                break;
-            }
-            case R.id.videoButton: {
-                //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=bSMZknDI6bg")));
-                Intent intent = new Intent(this, VideoActivity.class);
-                intent.putExtra("id", taskId);
-                startActivity(intent);
-                overridePendingTransition(R.anim.right_in,R.anim.left_out);
-                break;
-            }
-            case R.id.vocabularyButton: {
-                Intent intent = new Intent(this, VocabularyActivity.class);
-                intent.putExtra("id", taskId);
-                startActivity(intent);
-                overridePendingTransition(R.anim.right_in,R.anim.left_out);
-                break;
-            }
-            case R.id.video2Button: {
-                //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=bSMZknDI6bg")));
-                Intent intent = new Intent(this, VideoActivity.class);
-                intent.putExtra("id", task11);
-                startActivity(intent);
-                overridePendingTransition(R.anim.right_in,R.anim.left_out);
-                break;
-            }
+
         }
     }
 
