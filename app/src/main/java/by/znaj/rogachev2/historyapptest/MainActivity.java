@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.cl6ISTBELButton).setOnClickListener(this);
 
         findViewById(R.id.cl7Button).setOnClickListener(this);
+        findViewById(R.id.cl7ISTButton).setOnClickListener(this);
+
         findViewById(R.id.cl8Button).setOnClickListener(this);
         findViewById(R.id.cl9Button).setOnClickListener(this);
 
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         LinearLayout lr4 = findViewById(R.id.lr4);
         LinearLayout lr6 = findViewById(R.id.lr6);
+        LinearLayout lr7 = findViewById(R.id.lr7);
 
         switch (view.getId()) {
             case R.id.cl4Button: {
@@ -88,8 +91,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);*/
                 break;
             }
+            case R.id.cl7Button: {
+                if (lr7.getVisibility() == View.GONE) {
+                    lr7.setVisibility(View.VISIBLE);
+                } else {
+                    lr7.setVisibility(View.GONE);
+                }
+                /*Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);*/
+                break;
+            }
             case R.id.cl6ISTBELButton: {
                 Intent intent = new Intent(this, TasksListActivity.class);
+                intent.putExtra("class", 6);
+                intent.putExtra("subject", "ist");
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            }
+            case R.id.cl4MRButton: {
+                Intent intent = new Intent(this, TasksListActivity.class);
+                intent.putExtra("class", 4);
+                intent.putExtra("subject", "ist");
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            }
+            case R.id.cl7ISTButton: {
+                Intent intent = new Intent(this, TasksListActivity.class);
+                intent.putExtra("class", 7);
+                intent.putExtra("subject", "ist");
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;

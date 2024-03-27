@@ -27,6 +27,10 @@ public class TasksListActivity extends AppCompatActivity implements View.OnClick
     Cursor userCursor;
     SimpleCursorAdapter userAdapter;
 
+    Integer cls;
+    String subj;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,14 @@ public class TasksListActivity extends AppCompatActivity implements View.OnClick
         userFilter = (EditText)findViewById(R.id.userFilter);
 
         userList = (ListView)findViewById(R.id.list);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            cls = extras.getInt("class");
+            subj = extras.getString("subject");
+
+        }
+
         /*userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -59,6 +71,7 @@ public class TasksListActivity extends AppCompatActivity implements View.OnClick
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), ThemeActivity.class);
                 intent.putExtra("id", id);
+                intent.putExtra("class", cls);
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_in,R.anim.left_out);
             }
@@ -73,7 +86,7 @@ public class TasksListActivity extends AppCompatActivity implements View.OnClick
         super.onResume();
         db = databaseHelper.open();
 
-        userCursor =  db.rawQuery("select * from "+ DatabaseHelper.TABLE_TASKS, null);
+        userCursor =  db.rawQuery("select * from "+ DatabaseHelper.TABLE_TASKS  + " where " + DatabaseHelper.COLUMN_CLASS + " =?", new String[]{String.valueOf(cls)});
 
         String[] headers = new String[] {DatabaseHelper.COLUMN_NAME};
 
@@ -101,11 +114,11 @@ public class TasksListActivity extends AppCompatActivity implements View.OnClick
             @Override
             public Cursor runQuery(CharSequence constraint) {
                 if (constraint == null || constraint.length() == 0) {
-                    return db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS, null);
+                    return db.rawQuery("select * from "+ DatabaseHelper.TABLE_TASKS  + " where " + DatabaseHelper.COLUMN_CLASS + " =?", new String[]{String.valueOf(cls)});
                 }
                 else {
                     return db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " +
-                            DatabaseHelper.COLUMN_NAME + " like ?", new String[]{"%" + constraint.toString() + "%"});
+                            DatabaseHelper.COLUMN_NAME + " like ? and " + DatabaseHelper.COLUMN_CLASS + " = " + new String[]{String.valueOf(cls)}, new String[]{"%" + constraint.toString() + "%"});
                 }
             }
         });

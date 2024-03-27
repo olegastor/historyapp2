@@ -25,6 +25,7 @@ public class ThemeActivity extends AppCompatActivity implements View.OnClickList
     Cursor userCursor;
     long taskId = 0;
     long task11 = 11;
+    int cls;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class ThemeActivity extends AppCompatActivity implements View.OnClickList
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             taskId = extras.getLong("id");
+            cls = extras.getInt("class");
         }
 
 
@@ -87,6 +89,7 @@ public class ThemeActivity extends AppCompatActivity implements View.OnClickList
         db.close();
         Intent intent = new Intent(getApplicationContext(), TasksListActivity.class);
         intent.putExtra("id", taskId);
+        intent.putExtra("class", cls);
         startActivity(intent);
         overridePendingTransition(R.anim.left_in, R.anim.right_out);
     }

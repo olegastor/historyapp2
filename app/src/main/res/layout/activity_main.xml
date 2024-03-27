@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingBottom="@dimen/default_gap"
-        android:visibility="gone">
+        android:visibility="visible">
         <Button
             android:id="@+id/cl4MRButton"
             style="?android:attr/buttonBarButtonStyle"
@@ -46,13 +46,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingBottom="@dimen/default_gap"
-        android:visibility="gone">
+        android:visibility="visible">
         <Button
             android:id="@+id/cl6ISTBELButton"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="4 класс. Мая Радзіма Беларусь"
+            android:text="6 класс. История"
             android:textColor="@color/colorBlack" />
     </LinearLayout>
 
@@ -63,6 +63,23 @@
         android:layout_height="wrap_content"
         android:text="7 класс"
         android:textColor="@color/colorBlack" />
+
+    <LinearLayout
+        android:id="@+id/lr7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/default_gap"
+        android:visibility="visible">
+        <Button
+            android:id="@+id/cl7ISTButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="7 класс. История"
+            android:textColor="@color/colorBlack" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/cl8Button"
         style="?android:attr/buttonBarButtonStyle"

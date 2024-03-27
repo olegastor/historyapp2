@@ -29,8 +29,11 @@ public class TrenActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().setIcon(R.drawable.ic_actbar);
 
         findViewById(R.id.treningButton).setOnClickListener(this);
+        findViewById(R.id.trening2Button).setOnClickListener(this);
         findViewById(R.id.truefalseButton).setOnClickListener(this);
         findViewById(R.id.controlButton).setOnClickListener(this);
+        findViewById(R.id.earlylaterButton).setOnClickListener(this);
+        findViewById(R.id.sootvButton).setOnClickListener(this);
 
         textTask = (TextView) findViewById(R.id.textTask);
 
@@ -65,7 +68,7 @@ public class TrenActivity extends AppCompatActivity implements View.OnClickListe
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
             }
-            case R.id.truefalseButton: {
+            case R.id.trening2Button: {
                 Intent intent = new Intent(this, TestActivity.class);
                 intent.putExtra("id", taskId);
                 intent.putExtra("trenType", 2);
@@ -73,10 +76,34 @@ public class TrenActivity extends AppCompatActivity implements View.OnClickListe
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
             }
-            case R.id.controlButton: {
+            case R.id.truefalseButton: {
                 Intent intent = new Intent(this, TestActivity.class);
                 intent.putExtra("id", taskId);
                 intent.putExtra("trenType", 3);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            }
+            case R.id.sootvButton: {
+                Intent intent = new Intent(this, TestActivity.class);
+                intent.putExtra("id", taskId);
+                intent.putExtra("trenType", 4);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            }
+            case R.id.earlylaterButton: {
+                Intent intent = new Intent(this, TestActivity.class);
+                intent.putExtra("id", taskId);
+                intent.putExtra("trenType", 5);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            }
+            case R.id.controlButton: {
+                Intent intent = new Intent(this, TestActivity.class);
+                intent.putExtra("id", taskId);
+                intent.putExtra("trenType", 300);
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;

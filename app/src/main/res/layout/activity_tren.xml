@@ -46,6 +46,27 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/trening2Button"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="6dp"
+            android:height="60dp"
+            android:padding="6dp"
+            android:gravity="center"
+            android:textColor="@color/colorBlack"
+            android:drawableLeft="@mipmap/ic_tren"
+            android:text="Тренинг несколько" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
             android:id="@+id/truefalseButton"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
@@ -59,6 +80,49 @@
             android:text="Верю - не верю" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/sootvButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="6dp"
+            android:height="60dp"
+            android:padding="6dp"
+            android:gravity="center"
+            android:textColor="@color/colorBlack"
+            android:drawableLeft="@mipmap/ic_truefalse"
+            android:text="Соответствие" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/earlylaterButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="6dp"
+            android:height="60dp"
+            android:padding="6dp"
+            android:gravity="center"
+            android:textColor="@color/colorBlack"
+            android:drawableLeft="@mipmap/ic_truefalse"
+            android:text="Раньше - позже" />
+
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
