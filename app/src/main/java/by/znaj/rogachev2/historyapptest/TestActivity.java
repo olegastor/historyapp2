@@ -20,10 +20,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class TestActivity extends AppCompatActivity /*implements View.OnClickListener*/ {
+public class TestActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView nameBox;
     TextView maptext;
@@ -49,10 +50,29 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
     LinearLayout type1;
     LinearLayout type2;
     LinearLayout type3;
+    LinearLayout type4;
     LinearLayout type5;
     LinearLayout header;
     LinearLayout hintlayout;
     LinearLayout reslayout;
+
+    Button t4t1Button;
+    Button t4t2Button;
+    Button t4t3Button;
+    Button t4t4Button;
+    Button t4t5Button;
+    Button t4t6Button;
+    Button t4t7Button;
+    Button t4t8Button;
+    ArrayList<TextView> t4Letters = new ArrayList<>();
+    ArrayList<TextView> t4Numbers = new ArrayList<>();
+    ArrayList<Button> t4Buttons = new ArrayList<>();
+    int t4Count = 6;
+    Button buttonType4Clear;
+    Button buttonType4Go;
+    int t4Iterator = 0;
+    String t4Answer;
+    int t4AnswerLength;
 
 
     DatabaseHelper sqlHelper;
@@ -128,9 +148,53 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         header = (LinearLayout) findViewById(R.id.header);
         hintlayout = (LinearLayout) findViewById(R.id.hintlayout);
 
+        //type5
         type5 = (LinearLayout) findViewById(R.id.type5);
         el1Button = (Button) findViewById(R.id.el1Button);
         el2Button = (Button) findViewById(R.id.el2Button);
+
+        //type4
+        type4 = (LinearLayout) findViewById(R.id.type4);
+        buttonType4Clear = (Button) findViewById(R.id.buttonType4Clear);
+        buttonType4Go = (Button) findViewById(R.id.buttonType4Go);
+        t4Buttons.clear();
+        t4Buttons.add((Button) findViewById(R.id.t4t1Button));
+        t4Buttons.add((Button) findViewById(R.id.t4t2Button));
+        t4Buttons.add((Button) findViewById(R.id.t4t3Button));
+        t4Buttons.add((Button) findViewById(R.id.t4t4Button));
+        t4Buttons.add((Button) findViewById(R.id.t4t5Button));
+        t4Buttons.add((Button) findViewById(R.id.t4t6Button));
+        t4Buttons.add((Button) findViewById(R.id.t4t7Button));
+        t4Buttons.add((Button) findViewById(R.id.t4t8Button));
+        t4t1Button = (Button) findViewById(R.id.t4t1Button);
+        t4t2Button = (Button) findViewById(R.id.t4t2Button);
+        t4t3Button = (Button) findViewById(R.id.t4t3Button);
+        t4t4Button = (Button) findViewById(R.id.t4t4Button);
+        t4t5Button = (Button) findViewById(R.id.t4t5Button);
+        t4t6Button = (Button) findViewById(R.id.t4t6Button);
+        t4t7Button = (Button) findViewById(R.id.t4t7Button);
+        t4t8Button = (Button) findViewById(R.id.t4t8Button);
+        t4Numbers.clear();
+        t4Numbers.add((TextView) findViewById(R.id.t4o1));
+        t4Numbers.add((TextView) findViewById(R.id.t4o2));
+        t4Numbers.add((TextView) findViewById(R.id.t4o3));
+        t4Numbers.add((TextView) findViewById(R.id.t4o4));
+        t4Numbers.add((TextView) findViewById(R.id.t4o5));
+        t4Numbers.add((TextView) findViewById(R.id.t4o6));
+        t4Numbers.add((TextView) findViewById(R.id.t4o7));
+        t4Numbers.add((TextView) findViewById(R.id.t4o8));
+        t4Letters.clear();
+        t4Letters.add((TextView) findViewById(R.id.t4b1));
+        t4Letters.add((TextView) findViewById(R.id.t4b2));
+        t4Letters.add((TextView) findViewById(R.id.t4b3));
+        t4Letters.add((TextView) findViewById(R.id.t4b4));
+        t4Letters.add((TextView) findViewById(R.id.t4b5));
+        t4Letters.add((TextView) findViewById(R.id.t4b6));
+        t4Letters.add((TextView) findViewById(R.id.t4b7));
+        t4Letters.add((TextView) findViewById(R.id.t4b8));
+
+
+
 
         reslayout = (LinearLayout) findViewById(R.id.reslayout);
         reslayout.setVisibility(View.GONE);
@@ -145,7 +209,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             trenType = extras.getInt("trenType");
-            if (trenType != 4) {
+            if (trenType != 400) {
                 taskId = extras.getLong("id");
             } else {
                 tasks = extras.getString("tasks");
@@ -176,6 +240,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                     stType = "Тренинг";
                     break;
                 }
+
                 case 3: {
                     cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
                     cursorTask.moveToFirst();
@@ -188,6 +253,17 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                     break;
                 }
 
+                case 4: {
+                    cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
+                    cursorTask.moveToFirst();
+                    nameBox.setText(cursorTask.getString(1));
+                    task = cursorTask.getString(1);
+                    bhint.setVisibility(View.GONE);
+                    cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? and type IN (4)  ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
+                    totalQuestions = cursorQuestions.getCount();
+                    stType = "Соответствие";
+                    break;
+                }
                 case 5: {
                     cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
                     cursorTask.moveToFirst();
@@ -678,6 +754,117 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
             }
         });
 
+        buttonType4Clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                t4Iterator = 0;
+                for (TextView i : t4Numbers){
+                    i.setText(" ");
+                }
+            }
+        });
+
+        buttonType4Go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String t4Result = "";
+                for (int i = 0; i < t4AnswerLength; i++){
+                    t4Result = t4Result + (String) t4Letters.get(i).getText();
+                    t4Result = t4Result + String.valueOf(t4Numbers.get(i).getText());
+
+                }
+                Toast aboutMessage = Toast.makeText(context, t4Result, Toast.LENGTH_LONG);
+                aboutMessage.setGravity(Gravity.BOTTOM, 0, 0);
+                aboutMessage.show();
+                //t4Iterator = 0;
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (countQuestions < totalQuestions) {
+                            cursorQuestions.moveToNext();
+                            nextQuestion();
+                        } else {
+                            showResults();
+                            insertResults();
+                        }
+                    }
+                }, 2000);
+            }
+        });
+
+        t4t1Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (t4Iterator < 8) {
+                    t4Numbers.get(t4Iterator).setText("1");
+                    t4Iterator++;
+                }
+            }
+        });
+        t4t2Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (t4Iterator < 8) {
+                    t4Numbers.get(t4Iterator).setText("2");
+                    t4Iterator++;
+                }
+            }
+        });
+        t4t3Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (t4Iterator < 8) {
+                    t4Numbers.get(t4Iterator).setText("3");
+                    t4Iterator++;
+                }
+            }
+        });
+        t4t4Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (t4Iterator < 8) {
+                    t4Numbers.get(t4Iterator).setText("4");
+                    t4Iterator++;
+                }
+            }
+        });
+        t4t5Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (t4Iterator < 8) {
+                    t4Numbers.get(t4Iterator).setText("5");
+                    t4Iterator++;
+                }
+            }
+        });
+        t4t6Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (t4Iterator < 8) {
+                    t4Numbers.get(t4Iterator).setText("6");
+                    t4Iterator++;
+                }
+            }
+        });
+        t4t7Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (t4Iterator < 8) {
+                    t4Numbers.get(t4Iterator).setText("7");
+                    t4Iterator++;
+                }
+            }
+        });
+        t4t8Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (t4Iterator < 8) {
+                    t4Numbers.get(t4Iterator).setText("8");
+                    t4Iterator++;
+                }
+            }
+        });
+
         closeTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -700,6 +887,43 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
         ad.create();
         ad.show();
     }*/
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.t4t1Button: {
+                t4Numbers.get(t4Iterator).setText("1");
+                t4Iterator++;
+                break;
+            }
+            case R.id.t4t2Button: {
+                t4Numbers.get(t4Iterator).setText("2");
+                t4Iterator++;
+                break;
+            }
+            case R.id.t4t3Button: {
+                t4Numbers.get(t4Iterator).setText("3");
+                t4Iterator++;
+                break;
+            }
+            case R.id.t4t4Button: {
+                t4Numbers.get(t4Iterator).setText("4");
+                t4Iterator++;
+                break;
+            }
+            case R.id.t4t5Button: {
+                t4Numbers.get(t4Iterator).setText("5");
+                t4Iterator++;
+                break;
+            }
+            case R.id.t4t6Button: {
+                t4Numbers.get(t4Iterator).setText("6");
+                t4Iterator++;
+                break;
+            }
+        }
+    }
+
 
     public void colorButtonGreen() {
         if (flag1 == 1) {
@@ -798,6 +1022,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                     type1.setVisibility(View.VISIBLE);
                     type2.setVisibility(View.GONE);
                     type3.setVisibility(View.GONE);
+                    type4.setVisibility(View.GONE);
                     type5.setVisibility(View.GONE);
                     cursorAnswers.moveToPosition(0);
                     if (cursorAnswers.getInt(3) == 1) {
@@ -841,6 +1066,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                     type2.setVisibility(View.VISIBLE);
                     type1.setVisibility(View.GONE);
                     type3.setVisibility(View.GONE);
+                    type4.setVisibility(View.GONE);
                     type5.setVisibility(View.GONE);
                     cursorAnswers.moveToPosition(0);
                     if (cursorAnswers.getInt(3) == 1) {
@@ -880,6 +1106,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                     type3.setVisibility(View.VISIBLE);
                     type1.setVisibility(View.GONE);
                     type2.setVisibility(View.GONE);
+                    type4.setVisibility(View.GONE);
                     type5.setVisibility(View.GONE);
                     cursorAnswers.moveToPosition(0);
                     if (cursorAnswers.getInt(3) == 1) {
@@ -890,10 +1117,38 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                     countQuestions++;
                     break;
                 }
+                case 4: {
+                    type4.setVisibility(View.VISIBLE);
+                    type1.setVisibility(View.GONE);
+                    type2.setVisibility(View.GONE);
+                    type3.setVisibility(View.GONE);
+                    type5.setVisibility(View.GONE);
+                    cursorAnswers.moveToPosition(0);
+                    t4Answer = cursorAnswers.getString(2);
+                    t4AnswerLength = cursorAnswers.getInt(3);
+                    /*Toast aboutMessage = Toast.makeText(context,t4Answer +  " " + String.valueOf(t4AnswerLength), Toast.LENGTH_LONG);
+                    aboutMessage.setGravity(Gravity.BOTTOM, 0, 0);
+                    aboutMessage.show();*/
+                    t4Iterator = 0;
+                    for (int i = 0; i < t4Letters.size(); i++){
+                        t4Letters.get(i).setVisibility(View.GONE);
+                        t4Numbers.get(i).setVisibility(View.GONE);
+                        t4Buttons.get(i).setVisibility(View.GONE);
+                        t4Numbers.get(i).setText(" ");
+                    }
+                    for (int i = 0; i < t4AnswerLength; i++){
+                        t4Letters.get(i).setVisibility(View.VISIBLE);
+                        t4Numbers.get(i).setVisibility(View.VISIBLE);
+                        t4Buttons.get(i).setVisibility(View.VISIBLE);
+                    }
+                    countQuestions++;
+                    break;
+                }
                 case 5: {
                     type5.setVisibility(View.VISIBLE);
                     type1.setVisibility(View.GONE);
                     type2.setVisibility(View.GONE);
+                    type4.setVisibility(View.GONE);
                     type3.setVisibility(View.GONE);
                     cursorAnswers.moveToPosition(0);
                     if (cursorAnswers.getInt(3) == 1) {
@@ -919,6 +1174,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
                     type1.setVisibility(View.VISIBLE);
                     type2.setVisibility(View.GONE);
                     type3.setVisibility(View.GONE);
+                    type4.setVisibility(View.GONE);
                     cursorAnswers.moveToPosition(0);
                     if (cursorAnswers.getInt(3) == 1) {
                         flag1 = 1;
@@ -1021,6 +1277,7 @@ public class TestActivity extends AppCompatActivity /*implements View.OnClickLis
             type1.setVisibility(View.GONE);
             type2.setVisibility(View.GONE);
             type3.setVisibility(View.GONE);
+            type4.setVisibility(View.GONE);
             type5.setVisibility(View.GONE);
             header.setVisibility(View.GONE);
             hintlayout.setVisibility(View.GONE);

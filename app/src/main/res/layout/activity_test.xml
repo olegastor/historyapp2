@@ -272,7 +272,180 @@
             android:layout_height="match_parent"
             android:layout_marginTop="3dp"
             android:padding="8dp"
+
             android:id="@+id/type4">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:background="@color/colorLG">
+
+                <TextView
+                    android:id="@+id/t4b1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:text="А"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorBlack"
+                    tools:text="А"
+                     />
+                <TextView
+                    android:id="@+id/t4o1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="1"
+                    />
+                <TextView
+                    android:id="@+id/t4b2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="Б"
+                    android:text="Б"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    />
+                <TextView
+                    android:id="@+id/t4o2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="2"
+                    />
+                <TextView
+                    android:id="@+id/t4b3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="В"
+                    android:text="В"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    />
+                <TextView
+                    android:id="@+id/t4o3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="3"
+                    />
+                <TextView
+                    android:id="@+id/t4b4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="Г"
+                    android:text="Г"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    />
+                <TextView
+                    android:id="@+id/t4o4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="4"
+                    />
+                <TextView
+                    android:id="@+id/t4b5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="Д"
+                    android:text="Д"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    />
+                <TextView
+                    android:id="@+id/t4o5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="5"
+                    />
+                <TextView
+                    android:id="@+id/t4b6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="Е"
+                    android:text="Е"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    />
+                <TextView
+                    android:id="@+id/t4o6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="6"
+                    />
+                <TextView
+                    android:id="@+id/t4b7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="Ж"
+                    android:text="Ж"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    />
+                <TextView
+                    android:id="@+id/t4o7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="7"
+                    />
+                <TextView
+                    android:id="@+id/t4b8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="З"
+                    android:text="З"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    />
+                <TextView
+                    android:id="@+id/t4o8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="8"
+                    />
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -286,7 +459,6 @@
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
                     android:layout_weight="1"
                     android:text="1"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -296,7 +468,6 @@
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
                     android:layout_weight="1"
                     android:text="2"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -306,8 +477,7 @@
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:text="2"
+                    android:text="3"
                     android:layout_weight="1"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="@color/colorBlack" />
@@ -316,9 +486,8 @@
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
                     android:layout_weight="1"
-                    android:text="2"
+                    android:text="4"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="@color/colorBlack" />
                 <Button
@@ -326,9 +495,8 @@
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
                     android:layout_weight="1"
-                    android:text="2"
+                    android:text="5"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="@color/colorBlack" />
                 <Button
@@ -336,12 +504,49 @@
                     style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
                     android:layout_weight="1"
-                    android:text="2"
+                    android:text="6"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorBlack" />
+                <Button
+                    android:id="@+id/t4t7Button"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="7"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorBlack" />
+                <Button
+                    android:id="@+id/t4t8Button"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="8"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="@color/colorBlack" />
             </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonType4Clear"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:text="Сброс"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <Button
+                android:id="@+id/buttonType4Go"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:text="Ответить"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </LinearLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

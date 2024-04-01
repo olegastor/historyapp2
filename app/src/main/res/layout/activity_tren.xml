@@ -140,7 +140,8 @@
             android:gravity="center"
             android:textColor="@color/colorBlack"
             android:drawableLeft="@mipmap/ic_control"
-            android:text="Контроль" />
+            android:text="Контроль"
+            android:visibility="gone"/>
 
     </LinearLayout>
 
