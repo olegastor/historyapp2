@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingBottom="@dimen/default_gap"
-        android:visibility="visible">
+        android:visibility="gone">
         <Button
             android:id="@+id/cl4MRButton"
             style="?android:attr/buttonBarButtonStyle"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingBottom="@dimen/default_gap"
-        android:visibility="visible">
+        android:visibility="gone">
         <Button
             android:id="@+id/cl6ISTBELButton"
             style="?android:attr/buttonBarButtonStyle"
@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingBottom="@dimen/default_gap"
-        android:visibility="visible">
+        android:visibility="gone">
         <Button
             android:id="@+id/cl7ISTButton"
             style="?android:attr/buttonBarButtonStyle"
@@ -87,6 +87,21 @@
         android:layout_height="wrap_content"
         android:text="8 класс"
         android:textColor="@color/colorBlack" />
+    <LinearLayout
+        android:id="@+id/lr8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/default_gap"
+        android:visibility="gone">
+        <Button
+            android:id="@+id/cl8ISTButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="8 класс. История"
+            android:textColor="@color/colorBlack" />
+    </LinearLayout>
     <Button
         android:id="@+id/cl9Button"
         style="?android:attr/buttonBarButtonStyle"
@@ -94,6 +109,21 @@
         android:layout_height="wrap_content"
         android:text="9 класс"
         android:textColor="@color/colorBlack" />
+    <LinearLayout
+        android:id="@+id/lr9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/default_gap"
+        android:visibility="gone">
+        <Button
+            android:id="@+id/cl9ISTButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="9 класс. История"
+            android:textColor="@color/colorBlack" />
+    </LinearLayout>
 
    <!-- <Button
         android:id="@+id/intButton"

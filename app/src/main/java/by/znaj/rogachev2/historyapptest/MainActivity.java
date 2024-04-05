@@ -32,7 +32,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.cl7ISTButton).setOnClickListener(this);
 
         findViewById(R.id.cl8Button).setOnClickListener(this);
+        findViewById(R.id.cl8ISTButton).setOnClickListener(this);
+
         findViewById(R.id.cl9Button).setOnClickListener(this);
+        findViewById(R.id.cl9ISTButton).setOnClickListener(this);
 
 
 
@@ -67,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         LinearLayout lr4 = findViewById(R.id.lr4);
         LinearLayout lr6 = findViewById(R.id.lr6);
         LinearLayout lr7 = findViewById(R.id.lr7);
+        LinearLayout lr8 = findViewById(R.id.lr8);
+        LinearLayout lr9 = findViewById(R.id.lr9);
 
         switch (view.getId()) {
             case R.id.cl4Button: {
@@ -102,6 +107,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);*/
                 break;
             }
+            case R.id.cl8Button: {
+                if (lr8.getVisibility() == View.GONE) {
+                    lr8.setVisibility(View.VISIBLE);
+                } else {
+                    lr8.setVisibility(View.GONE);
+                }
+                /*Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);*/
+                break;
+            }
+            case R.id.cl9Button: {
+                if (lr9.getVisibility() == View.GONE) {
+                    lr9.setVisibility(View.VISIBLE);
+                } else {
+                    lr9.setVisibility(View.GONE);
+                }
+                /*Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);*/
+                break;
+            }
             case R.id.cl6ISTBELButton: {
                 Intent intent = new Intent(this, TasksListActivity.class);
                 intent.putExtra("class", 6);
@@ -121,6 +148,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.cl7ISTButton: {
                 Intent intent = new Intent(this, TasksListActivity.class);
                 intent.putExtra("class", 7);
+                intent.putExtra("subject", "ist");
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            }
+            case R.id.cl8ISTButton: {
+                Intent intent = new Intent(this, TasksListActivity.class);
+                intent.putExtra("class", 8);
+                intent.putExtra("subject", "ist");
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            }
+            case R.id.cl9ISTButton: {
+                Intent intent = new Intent(this, TasksListActivity.class);
+                intent.putExtra("class", 9);
                 intent.putExtra("subject", "ist");
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);

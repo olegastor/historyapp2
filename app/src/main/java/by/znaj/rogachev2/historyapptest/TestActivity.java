@@ -259,7 +259,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     nameBox.setText(cursorTask.getString(1));
                     task = cursorTask.getString(1);
                     bhint.setVisibility(View.GONE);
-                    cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? and type IN (4)  ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
+                    cursorQuestions = db.rawQuery("select * from " + DatabaseHelper.TABLE_QUESTIONS + " where " + DatabaseHelper.COLUMN_ID_TASK + "=? and type IN (4,6)  ORDER BY RANDOM() LIMIT 10", new String[]{String.valueOf(taskId)});
                     totalQuestions = cursorQuestions.getCount();
                     stType = "Соответствие";
                     break;

@@ -59,6 +59,7 @@
             android:height="60dp"
             android:padding="6dp"
             android:gravity="center"
+            android:enabled="false"
             android:textColor="@color/colorBlack"
             android:drawableLeft="@mipmap/ic_control"
             android:text="Контроль" />
