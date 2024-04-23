@@ -27,15 +27,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.cl6Button).setOnClickListener(this);
         findViewById(R.id.cl6ISTBELButton).setOnClickListener(this);
+        findViewById(R.id.cl6angButton).setOnClickListener(this);
 
         findViewById(R.id.cl7Button).setOnClickListener(this);
         findViewById(R.id.cl7ISTButton).setOnClickListener(this);
+        findViewById(R.id.cl7angButton).setOnClickListener(this);
 
         findViewById(R.id.cl8Button).setOnClickListener(this);
         findViewById(R.id.cl8ISTButton).setOnClickListener(this);
+        findViewById(R.id.cl8angButton).setOnClickListener(this);
 
         findViewById(R.id.cl9Button).setOnClickListener(this);
         findViewById(R.id.cl9ISTButton).setOnClickListener(this);
+        findViewById(R.id.cl9bellitButton).setOnClickListener(this);
 
 
 
@@ -137,6 +141,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
             }
+            case R.id.cl6angButton: {
+                Intent intent = new Intent(this, TasksListActivity.class);
+                intent.putExtra("class", 61);
+                intent.putExtra("subject", "eng");
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            }
             case R.id.cl4MRButton: {
                 Intent intent = new Intent(this, TasksListActivity.class);
                 intent.putExtra("class", 4);
@@ -153,6 +165,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
             }
+            case R.id.cl7angButton: {
+                Intent intent = new Intent(this, TasksListActivity.class);
+                intent.putExtra("class", 71);
+                intent.putExtra("subject", "eng");
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            }
             case R.id.cl8ISTButton: {
                 Intent intent = new Intent(this, TasksListActivity.class);
                 intent.putExtra("class", 8);
@@ -161,10 +181,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
             }
+            case R.id.cl8angButton: {
+                Intent intent = new Intent(this, TasksListActivity.class);
+                intent.putExtra("class", 81);
+                intent.putExtra("subject", "eng");
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            }
             case R.id.cl9ISTButton: {
                 Intent intent = new Intent(this, TasksListActivity.class);
                 intent.putExtra("class", 9);
                 intent.putExtra("subject", "ist");
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            }
+            case R.id.cl9bellitButton: {
+                Intent intent = new Intent(this, TasksListActivity.class);
+                intent.putExtra("class", 92);
+                intent.putExtra("subject", "bellit");
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;

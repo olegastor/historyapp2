@@ -34,6 +34,7 @@ public class TrenActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.controlButton).setOnClickListener(this);
         findViewById(R.id.earlylaterButton).setOnClickListener(this);
         findViewById(R.id.sootvButton).setOnClickListener(this);
+        findViewById(R.id.type7Button).setOnClickListener(this);
 
         textTask = (TextView) findViewById(R.id.textTask);
 
@@ -104,6 +105,14 @@ public class TrenActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(this, TestActivity.class);
                 intent.putExtra("id", taskId);
                 intent.putExtra("trenType", 300);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            }
+            case R.id.type7Button: {
+                Intent intent = new Intent(this, TestActivity.class);
+                intent.putExtra("id", taskId);
+                intent.putExtra("trenType", 7);
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;

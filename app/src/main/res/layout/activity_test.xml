@@ -272,7 +272,6 @@
             android:layout_height="match_parent"
             android:layout_marginTop="3dp"
             android:padding="8dp"
-
             android:id="@+id/type4">
 
             <LinearLayout
@@ -540,6 +539,288 @@
 
             <Button
                 android:id="@+id/buttonType4Go"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:text="Ответить"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:padding="8dp"
+            android:id="@+id/type7">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:background="@color/colorLG">
+
+                <TextView
+                    android:id="@+id/t7b1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:text=""
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorBlack"
+                    tools:text=" "
+                    />
+                <TextView
+                    android:id="@+id/t7o1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="1"
+                    />
+                <TextView
+                    android:id="@+id/t7b2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="Б"
+                    android:text="->"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    />
+                <TextView
+                    android:id="@+id/t7o2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="2"
+                    />
+                <TextView
+                    android:id="@+id/t7b3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="В"
+                    android:text="->"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    />
+                <TextView
+                    android:id="@+id/t7o3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="3"
+                    />
+                <TextView
+                    android:id="@+id/t7b4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="Г"
+                    android:text="->"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    />
+                <TextView
+                    android:id="@+id/t7o4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="4"
+                    />
+                <TextView
+                    android:id="@+id/t7b5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="Д"
+                    android:text="->"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    />
+                <TextView
+                    android:id="@+id/t7o5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="5"
+                    />
+                <TextView
+                    android:id="@+id/t7b6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="Е"
+                    android:text="->"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    />
+                <TextView
+                    android:id="@+id/t7o6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="6"
+                    />
+                <TextView
+                    android:id="@+id/t7b7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="Ж"
+                    android:text="->"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    />
+                <TextView
+                    android:id="@+id/t7o7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="7"
+                    />
+                <TextView
+                    android:id="@+id/t7b8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="З"
+                    android:text="->"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    />
+                <TextView
+                    android:id="@+id/t7o8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    tools:text="8"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <Button
+                    android:id="@+id/t7t1Button"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="1"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorBlack" />
+                <Button
+                    android:id="@+id/t7t2Button"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorBlack" />
+                <Button
+                    android:id="@+id/t7t3Button"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    android:layout_weight="1"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorBlack" />
+                <Button
+                    android:id="@+id/t7t4Button"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="4"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorBlack" />
+                <Button
+                    android:id="@+id/t7t5Button"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="5"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorBlack" />
+                <Button
+                    android:id="@+id/t7t6Button"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="6"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorBlack" />
+                <Button
+                    android:id="@+id/t7t7Button"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="7"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorBlack" />
+                <Button
+                    android:id="@+id/t7t8Button"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="8"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorBlack" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonType7Clear"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:text="Сброс"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <Button
+                android:id="@+id/buttonType7Go"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"

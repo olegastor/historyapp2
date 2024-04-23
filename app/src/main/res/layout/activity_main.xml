@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,6 +8,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp">
+
 
 
     <Button
@@ -52,9 +55,17 @@
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="6 класс. История"
+            android:text="6 класс. История Беларуси"
+            android:textColor="@color/colorBlack" />
+        <Button
+            android:id="@+id/cl6angButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="6 класс. Английский язык"
             android:textColor="@color/colorBlack" />
     </LinearLayout>
+
 
     <Button
         android:id="@+id/cl7Button"
@@ -76,7 +87,14 @@
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="7 класс. История"
+            android:text="7 класс. История Беларуси"
+            android:textColor="@color/colorBlack" />
+        <Button
+            android:id="@+id/cl7angButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="7 класс. Английский язык"
             android:textColor="@color/colorBlack" />
     </LinearLayout>
 
@@ -99,7 +117,14 @@
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="8 класс. История"
+            android:text="8 класс. История Беларуси"
+            android:textColor="@color/colorBlack" />
+        <Button
+            android:id="@+id/cl8angButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="8 класс. Английский язык"
             android:textColor="@color/colorBlack" />
     </LinearLayout>
     <Button
@@ -121,80 +146,15 @@
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="9 класс. История"
+            android:text="9 класс. История Беларуси"
+            android:textColor="@color/colorBlack" />
+        <Button
+            android:id="@+id/cl9bellitButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="9 класс. Белорусская литература"
             android:textColor="@color/colorBlack" />
     </LinearLayout>
-
-   <!-- <Button
-        android:id="@+id/intButton"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="2. Головоломки"
-        android:textColor="@color/colorBlack" />
-
-    <Button
-        android:id="@+id/controlButton"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="3. Итоговый контроль"
-        android:textColor="@color/colorBlack" />
-
-    <Button
-        android:id="@+id/resultsButton"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="4. Результаты"
-        android:textColor="@color/colorBlack" />
-
-    <Button
-        android:id="@+id/addqButton"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="5. Добавить вопрос"
-        android:textColor="@color/colorBlack" />
-
-    <Button
-        android:id="@+id/settingsButton"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="6. Настройки"
-        android:textColor="@color/colorBlack" />
-
-    <Button
-        android:id="@+id/aboutButton"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="7. О программе"
-        android:layout_marginTop="10sp"
-        android:textColor="@color/colorBlack" />-->
-
-
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/controlButton"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Пустая кнопка" />
-
-        <Button
-            android:id="@+id/aboutButton"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="О программе" />
-    </LinearLayout>-->
-
+   
 </LinearLayout>
