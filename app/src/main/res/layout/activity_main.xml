@@ -156,5 +156,39 @@
             android:text="9 класс. Белорусская литература"
             android:textColor="@color/colorBlack" />
     </LinearLayout>
-   
+
+    <LinearLayout
+        android:id="@+id/set"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="50dp"
+        android:paddingBottom="@dimen/default_gap">
+        <Button
+            android:id="@+id/vocabularyButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/grid_size"
+            android:text="Словарь"
+            android:textColor="@color/colorBlack" />
+        <Button
+            android:id="@+id/settingsButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Настройки"
+            android:textColor="@color/colorBlack" />
+        <Button
+            android:id="@+id/resultsButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Результаты"
+            android:textColor="@color/colorBlack" />
+    </LinearLayout>
+
+
+
+
 </LinearLayout>

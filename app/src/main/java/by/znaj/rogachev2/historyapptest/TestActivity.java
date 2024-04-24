@@ -1350,7 +1350,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                         t7Buttons.get(i).setVisibility(View.GONE);
                         t7Numbers.get(i).setText(" ");
                     }
-                    for (int i = 0; i < 5; i++){
+                    for (int i = 0; i < t7AnswerLength; i++){
                         t7Letters.get(i).setVisibility(View.VISIBLE);
                         t7Numbers.get(i).setVisibility(View.VISIBLE);
                         t7Buttons.get(i).setVisibility(View.VISIBLE);

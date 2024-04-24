@@ -43,7 +43,7 @@ public class VocabularyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vocabulary);
 
-        getSupportActionBar().setTitle(R.string.app_name_short);
+        getSupportActionBar().setTitle("Словарь");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.drawable.ic_actbar);
@@ -86,11 +86,12 @@ public class VocabularyActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
-        cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
-        cursorTask.moveToFirst();
-        header.setText(cursorTask.getString(1));
+        //cursorTask = db.rawQuery("select * from " + DatabaseHelper.TABLE_TASKS + " where " + DatabaseHelper.COLUMN_ID + "=?", new String[]{String.valueOf(taskId)});
+        //cursorTask.moveToFirst();
+        //header.setText(cursorTask.getString(1));
 
-        userCursor =  db.rawQuery("select * from "+ DatabaseHelper.TABLE_VOCABULARY + " where " + DatabaseHelper.COLUMN_ID_TASK + "=?", new String[]{String.valueOf(taskId)});
+        //userCursor =  db.rawQuery("select * from "+ DatabaseHelper.TABLE_VOCABULARY + " where " + DatabaseHelper.COLUMN_ID_TASK + "=?", new String[]{String.valueOf(taskId)});
+        userCursor =  db.rawQuery("select * from "+ DatabaseHelper.TABLE_VOCABULARY, null);
 
         String[] headers = new String[] {DatabaseHelper.COLUMN_WORD};
 

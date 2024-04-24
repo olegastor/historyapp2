@@ -41,6 +41,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.cl9ISTButton).setOnClickListener(this);
         findViewById(R.id.cl9bellitButton).setOnClickListener(this);
 
+        findViewById(R.id.vocabularyButton).setOnClickListener(this);
+        findViewById(R.id.settingsButton).setOnClickListener(this);
+        findViewById(R.id.resultsButton).setOnClickListener(this);
+
 
 
         int size_coef;
@@ -201,6 +205,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(this, TasksListActivity.class);
                 intent.putExtra("class", 92);
                 intent.putExtra("subject", "bellit");
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            }
+            case R.id.settingsButton: {
+                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            }
+            case R.id.resultsButton: {
+                Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                break;
+            }
+            case R.id.vocabularyButton: {
+                Intent intent = new Intent(getApplicationContext(), VocabularyActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 break;
