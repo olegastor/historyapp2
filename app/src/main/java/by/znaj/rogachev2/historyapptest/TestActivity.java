@@ -394,7 +394,13 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             cursorQuestions.moveToFirst();
             nextQuestion();
         } else {
-            textQuestion.setText("Error");
+            type1.setVisibility(View.GONE);
+            type2.setVisibility(View.GONE);
+            type3.setVisibility(View.GONE);
+            type4.setVisibility(View.GONE);
+            type5.setVisibility(View.GONE);
+            type7.setVisibility(View.GONE);
+            textQuestion.setText("Вопросов такого типа в этой теме пока нет.");
         }
         ////////////////
         //showDialog();
@@ -422,11 +428,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         banswer1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (trenType == 3 || trenType == 4){
+                if (trenType == 300 || trenType == 400){
                     banswer1.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
                 }
                 if (flag1 == 1) {
-                    if (trenType != 3 && trenType != 4)
+                    if (trenType != 300 && trenType != 400)
                         banswer1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     if (typeQuestion == 7){
                         maptext.setVisibility(View.VISIBLE);
@@ -435,7 +441,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     disableButtons();
                     correctAnswers++;
                 } else {
-                    if (trenType != 3 && trenType != 4) {
+                    if (trenType != 300 && trenType != 400) {
                         banswer1.setBackgroundColor(getResources().getColor(R.color.colorRed));
                         colorButtonGreen();
                         if (typeQuestion == 7){
@@ -462,11 +468,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         banswer2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (trenType == 3 || trenType == 4){
+                if (trenType == 300 || trenType == 400){
                     banswer2.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
                 }
                 if (flag2 == 1) {
-                    if (trenType != 3 && trenType != 4)
+                    if (trenType != 300 && trenType != 400)
                         banswer2.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     if (typeQuestion == 7){
                         maptext.setVisibility(View.VISIBLE);
@@ -475,7 +481,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     disableButtons();
                     correctAnswers++;
                 } else {
-                    if (trenType != 3 && trenType != 4) {
+                    if (trenType != 300 && trenType != 400) {
                         banswer2.setBackgroundColor(getResources().getColor(R.color.colorRed));
                         colorButtonGreen();
                         if (typeQuestion == 7){
@@ -502,11 +508,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         banswer3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (trenType == 3 || trenType == 4){
+                if (trenType == 300 || trenType == 400){
                     banswer3.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
                 }
                 if (flag3 == 1) {
-                    if (trenType != 3 && trenType != 4)
+                    if (trenType != 300 && trenType != 400)
                         banswer3.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     if (typeQuestion == 7){
                         maptext.setVisibility(View.VISIBLE);
@@ -515,7 +521,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     disableButtons();
                     correctAnswers++;
                 } else {
-                    if (trenType != 3 && trenType != 4) {
+                    if (trenType != 300 && trenType != 400) {
                         banswer3.setBackgroundColor(getResources().getColor(R.color.colorRed));
                         colorButtonGreen();
                         if (typeQuestion == 7){
@@ -542,11 +548,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         banswer4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (trenType == 3 || trenType == 4){
+                if (trenType == 300 || trenType == 400){
                     banswer4.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
                 }
                 if (flag4 == 1) {
-                    if (trenType != 3 && trenType != 4)
+                    if (trenType != 300 && trenType != 400)
                         banswer4.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     if (typeQuestion == 7){
                         maptext.setVisibility(View.VISIBLE);
@@ -555,7 +561,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     disableButtons();
                     correctAnswers++;
                 } else {
-                    if (trenType != 3 && trenType != 4) {
+                    if (trenType != 300 && trenType != 400) {
                         banswer4.setBackgroundColor(getResources().getColor(R.color.colorRed));
                         colorButtonGreen();
                         if (typeQuestion == 7){
@@ -638,7 +644,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     correctAnswers++;
                 }
 
-                if (trenType != 3 && trenType != 4) {
+                if (trenType != 300 && trenType != 400) {
                     if (flag1 == 1 && check1 == 0) {
                         buttonCheck1.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                         buttonCheck1.setTextColor(getResources().getColor(R.color.colorRed));
@@ -701,17 +707,17 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         byes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (trenType == 3 || trenType == 4){
+                if (trenType == 300 || trenType == 400){
                     byes.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
                 }
                 if (flag1 == 1) {
                     disableButtons();
-                    if (trenType != 3 && trenType != 4)
+                    if (trenType != 300 && trenType != 400)
                         byes.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     correctAnswers++;
                 } else {
                     disableButtons();
-                    if (trenType != 3 && trenType != 4)
+                    if (trenType != 300 && trenType != 400)
                         byes.setBackgroundColor(getResources().getColor(R.color.colorRed));
                 }
                 handler.postDelayed(new Runnable() {
@@ -731,17 +737,17 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         bno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (trenType == 3 || trenType == 4){
+                if (trenType == 300 || trenType == 400){
                     bno.setBackgroundColor(getResources().getColor(R.color.colorHighlight));
                 }
                 if (flag1 == 0) {
                     disableButtons();
-                    if (trenType != 3 && trenType != 4)
+                    if (trenType != 300 && trenType != 400)
                         bno.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                     correctAnswers++;
                 } else {
                     disableButtons();
-                    if (trenType != 3 && trenType != 4)
+                    if (trenType != 300 && trenType != 400)
                         bno.setBackgroundColor(getResources().getColor(R.color.colorRed));
                 }
                 handler.postDelayed(new Runnable() {
@@ -858,6 +864,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 aboutMessage.setGravity(Gravity.BOTTOM, 0, 0);
                 aboutMessage.show();
                 //t4Iterator = 0;
+                if (t4Answer.equals(t4Result)){
+                    correctAnswers++;
+                }
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -886,6 +895,9 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 aboutMessage.setGravity(Gravity.BOTTOM, 0, 0);
                 aboutMessage.show();
                 //t4Iterator = 0;
+                if (t7Answer.equals(t7Result)){
+                    correctAnswers++;
+                }
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {

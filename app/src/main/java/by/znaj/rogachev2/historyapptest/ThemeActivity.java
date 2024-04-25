@@ -40,6 +40,7 @@ public class ThemeActivity extends AppCompatActivity implements View.OnClickList
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
         findViewById(R.id.beginButton).setOnClickListener(this);
+        findViewById(R.id.controlButton).setOnClickListener(this);
         //findViewById(R.id.vocabularyButton).setOnClickListener(this);
         //findViewById(R.id.memButton).setOnClickListener(this);
         //findViewById(R.id.videoButton).setOnClickListener(this);
